@@ -1,5 +1,5 @@
 <?php
-/* $Id: submit.php,v 1.5 2003/07/16 18:52:45 robbat2 Exp $ */
+/* $Id: submit.php,v 1.6 2003/07/17 20:13:34 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/submit.php,v $ */
 
 include './header.inc.php';
@@ -11,7 +11,7 @@ include 'lib/commontable.inc.php';
 
 function processDate(&$datevar) {
     $tmp = $datevar['year'].'-'.$datevar['month'].'-'.$datevar['day'].' '.$datevar['hour'].':'.$datevar['minute'].':'.$datevar['second'];
-    $datevar = $tmp;
+    $datevar = preg_replace('/([^[:digit:]])0+0/','\10',$tmp);
     return $datevar;
 }
 
@@ -21,7 +21,7 @@ if($tablePerm[$perm]) {
     
     // Fix dates first
     $arrkeys = array_keys($_REQUEST[$_REQUEST['table']]);
-    $datekeys = array_values(preg_grep ("/Date$/", $arrkeys));
+    $datekeys = array_values(preg_grep ("/(Date|Duration)$/", $arrkeys));
     foreach($datekeys as $dk) {
         processDate($_REQUEST[$_REQUEST['table']][$dk]);
     }
@@ -55,6 +55,7 @@ if($tablePerm[$perm]) {
         $first = TRUE;
         foreach($dataEdit as $dataKey_key => $dataKey_value ) {
             // skip old data
+            $oldEditData[$dataKey_key] = ereg_replace('([^[:digit:]])0+0','\10',$oldEditData[$dataKey_key]);
             if(dodbg(4)) {
                 echo 'OLD: '.$oldEditData[$dataKey_key]."<br />\n";
                 echo 'NEW: '.$dataKey_value."<br />\n";

@@ -1,9 +1,17 @@
-$Id: ChangeLog,v 1.55 2003/05/29 04:14:03 robbat2 Exp $
+$Id: ChangeLog,v 1.56 2003/06/03 19:50:59 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-06-03 12:50  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/formbuilder.lib.php: date stuff
 
 2003-05-28 21:03  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* addedit.php: wip
+
+2003-05-28 21:03  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* main.php, view.php: cleanup
 
 2003-05-28 21:03  Robin Johnson  <robbat2@orbis-terrarum.net>
 

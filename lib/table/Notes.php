@@ -1,5 +1,5 @@
 <?php
-/* $Id: Notes.php,v 1.3 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: Notes.php,v 1.4 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Notes.php,v $ */
 
 //table name goes here
@@ -23,15 +23,15 @@ $_t['NoteMimeType']['ishidden'] = FALSE;
 $_t['NoteMimeType']['islocked'] = TRUE;
 
 $_t['NoteData']['longname'] = 'Data';
-$_t['NoteData']['datatype'] = 'MEDIUMTEXT';
-$_t['NoteData']['inputtype'] = 'text';
+$_t['NoteData']['datatype'] = 'TEXT';
+$_t['NoteData']['inputtype'] = 'textarea';
 $_t['NoteData']['ishidden'] = FALSE;
 $_t['NoteData']['islocked'] = TRUE;
 
 $_t['NoteGenericTable']['longname'] = 'Table';
 $_t['NoteGenericTable']['datatype'] = 'ENUM';
 $_t['NoteGenericTable']['inputtype'] = 'select';
-$_t['NoteGenericTable']['enumvalues'] = $genericTableEnum;
+$_t['NoteGenericTable']['enumvalues'] = $GenericTableEnum;
 $_t['NoteGenericTable']['ishidden'] = FALSE;
 $_t['NoteGenericTable']['islocked'] = TRUE;
 
@@ -42,11 +42,12 @@ $_t['NoteGenericID']['ishidden'] = FALSE;
 $_t['NoteGenericID']['islocked'] = TRUE;
 
 $_t['UserID']['longname'] = 'User';
-$_t['UserID']['datatype'] = 'VARCHAR';
+$_t['UserID']['datatype'] = 'ID';
 $_t['UserID']['inputtype'] = 'select';
 $_t['UserID']['islocked'] = TRUE;
 $_t['UserID']['ishidden'] = FALSE;
-$_t['UserID']['keyto'] = 'Users.UserName';
+$_t['UserID']['keyto'] = 'UserLogin';
+$_t['UserID']['keytable'] = 'Users';
 
 $_t['NoteDate']['longname'] = 'Timestamp';
 $_t['NoteDate']['datatype'] = 'TIMESTAMP';

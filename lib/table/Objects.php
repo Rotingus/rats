@@ -1,5 +1,5 @@
 <?php
-/* $Id: Objects.php,v 1.2 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: Objects.php,v 1.3 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Objects.php,v $ */
 
 //table name goes here
@@ -26,10 +26,11 @@ $_t['ObjectName']['inputtype'] = 'text';
 $_t['ObjectName']['ishidden'] = FALSE;
 
 $_t['ObjectTypeID']['longname'] = 'Object Type';
-$_t['ObjectTypeID']['datatype'] = 'INT';
+$_t['ObjectTypeID']['datatype'] = 'ID';
 $_t['ObjectTypeID']['inputtype'] = 'select';
 $_t['ObjectTypeID']['ishidden'] = FALSE;
-$_t['ObjectTypeID']['keyto'] = 'ObjectTypes.ObjectTypeID';
+$_t['ObjectTypeID']['keyto'] = 'ObjectTypeGenericName';
+$_t['ObjectTypeID']['keytable'] = 'ObjectTypes';
 
 $_t['ObjectSerialNumber']['longname'] = 'SerialNumber';
 $_t['ObjectSerialNumber']['datatype'] = 'VARCHAR';
@@ -37,10 +38,11 @@ $_t['ObjectSerialNumber']['inputtype'] = 'text';
 $_t['ObjectSerialNumber']['ishidden'] = FALSE;
 
 $_t['PurchaseID']['longname'] = 'PurchaseID';
-$_t['PurchaseID']['datatype'] = 'INT';
+$_t['PurchaseID']['datatype'] = 'ID';
 $_t['PurchaseID']['inputtype'] = 'select';
 $_t['PurchaseID']['ishidden'] = FALSE;
-$_t['PurchaseID']['keyto'] = 'Purchases.PurchaseID';
+$_t['PurchaseID']['keyto'] = 'PurchaseID';
+$_t['PurchaseID']['keytable'] = 'Purchases';
 
 $_t['ObjectGroupID']['longname'] = 'Object Group';
 $_t['ObjectGroupID']['datatype'] = 'INT';
@@ -55,7 +57,7 @@ $_t['ObjectInGroup']['ishidden'] = FALSE;
 
 $_t['_view_sql'] = 'SELECT __KEY__ ObjectBarcode, ObjectName, ObjectTypeID, ObjectSerialNumber, PurchaseID, ObjectGroupID, ObjectInGroup 
 FROM Objects';
-$_t['_view_cols'] = array('ObjectBarcode','ObjectName','ObjectTypeID','ObjectTypeID','ObjectSerialNumber','PurchaseID','ObjectGroupID','ObjectInGroup');
+$_t['_view_cols'] = array('ObjectBarcode','ObjectName','ObjectTypeID','ObjectSerialNumber','PurchaseID','ObjectGroupID','ObjectInGroup');
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

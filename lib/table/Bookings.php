@@ -1,5 +1,5 @@
 <?php
-/* $Id: Bookings.php,v 1.1 2003/05/07 10:01:14 robbat2 Exp $ */
+/* $Id: Bookings.php,v 1.2 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Bookings.php,v $ */
 
 //table name goes here
@@ -7,18 +7,20 @@ $_tn  = 'Bookings';
 
 $_t['BookingID']['isid'] = TRUE;
 $_t['UserID']['longname'] = 'User';
-$_t['UserID']['datatype'] = 'VARCHAR';
+$_t['UserID']['datatype'] = 'ID';
 $_t['UserID']['inputtype'] = 'select';
 $_t['UserID']['islocked'] = TRUE;
 $_t['UserID']['ishidden'] = FALSE;
-$_t['UserID']['keyto'] = 'Users.UserName';
+$_t['UserID']['keyto'] = 'UserLogin';
+$_t['UserID']['keytable'] = 'Users';
 
 $_t['ObjectID']['longname'] = 'Object';
-$_t['ObjectID']['datatype'] = 'VARCHAR';
+$_t['ObjectID']['datatype'] = 'ID';
 $_t['ObjectID']['inputtype'] = 'select';
 $_t['ObjectID']['islocked'] = TRUE;
 $_t['ObjectID']['ishidden'] = FALSE;
-$_t['ObjectID']['keyto'] = 'Objects.ObjectName';
+$_t['ObjectID']['keyto'] = 'ObjectName';
+$_t['ObjectID']['keytable'] = 'Objects';
 
 $_t['BookingStartDate']['longname'] = 'Start Date';
 $_t['BookingStartDate']['datatype'] = 'DATETIME';

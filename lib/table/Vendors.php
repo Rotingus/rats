@@ -1,5 +1,5 @@
 <?php
-/* $Id: Vendors.php,v 1.1 2003/05/07 10:01:14 robbat2 Exp $ */
+/* $Id: Vendors.php,v 1.2 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Vendors.php,v $ */
 
 //table name goes here
@@ -22,7 +22,7 @@ $_t['VendorName']['ishidden'] = FALSE;
 
 $_t['VendorDetails']['longname'] = 'Details';
 $_t['VendorDetails']['datatype'] = 'TEXT';
-$_t['VendorDetails']['inputtype'] = 'text';
+$_t['VendorDetails']['inputtype'] = 'textarea';
 $_t['VendorDetails']['ishidden'] = FALSE;
 
 $_t['_view_cols'] = array('VendorName','VendorDetails');

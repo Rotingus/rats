@@ -1,5 +1,5 @@
 <?php
-/* $Id: ObjectTypes.php,v 1.2 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: ObjectTypes.php,v 1.3 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/ObjectTypes.php,v $ */
 
 //table name goes here
@@ -16,10 +16,11 @@ $_t['field']['ishidden'] = '';
 $_t['ObjectTypeID']['isid'] = TRUE;
 
 $_t['VendorID']['longname'] = 'Vendor';
-$_t['VendorID']['datatype'] = 'VARCHAR';
+$_t['VendorID']['datatype'] = 'ID';
 $_t['VendorID']['inputtype'] = 'select';
 $_t['VendorID']['ishidden'] = FALSE;
-$_t['VendorID']['keyto'] = 'Vendors.VendorName';
+$_t['VendorID']['keyto'] = 'VendorName';
+$_t['VendorID']['keytable'] = 'Vendors';
 
 $_t['ObjectTypeGenericName']['longname'] = 'Generic Name';
 $_t['ObjectTypeGenericName']['datatype'] = 'VARCHAR';
@@ -50,7 +51,7 @@ $_t['ObjectTypeLoanDuration']['ishidden'] = FALSE;
 
 $_t['ObjectTypeDescription']['longname'] = 'Description';
 $_t['ObjectTypeDescription']['datatype'] = 'TEXT';
-$_t['ObjectTypeDescription']['inputtype'] = 'text';
+$_t['ObjectTypeDescription']['inputtype'] = 'textarea';
 $_t['ObjectTypeDescription']['ishidden'] = FALSE;
 
 $_t['_view_sql'] = 'SELECT __KEY__ VendorName, ObjectTypeGenericName, ObjectTypeModel, ObjectTypeClass, ObjectTypePriority, ObjectTypeLoanDuration, ObjectTypeDescription FROM ObjectTypes JOIN Vendors USING (VendorID)';

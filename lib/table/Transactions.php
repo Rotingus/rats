@@ -1,5 +1,5 @@
 <?php
-/* $Id: Transactions.php,v 1.1 2003/05/07 11:22:39 robbat2 Exp $ */
+/* $Id: Transactions.php,v 1.2 2003/05/29 03:50:22 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Transactions.php,v $ */
 
 //table name goes here
@@ -23,18 +23,20 @@ $_t['TransactionDate']['ishidden'] = FALSE;
 $_t['TransactionDate']['islocked'] = TRUE;
 
 $_t['UserID']['longname'] = 'User';
-$_t['UserID']['datatype'] = 'VARCHAR';
+$_t['UserID']['datatype'] = 'ID';
 $_t['UserID']['inputtype'] = 'select';
 $_t['UserID']['islocked'] = TRUE;
 $_t['UserID']['ishidden'] = FALSE;
-$_t['UserID']['keyto'] = 'Users.UserName';
+$_t['UserID']['keyto'] = 'UserLogin';
+$_t['UserID']['keytable'] = 'Users';
 
 $_t['ActionID']['longname'] = 'Action';
-$_t['ActionID']['datatype'] = 'VARCHAR';
+$_t['ActionID']['datatype'] = 'ID';
 $_t['ActionID']['inputtype'] = 'select';
 $_t['ActionID']['islocked'] = TRUE;
 $_t['ActionID']['ishidden'] = FALSE;
-$_t['ActionID']['keyto'] = 'Actions.ActionName';
+$_t['ActionID']['keyto'] = 'CONCAT(ActionGenericTable,\'-\',ActionType)';
+$_t['ActionID']['keytable'] = 'Actions';
 
 $_t['TransactionGenericID']['longname'] = 'ID';
 $_t['TransactionGenericID']['datatype'] = 'INT';

@@ -279,12 +279,13 @@ textareainput($name,
     $initialvalue,
     $rows = '',$cols = '')
 {
-  $extra = array();
+  $extra = array( 'name' => $name );
   if($rows != '' && $cols != '') {
     $extra['rows'] = $rows;
     $extra['cols'] = $cols;
   }
-  return html_input($name, 'textarea', $initialvalue, '', '', '', array(), $extra);
+  //return html_input($name, 'textarea', $initialvalue, '', '', '', array(), $extra);
+  return htmlElm('textarea', $extra, $initialvalue);
 }
 
 function

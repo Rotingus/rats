@@ -1,5 +1,5 @@
 <?php
-/* $Id: formbuilder.lib.php,v 1.5 2003/06/22 23:08:09 robbat2 Exp $ */
+/* $Id: formbuilder.lib.php,v 1.6 2003/07/16 09:35:52 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/formbuilder.lib.php,v $ */
 
 function idstr_query($idfield,$idstr,$idfrom) {
@@ -58,7 +58,7 @@ function formelement_textarea($tableName,$tableData,$element,$data) {
     if($data !== NULL) {
         $v = $data[$element];
     }
-    echo textareainput(fieldName($tableName,$element),$v,80,50);
+    echo textareainput(fieldName($tableName,$element),$v,15,40);
 }
 
 function formelement_null($tableName,$tableData,$element,$data) { 

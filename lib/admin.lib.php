@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.2 2003/03/13 11:29:08 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.3 2003/03/13 11:51:01 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionUsername, $sessionPassword, $sessionDebug;
@@ -11,7 +11,7 @@ $sessionDebug = FALSE;
 function printall($item) {	
     global $sessionDebug;
     if($sessionDebug) {
-        echo 'Variable status at $item point. <br />'."\n";
+        echo 'Variable status at '.$item.' point. <br />'."\n";
         echo 'GET: '; print_r($_GET); echo '<br />'."\n";
         echo 'POST: '; print_r($_POST); echo '<br />'."\n";
         echo 'SESSION: '; print_r($_SESSION); echo '<br />'."\n";
@@ -60,6 +60,7 @@ function admin_user_lookup_mysql($sessionUsername,$sessionPassword) {
     //$query = 'SELECT MD5(CONCAT(UserLogin,UserBarcode)) AS hash FROM Users WHERE UserLogin=\''.$sessionUsername.'\' AND UserPassword=\''$md5password'\'';
     $query = 'SELECT UserID FROM Users WHERE UserLogin=\''.$sessionUsername.'\' AND UserPassword=\''.$sessionPassword.'\'';
     $userhash = MySQL_singleton($query);
+    //echo $query.' - res: '.$userhash;
     return ($userhash!=$MySQL_singleton_abort);
 }
 
@@ -72,12 +73,14 @@ function admin_validate() {
     admin_session_load($sessionUsername,$sessionPassword);
     printall('admin_validate.load');
 
+    //post takes precedence
     $sessionUsername = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-    if(isset($_POST['username']) && !isset($_SESSION['username']))
+    if(isset($_POST['username']))
         $sessionUsername = $_POST['username'];
     $sessionPassword = isset($_SESSION['username']) ? $_SESSION['password'] : '';
-    if(isset($_POST['password']) && !isset($_SESSION['password']))
+    if(isset($_POST['password']))
         $sessionPassword = $_POST['password'];
+
 
     $valid =  admin_user_lookup($sessionUsername,$sessionPassword);
 

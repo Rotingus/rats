@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.8 2003/06/05 23:22:18 robbat2 Exp $ */
+/* $Id: view.php,v 1.9 2003/06/25 19:20:54 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -126,6 +126,7 @@ if($tablePerm['view']) {
  }
 
  $query = $tableData[$tableName]['_view_sql_final'].$where.$orderby;
+ if(dodbg(2)) echo "Query: ".$query ; 
  $headtmp = array_subkey($tableData[$tableName],'longname');
  $head = array();
  foreach($headtmp as $key => $value) {

@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.5 2003/05/07 20:48:10 robbat2 Exp $ */
+/* $Id: view.php,v 1.6 2003/05/29 04:03:27 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -13,8 +13,9 @@ function drawTable_top($head) {
     echo html_thead_open();
     echo html_tr_open();
     foreach($head as $h) {
-        if($h != '')
+        if($h != '') {
             echo html_th_wrap($h);
+        }
     }
     echo html_tr_close();
     echo html_thead_close();
@@ -104,7 +105,7 @@ function drawTableTopSQL($table,$oldwhere='',$tablename='') {
     echo selectinput('orderbycol',$keylist);
     echo html_form_label('wherecol','Search:');
     echo selectinput('wherecol',$keylist);
-    $searchtypes = array(''=>'','substring'=>'Substring','sqlregex'=>'SQL Regex','gnuregex'=>'GNU Regex');
+    $searchtypes = array('substring'=>'Substring','sqlregex'=>'SQL Regex','gnuregex'=>'GNU Regex');
     echo selectinput('wherefunc',$searchtypes);
     echo textinput('wheredata','',16);
     echo hiddeninput('wherecurrent',$oldwhere);

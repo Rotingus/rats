@@ -1,15 +1,15 @@
 #!/bin/sh
-#$Id: dumpsql.sh,v 1.4 2003/06/12 18:10:18 robbat2 Exp $
+#$Id: dumpsql.sh,v 1.5 2003/06/12 18:20:07 robbat2 Exp $
 MYSQL=/usr
 [ -d /usr/local/mysql ] && MYSQL=/usr/local/mysql
 MYSQL_BIN=${MYSQL}/bin
 MYSQLDUMP=${MYSQL_BIN}/mysqldump
-OPTS="--all --add-drop-table --extended-insert --compress --databases"
+OPTS="--all --add-drop-table --compress --databases"
 DBS="rats"
 USERNAME="rats"
 SCHEMAFILENAME="schema.sql"
 DATAFILENAME="data.sql"
-DATAFILEGEN="--no-create-info --no-create-db"
+DATAFILEGEN="--no-create-info --no-create-db --complete-insert"
 SCHEMAFILEGEN="--no-data"
 BADCOMMENTREMOVE="egrep -v '^---[-]*$'"
 CLEANUPINSERT="sed -e 's/INSERT INTO/INSERT IGNORE INTO/g'"

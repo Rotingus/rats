@@ -1,18 +1,16 @@
 <?php
-/* $Id: _skel.php,v 1.2 2003/03/14 23:10:11 robbat2 Exp $ */
+/* $Id: _skel.php,v 1.3 2003/05/06 20:58:59 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/_skel.php,v $ */
 
 //table name goes here
 $_tn  = '';
 
-
-global $tableData;
-
-$tableData[$_tn]['field']['longname'] = '';
-$tableData[$_tn]['field']['datatype'] = '';
-$tableData[$_tn]['field']['inputtype'] = '';
-$tableData[$_tn]['field']['locked'] = '';
-$tableData[$_tn]['field']['hidden'] = '';
+$_t['field']['longname'] = '';
+$_t['field']['datatype'] = '';
+$_t['field']['inputtype'] = '';
+$_t['field']['islocked'] = '';
+$_t['field']['ishidden'] = '';
+$_t['field']['isid'] = '';
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

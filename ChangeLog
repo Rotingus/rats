@@ -1,5 +1,65 @@
-$Id: ChangeLog,v 1.50 2003/04/29 20:48:22 robbat2 Exp $
+$Id: ChangeLog,v 1.51 2003/05/06 21:54:23 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-05-06 14:53  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/html.lib.php, gui/login.inc.php, gui/tablehelper.lib.php,
+	leftframe.php, view.php: interface update
+
+2003-05-06 13:59  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/: admin.lib.php, commontable.inc.php: new managagement
+	functions and table handling code
+
+2003-05-06 13:59  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/Obj/: GenericMapping.php, GroupActionMapping.php: added new
+	accessor functions
+
+2003-05-06 13:58  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: CheckOuts.php, Groups.php, Users.php, _skel.php:
+	updated to new table data style
+
+2003-05-01 15:20  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: more simply query functions and a bugfix
+
+2003-05-01 15:20  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php: updated include script
+
+2003-05-01 15:19  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/tablehelper.lib.php: source for guiedit/delete functions
+
+2003-05-01 15:08  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/: permissiondenied.inc.php, permissiondenied.php: moved
+	permissiondenied.php to permissiondenied.inc.php
+
+2003-04-30 12:51  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, dumpsql.sh, schema.sql: db data update
+
+2003-04-30 11:26  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: Manufacters.php, Manufacturers.php: spelling fix
+
+2003-04-30 11:21  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* build/clean: script to clean out old backups
+
+2003-04-30 11:16  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php, view.php, build/fixinclude, lib/admin.lib.php,
+	lib/commontable.inc.php, lib/table/Actions.php,
+	lib/table/CheckOuts.php, lib/table/Groups.php: update to table
+	handling codE
+
+2003-04-30 11:16  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/processtable.inc.php: table processing helper
 
 2003-04-29 13:47  Robin Johnson  <robbat2@orbis-terrarum.net>
 

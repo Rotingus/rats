@@ -1,1 +1,91 @@
+$Id: ChangeLog,v 1.29 2003/03/13 09:24:22 robbat2 Exp $
+$Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-05 09:30  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php, insert.php, leftframe.php, main.php,
+	rightframe.php, gui/style.inc.php, gui/title.inc.php: New code
+
+2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php, index.php, leftframe.php, main.php,
+	gui/array.lib.php, gui/header.inc.php, lib/mysql.lib.php: Lots of
+	work!
+
+2003-01-23 12:39  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/: html.inc.php, html.lib.php: move html helper funcs
+
+2003-01-23 12:32  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/: footer.inc.php, header.inc.php, html.inc.php,
+	style.inc.php, title.inc.php: Lots of new files
+
+2003-01-23 12:30  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* index.php, kiosk.php: kiosk
+
+2002-12-12 14:55  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* index.php, lib/MySQL.php, lib/Obj/CheckOuts.php,
+	lib/Obj/Transactions.php: See ChangeLog
+
+2002-12-12 05:39  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php, index.php, lib/Barcode.php, lib/MySQL.php,
+	lib/Obj/Actions.php, lib/Obj/CheckOuts.php, lib/Obj/Objects.php,
+	lib/Obj/Transactions.php: See ChangeLog
+
+2002-12-12 03:01  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php, index.php, lib/MySQL.php,
+	lib/DataStructure/List.php, lib/Obj/Transactions.php: See changelog
+
+2002-12-11 23:10  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/data.sql, db/dumpsql.sh, db/schema.sql, lib/DObj/Actions.php,
+	lib/Obj/Actions.php: See changelog
+
+2002-11-19 11:44  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/Obj/: Actions.php, Bookings.php, CheckOuts.php,
+	GroupActionMapping.php, Groups.php, Manufacters.php, Notes.php,
+	ObjectTypes.php, Objects.php, Purchases.php, Transactions.php,
+	UserGroupMapping.php, Users.php: Fixed stuff
+
+2002-11-19 11:37  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: CREATE/USE database
+
+2002-11-14 00:45  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/: DBObjects.ini, DObj/Actions.php, DObj/Bookings.php,
+	DObj/CheckOuts.php, DObj/GroupActionMapping.php, DObj/Groups.php,
+	DObj/Manufacters.php, DObj/Notes.php, DObj/ObjectTypes.php,
+	DObj/Objects.php, DObj/Purchases.php, DObj/Transactions.php,
+	DObj/UserGroupMapping.php, DObj/Users.php, DObj/rats.ini,
+	Obj/Actions.php, Obj/Bookings.php, Obj/CheckOuts.php,
+	Obj/GroupActionMapping.php, Obj/Groups.php, Obj/Manufacters.php,
+	Obj/Notes.php, Obj/ObjectTypes.php, Obj/Objects.php,
+	Obj/Purchases.php, Obj/Template, Obj/Transactions.php,
+	Obj/UserGroupMapping.php, Obj/Users.php: 2002-11-14 00-41 Robin
+	Johnson  <robbat2@orbis-terrarum.net>	  * lib/DBObjects.ini:	   
+	   - Added DBObjects handler INI     * lib/DObj/*:	   - Added
+	all initial auto-geneated classes for data handling	*
+	lib/Obj/*.php, lib/Obj/Template:	 - Added all base object
+	handling classes from custom template
+
+2002-11-13 13:19  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: DatabaseLayout.vdx, schema.sql: Added Object Group stuff Put
+	db layout diagram into place
+
+2002-11-12 12:34  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: Updated schema to use proper column sizes and put
+	in classes for objects
+
+2002-11-12 02:03  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: Initial Checkin of DB schema
 

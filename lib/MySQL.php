@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.18 2003/07/17 20:27:43 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.19 2004/06/01 16:32:01 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -8,7 +8,7 @@ class MySQL {
     var $mysql_conn;
 
     //input data
-    var $mysql_server = 'localhost:/tmp/mysql.sock';
+    var $mysql_server = 'localhost';
     var $mysql_username = 'rats';
     var $mysql_passwd = 'ratty';
     var $mysql_db = 'rats';
@@ -271,13 +271,13 @@ function MySQL_buildonemanykey($keyName,$values) {
 }
 
 function MySQL_escape($str) {
-    if(!is_string($str)) {
+    if(is_array($str)) {
         echo '<br />Type: '.gettype($str);
         echo '<br />Input: ';
         print_r($str);
         echo "<br />\nBacktrace:<br />\n";
         print_r(debug_backtrace());
-        die("Input is not a string! ".__FILE__." ".__LINE__);
+        die("Input is an array! ".__FILE__." ".__LINE__);
     }
     return mysql_real_escape_string($str);
 }
@@ -318,7 +318,7 @@ function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE,$order = NU
 $username = 'rats';
 $passwd = 'ratty';
 $db = 'rats';
-$server = 'localhost:/tmp/mysql.sock';
+$server = 'localhost';
 
 global $_MySQL,$_MySQL_trans;
 $_MySQL = new MySQL($username,$passwd,$db,$server,false);

@@ -37,6 +37,8 @@ html,body {
 
 table {
   empty-cells: show;
+  border-width: 1px;
+  border-color: black;
 }
 
 .innerbox {

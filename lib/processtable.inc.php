@@ -1,5 +1,5 @@
 <?php
-/* $Id: processtable.inc.php,v 1.3 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: processtable.inc.php,v 1.4 2003/05/29 04:02:51 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/processtable.inc.php,v $ */
 
 // code goes here
@@ -19,6 +19,7 @@ $defaultValues = array(
         'ishidden'  => TRUE,
         'isid'      => FALSE,
         'keyto'     => '',
+        'keytable'     => '',
         'enumvalues' => array()
         );
 foreach($_t as $key => $arr) {

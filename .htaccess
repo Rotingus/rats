@@ -1,0 +1,5 @@
+php_value display_errors 1
+php_value error_reporting 2047
+php_value display_startup_errors 1
+php_value track_errors 1
+php_value mysql.trace_mode 1

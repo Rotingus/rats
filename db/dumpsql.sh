@@ -1,5 +1,5 @@
 #!/bin/sh
-#$Id: dumpsql.sh,v 1.5 2003/06/12 18:20:07 robbat2 Exp $
+#$Id: dumpsql.sh,v 1.6 2003/06/12 19:01:26 robbat2 Exp $
 MYSQL=/usr
 [ -d /usr/local/mysql ] && MYSQL=/usr/local/mysql
 MYSQL_BIN=${MYSQL}/bin
@@ -14,11 +14,14 @@ SCHEMAFILEGEN="--no-data"
 BADCOMMENTREMOVE="egrep -v '^---[-]*$'"
 CLEANUPINSERT="sed -e 's/INSERT INTO/INSERT IGNORE INTO/g'"
 
-echo -n "Enter password: "
-read -s PASSWORD
+PASSWORD="$1"
+if [ -z "${PASSWORD}" ]; then
+    echo -n "Enter password: "
+    read -s PASSWORD
+fi;
+
 POPT="-p${PASSWORD}"
 OPTS="${OPTS} ${POPT}"
-echo
 
 echo "-- \$""Id""\$" >${SCHEMAFILENAME}
 echo "-- \$""Id""\$" >${DATAFILENAME}

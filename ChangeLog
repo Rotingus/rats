@@ -1,9 +1,21 @@
-$Id: ChangeLog,v 1.43 2003/03/14 12:57:08 robbat2 Exp $
+$Id: ChangeLog,v 1.44 2003/03/14 22:58:00 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
 2003-03-14 04:56  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* lib/commontable.inc.php: common table stuff for insert/view
+
+2003-03-14 04:56  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* leftframe.php: fixes
+
+2003-03-14 04:56  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* insert.php: update to new style
+
+2003-03-14 04:56  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* view.php: tbl viewing form
 
 2003-03-14 04:56  Robin Johnson  <robbat2@orbis-terrarum.net>
 

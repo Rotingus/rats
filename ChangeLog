@@ -1,9 +1,14 @@
-$Id: ChangeLog,v 1.2 2002/11/12 10:03:34 robbat2 Exp $
+$Id: ChangeLog,v 1.3 2002/11/12 20:34:39 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
+2002-11-12 12-30 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * db/schema.sql: 
+        - Changed to use INT(10) for lengths
+        - Added class field to ObjectType
+
 2002-11-12 01-59 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * rats/db: Created directory
-    * rats/db/schema.sql: Initial Checkin of DB schema
+    * db: Created directory
+    * b/schema.sql: Initial Checkin of DB schema
 
 2002-11-04 14-50 Robin Johnson  <robbat2@orbis-terrarum.net>
     * rats/: Created initial directories

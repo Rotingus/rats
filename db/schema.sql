@@ -1,6 +1,4 @@
--- $Id: schema.sql,v 1.1 2002/11/12 10:03:34 robbat2 Exp $
-
-
+-- $Id: schema.sql,v 1.2 2002/11/12 20:34:39 robbat2 Exp $
 
 -- 
 -- Table structure for table `Actions`
@@ -21,8 +19,8 @@ CREATE TABLE Actions (
 
 CREATE TABLE Bookings (
   BookingsID int(10) unsigned zerofill NOT NULL auto_increment,
-  UserID int(11) NOT NULL default '0',
-  ObjectID int(11) NOT NULL default '0',
+  UserID int(10) NOT NULL default '0',
+  ObjectID int(10) NOT NULL default '0',
   BookingsStartDate datetime NOT NULL default '0000-00-00 00:00:00',
   BookingsEndDate datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (BookingsID)
@@ -87,7 +85,7 @@ CREATE TABLE Manufacters (
 -- 
 
 CREATE TABLE Notes (
-  NoteID int(11) unsigned zerofill NOT NULL auto_increment,
+  NoteID int(10) unsigned zerofill NOT NULL auto_increment,
   NoteMimeType varchar(255) NOT NULL default 'text/plain',
   NoteData mediumtext NOT NULL,
   GenericTable enum('Actions','Bookings','Groups','Manufacters','Objects','ObjectTypes','Purchases','Transactions','Users') NOT NULL default 'Objects',
@@ -105,10 +103,11 @@ CREATE TABLE Notes (
 
 CREATE TABLE ObjectTypes (
   ObjectTypeID int(10) unsigned zerofill NOT NULL auto_increment,
-  ManufacterID int(11) NOT NULL default '0',
+  ManufacterID int(10) NOT NULL default '0',
   ObjectTypeDescription text NOT NULL,
   ObjectTypeModel varchar(255) NOT NULL default '',
   ObjectTypeGenericName varchar(255) NOT NULL default '',
+  ObjectTypeClass enum('special','group','room','service','equipment','reference') NOT NULL default 'equipment',
   ObjectTypePriority enum('hardest','hard','medium','soft','softest') NOT NULL default 'medium',
   ObjectTypeLoanDuration datetime NOT NULL default '0000-00-14 00:00:00',
   PRIMARY KEY  (ObjectTypeID),
@@ -128,7 +127,7 @@ CREATE TABLE Objects (
   ObjectBarcode bigint(14) NOT NULL default '30000000000000',
   ObjectName varchar(255) NOT NULL default '',
   ObjectSerialNumber varchar(255) default NULL,
-  ObjectTypeID int(11) NOT NULL default '0',
+  ObjectTypeID int(10) NOT NULL default '0',
   PurchaseID  int(10) unsigned zerofill NOT NULL default '0000000000',
   PRIMARY KEY  (ObjectID),
   UNIQUE KEY ObjectBarcode (ObjectBarcode),

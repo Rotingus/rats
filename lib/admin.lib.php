@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.3 2003/03/13 11:51:01 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.4 2003/03/14 12:49:50 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionUsername, $sessionPassword, $sessionDebug;
@@ -70,6 +70,10 @@ function admin_user_lookup($sessionUsername,$sessionPassword) {
 
 function admin_validate() {	
     global $sessionUsername, $sessionPassword, $sessionLoaded;
+
+    session_cache_limiter('nocache, private_no_expire, must-revalidate');
+    session_cache_expire(60);
+    
     admin_session_load($sessionUsername,$sessionPassword);
     printall('admin_validate.load');
 
@@ -91,6 +95,17 @@ function admin_validate() {
 
     printall('admin_validate.admin_session_start');
     return true;
+}
+
+//returns a hashset of the permissions
+function admin_getpermissions($table) {
+//TODO
+}
+
+function admin_haspermissions($table,$perm) {
+//hack for it to work
+return true;
+//TODO
 }
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */

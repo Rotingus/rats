@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.16 2003/07/16 09:36:33 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.17 2003/07/17 20:26:17 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -8,7 +8,7 @@ class MySQL {
     var $mysql_conn;
 
     //input data
-    var $mysql_server = 'localhost:/tmp/mysql.sock';
+    var $mysql_server = 'localhost';
     var $mysql_username = 'rats';
     var $mysql_passwd = 'ratty';
     var $mysql_db = 'rats';
@@ -318,7 +318,7 @@ function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE,$order = NU
 $username = 'rats';
 $passwd = 'ratty';
 $db = 'rats';
-$server = 'localhost:/tmp/mysql.sock';
+$server = 'localhost';
 
 global $_MySQL,$_MySQL_trans;
 $_MySQL = new MySQL($username,$passwd,$db,$server,false);

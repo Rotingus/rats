@@ -1,5 +1,5 @@
 <?php
-/* $Id: submit.php,v 1.6 2003/07/17 20:13:34 robbat2 Exp $ */
+/* $Id: submit.php,v 1.7 2003/07/17 20:26:17 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/submit.php,v $ */
 
 include './header.inc.php';
@@ -11,7 +11,7 @@ include 'lib/commontable.inc.php';
 
 function processDate(&$datevar) {
     $tmp = $datevar['year'].'-'.$datevar['month'].'-'.$datevar['day'].' '.$datevar['hour'].':'.$datevar['minute'].':'.$datevar['second'];
-    $datevar = preg_replace('/([^[:digit:]])0+0/','\10',$tmp);
+    $datevar = preg_replace('/([^[:digit:]]*)0+0/','\10',$tmp);
     return $datevar;
 }
 
@@ -53,9 +53,23 @@ if($tablePerm[$perm]) {
         }
         $changequery = '';
         $first = TRUE;
+	
+
+	$arrkeys = array_keys($oldEditData);
+	$datekeys = array_values(preg_grep ("/(Date|Duration|ID)$/", $arrkeys));
+	$regexsearch = '([^[:digit:]]*)0+([[:digit:]]+)';
+	$regexreplace = '\1\2';
+	foreach($datekeys as $dk) {
+		if(dodbg(4)) echo 'Fixing key '.$dk." = ".$oldEditData[$dk]."<br />\n";
+		$oldEditData[$dk] = ereg_replace($regexsearch, $regexreplace, $oldEditData[$dk]);
+		$dataEdit[$dk] = ereg_replace($regexsearch, $regexreplace, $dataEdit[$dk]);
+		if(dodbg(4)) echo 'Fixed '.$dk." = ".$oldEditData[$dk]."<br />\n";
+	}
+	unset($datekeys,$dk,$arrkeys);
+
+	    
         foreach($dataEdit as $dataKey_key => $dataKey_value ) {
             // skip old data
-            $oldEditData[$dataKey_key] = ereg_replace('([^[:digit:]])0+0','\10',$oldEditData[$dataKey_key]);
             if(dodbg(4)) {
                 echo 'OLD: '.$oldEditData[$dataKey_key]."<br />\n";
                 echo 'NEW: '.$dataKey_value."<br />\n";

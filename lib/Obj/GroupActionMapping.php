@@ -1,5 +1,5 @@
 <?php
-/* $Id: GroupActionMapping.php,v 1.7 2003/05/06 20:59:29 robbat2 Exp $ */
+/* $Id: GroupActionMapping.php,v 1.8 2003/05/07 11:22:55 robbat2 Exp $ */
 /**
  * \brief Group-Action Mapping
  *
@@ -27,7 +27,7 @@ class GroupActionMapping {
    function getGroupActionTable($GroupID,$table) {
        $query = 'SELECT ActionType,TRUE FROM Actions JOIN GroupActionMapping USING (ActionID) WHERE '.$this->_Mapping->primaryWhere($GroupID).' AND '.MySQL_buildonemanykey('ActionGenericTable',$table).';';
 
-$overridePerm = 1; // 0 for normal op
+$overridePerm = 0; // 0 for normal op - FIXME TODO
 $query1 = 'SELECT DISTINCT ActionType,1 FROM Actions JOIN GroupActionMapping USING (ActionID)  WHERE '.$this->_Mapping->primaryWhere($GroupID).' AND '.MySQL_buildonemanykey('ActionGenericTable',$table).';';
 $query2 = 'SELECT DISTINCT ActionType,'.$overridePerm.' FROM Actions';
 $arr1 = MySQL_associativesingleton($query1);

@@ -1,5 +1,5 @@
 <?php
-/* $Id: login.inc.php,v 1.1 2003/03/13 11:26:52 robbat2 Exp $ */
+/* $Id: login.inc.php,v 1.2 2003/03/13 11:54:05 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/login.inc.php,v $ */
 ?>
 <form action="main.php" method="POST" class="title">
@@ -10,6 +10,7 @@
 <td>
 <?php
 echo textinput('username','',64);
+echo hiddeninput('loginerror','0');
 ?>
 </td>
 </tr>

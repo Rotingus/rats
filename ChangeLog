@@ -1,5 +1,40 @@
-$Id: ChangeLog,v 1.41 2003/03/13 11:31:32 robbat2 Exp $
+$Id: ChangeLog,v 1.42 2003/03/13 11:54:24 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-13 03:54  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/login.inc.php: added code to stop double failures in login
+	due to bug
+
+2003-03-13 03:53  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* index.php: put error after login box
+
+2003-03-13 03:53  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/: invalidlogin.inc.php, title.inc.php: HTML/PHP cleanups
+
+2003-03-13 03:52  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* main.php: header+footer fix
+
+2003-03-13 03:52  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php: bugfix in variable passing
+
+2003-03-13 03:51  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* leftframe.php, rightframe.php: Corrections to basic PHP for
+	header/footer
+
+2003-03-13 03:51  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: _POST takes precendence over _SESSION for
+	logins
+
+2003-03-13 03:50  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: global var bug
 
 2003-03-13 03:29  Robin Johnson  <robbat2@orbis-terrarum.net>
 

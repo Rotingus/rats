@@ -1,8 +1,20 @@
 <?php
-/* $Id: include.php,v 1.3 2003/01/23 21:02:55 robbat2 Exp $ */
+/* $Id: include.php,v 1.4 2003/03/13 11:12:35 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
-//find -xtype f -name '*php' -mindepth 2 |egrep -v DObj |xargs -l1 echo include |sort|>>include.php
+/* 
+egrep -v '^include|^\?>' include.php > include.php.new
+PRINTF="-printf \"include '%p';\n\""
+COMMON='-xtype f -name "*php" ! -name "*inc*" ! -name DObj '$PRINTF
+( eval find . -mindepth 2 $COMMON ) >>include.php.in
+( eval find ./lib $COMMON) >>include.php.in
+cat include.php.in | sort | uniq >>include.php.new
+rm -rf include.php.in
+echo '?>' >>include.php.new
+mv include.php.new include.php
+*/
 
+include './gui/array.lib.php';
+include './gui/html.lib.php';
 include './lib/Barcode.php';
 include './lib/DataStructure/List.php';
 include './lib/MySQL.php';
@@ -19,7 +31,6 @@ include './lib/Obj/Purchases.php';
 include './lib/Obj/Transactions.php';
 include './lib/Obj/UserGroupMapping.php';
 include './lib/Obj/Users.php';
-include './gui/html.lib.php';
-include './gui/array.lib.php';
+include './lib/admin.lib.php';
 include './lib/mysql.lib.php';
 ?>

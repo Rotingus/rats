@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.14 2003/06/22 23:09:36 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.15 2003/06/22 23:45:48 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -37,8 +37,7 @@ class MySQL {
             $conn =& mysql_connect($this->mysql_server,$this->mysql_username,$this->mysql_passwd);
             $this->checkerror();
             $this->mysql_conn =& $conn;
-            //mysql_select_db($this->mysql_conn,$this->mysql_db);
-            mysql_select_db($this->mysql_db);
+            mysql_select_db($this->mysql_db,$this->getConnection());
             $this->checkerror();
         }
     }
@@ -88,13 +87,42 @@ class MySQL {
     }
 
     function getNumRows() {
-        //$num = mysql_num_rows($this->getResult());
-        //$this->checkerror();
-        $num = $this->row_count;
-        return $num;
+        return $this->row_count;
     }
     function _getNumRows() {
         $num = @mysql_num_rows($this->getResult());
+        $this->checkerror();
+        return $num;
+    }
+
+    function getNumAffectedRows() {
+        return $this->affected_row_count;
+    }
+
+    function _getNumAffectedRows() {
+        $num = @mysql_affected_rows($this->getConnection());
+        $this->checkerror();
+        return $num;
+    }
+    
+    function getInsertID() {
+        return $this->insert_id;
+    }
+    
+    function getQueryInfo() {
+        return $this->query_info;
+    }
+    
+    function _getQueryInfo() {
+        // This _should_ be the top line, but it is broken in up to and including PHP4.3.2
+        // As a result, output might be slightly wrong sometimes
+        //$num = @mysql_info($this->getConnection());
+        $num = mysql_info();
+        $this->checkerror();
+        return $num;
+    }
+    function _getInsertID() {
+        $num = @mysql_insert_id($this->getConnection());
         $this->checkerror();
         return $num;
     }
@@ -123,8 +151,12 @@ class MySQL {
         //echo $query;
         //flush();
         //ob_flush();
-        $this->mysql_result = mysql_query($query);
+        //@mysql_ping($this->getConnection());
+        $this->mysql_result = mysql_query($query,$this->getConnection());
         $this->row_count = $this->_getNumRows();
+        $this->affected_row_count = $this->_getNumAffectedRows();
+        $this->query_info = $this->_getQueryInfo();
+        $this->insert_id = $this->_getInsertID();
         $this->row_current = 0;
         $this->checkerror();
     }

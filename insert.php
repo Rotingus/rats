@@ -1,29 +1,13 @@
 <?php
-/* $Id: insert.php,v 1.1 2003/03/05 17:30:24 robbat2 Exp $ */
+/* $Id: insert.php,v 1.2 2003/03/14 12:56:12 robbat2 Exp $ */
+/* $Source: /code/convert/cvsroot/infrastructure/rats/Attic/insert.php,v $ */
 
-include('header.inc.php');
+include 'lib/commontable.inc.php';
 
-$allowed = array(
-'Objects',
-'Manufacters',
-'Purchases',
-'ObjectTypes',
-'CheckOuts',
-'Users',
-'Groups',
-'Bookings',
-'Notes',
-'Actions'
-);
-
-$table = isset($_GET['table']) ? $_GET['table'] : '';
-if(!in_array($table,$allowed)) {
-//show an error here
-include('accessdenied.php');
-exit;
+if($allowedPerm) {
+    echo 'forms here';
+    //TODO
 }
 
-//ok, we are now validated
-include('table/'.strtolower($table).'.php')
-
+/* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

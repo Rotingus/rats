@@ -1,11 +1,10 @@
 <?php
-/* $Id: Actions.php,v 1.1 2003/03/14 23:10:19 robbat2 Exp $ */
+/* $Id: Actions.php,v 1.2 2003/03/15 00:20:46 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Actions.php,v $ */
 
 //table name goes here
 $_tn  = 'Actions';
 $_t = array();
-
 
 /*
 $_t['field']['longname'] = '';
@@ -45,7 +44,11 @@ $_t['ActionType']['inputtype'] = 'select';
 $_t['ActionType']['locked'] = FALSE;
 $_t['ActionType']['hidden'] = FALSE;
 
+$_t['_view_sql'] = 'SELECT __COLUMNS__ FROM __TABLE__';
+$_t['_view_cols'] = array('ActionCode','ActionBarcode','ActionGenericTable','ActionType');
+
 global $tableData;
+$_t['_name'] = $_tn;
 $tableData[$_tn] = $_t;
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */

@@ -1,6 +1,7 @@
 <?php
-/* $Id: login.inc.php,v 1.4 2003/05/07 19:57:20 robbat2 Exp $ */
+/* $Id: login.inc.php,v 1.5 2003/06/12 17:43:47 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/login.inc.php,v $ */
+//print_r(get_defined_vars());
 ?>
 <form action="validate.php" method="POST" class="title">
 <table class="title">

@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.13 2003/05/29 04:02:38 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.14 2003/06/12 17:43:47 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -26,6 +26,7 @@ function admin_session_load() {
     if(isset($_COOKIE['PHPSESSID']) || isset($_POST['PHPSESSID'])) {	
         $sessionLoaded=true;
         session_start();
+        admin_strictchecks();
     }
     printall('admin_session_load.end');
 }
@@ -49,18 +50,23 @@ function admin_session_destroy() {
     printall('admin_session_destroy.unset');
     session_destroy();
     printall('admin_session_destroy.destroy');
-    setcookie('PHPSESSID','empty',time(),'/','www.orbis-terrarum.net');
+    setcookie('PHPSESSID','empty',time(),dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
 }
 
 function admin_session_start($u,$p) {	
     global $sessionInfo, $_Users;
     printall('admin_session_start.start');
-    session_set_cookie_params(0,'/',$_SERVER['SERVER_NAME']);
+    $periodcount = substr_count($_SERVER['HTTP_HOST'],'.');
+    if($periodcount < 2) {
+        httpredirect('index.php','?loginerror=evilcookies');
+    }
+    session_set_cookie_params(0,dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
     session_start();
     printall('admin_session_start.session_start');	
     $sessionInfo['username'] = $u;
     $sessionInfo['password'] = $p;
     $sessionInfo['remoteip'] = $_SERVER['REMOTE_ADDR'];
+    $sessionInfo['httphost'] = $_SERVER['HTTP_HOST'];
     $sessionInfo['userid'] = $_Users->getID_login($sessionInfo['username']);
     admin_session_save();
     printall('admin_session_start.register');
@@ -99,6 +105,18 @@ function admin_varimport($varname) {
         $val = $_SESSION[$varname];
     }
     return $val;
+}
+
+function admin_strictchecks() {
+    global $sessionInfo;
+    if(isset($sessionInfo['remoteip']) && !empty($sessionInfo['remoteip']) && ($sessionInfo['remoteip'] != $_SERVER['REMOTE_ADDR'])) {
+        $extra = $sessionInfo['remoteip'].' vs. '.$_SERVER['REMOTE_ADDR'];
+        httpredirect('index.php','?loginerror=spoofip&amp;extra='.urlencode($extra));
+    }
+    if(isset($sessionInfo['httphost']) && !empty($sessionInfo['httphost']) && ($sessionInfo['httphost'] != $_SERVER['HTTP_HOST'])) {
+        $extra = $sessionInfo['httphost'].' vs. '.$_SERVER['HTTP_HOST'];
+        httpredirect('index.php','?loginerror=spoofhost&amp;extra='.urlencode($extra));
+    }
 }
 
 function admin_validate() {	

@@ -1,5 +1,5 @@
 <?php
-/* $Id: submit.php,v 1.3 2003/07/16 09:37:56 robbat2 Exp $ */
+/* $Id: submit.php,v 1.4 2003/07/16 10:08:51 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/submit.php,v $ */
 
 include './header.inc.php';
@@ -65,20 +65,22 @@ if($tablePerm[$perm]) {
             }
         }
         // build query
-        if(!empty($changequery)) {
-            $query = 'UPDATE '.$tableName.' SET '.$changequery.' WHERE '.$tableData[$tableName]['_idkey'].'='.$idEdit;
-        } else {
+        $query = 'UPDATE '.$tableName.' SET '.$changequery.' WHERE '.$tableData[$tableName]['_idkey'].'='.$idEdit;
+        if(dodbg()) echo 'Query: '.$query."<br />\n";
+        if(empty($changequery)) {
             $_SESSION['msg'] = 'No changes made in data';
-            if(!dodbg()) { 
-                httpredirect('view.php?table='.$tableName);
-            } else {
-                echo 'MSG: '.$_SESSION['msg']."<br />\n";
-                die;
-            }
+        } else {
+            $_SESSION['msg'] = 'Changes in '.$tableName.' processed.';
+            $res = _MySQL_queryhelper($query);
         }
 
-        if(dodbg()) echo 'Query: '.$query."<br />\n";
-        die("");
+        if(!dodbg()) { 
+            httpredirect('view.php?table='.$tableName);
+        } else {
+            echo 'MSG: '.$_SESSION['msg']."<br />\n";
+            die;
+        }
+        
         
     }
     if(isset($idEdit)) {

@@ -1,5 +1,17 @@
-$Id: ChangeLog,v 1.8 2002/12/12 07:10:43 robbat2 Exp $
+$Id: ChangeLog,v 1.9 2002/12/12 11:01:24 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2002-12-12 02-58 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * include.php:
+        - Meta include file
+    * index.php:
+        - Sample coe
+    * lib/MySQL.php:
+        - DB handling code
+    * lib/DataStructure/List.php:
+        - Linked List data Structure
+    * lib/Obj/Transactions.php:
+        - Handling code
 
 2002-12-11 10-21 Robin Johnson  <robbat2@orbis-terrarum.net>
     * db/schema.sql, db/data.sql:

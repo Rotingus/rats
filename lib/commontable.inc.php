@@ -1,14 +1,14 @@
 <?php
-/* $Id: commontable.inc.php,v 1.5 2003/04/30 18:16:48 robbat2 Exp $ */
+/* $Id: commontable.inc.php,v 1.6 2003/05/06 20:59:53 robbat2 Exp $ */
 
 global $tableName;
 
 $tableName = isset($_GET['table']) ? $_GET['table'] : '';
 
-$validPermissions = admin_haspermissions($sessionInfo['userid'],$tableName,$perm);
+$tablePerm = admin_getpermissionstable($sessionInfo['userid'],$tableName);
 
 //check permissions
-if(!$validPermissions) {
+if(!$tablePerm[$perm]) {
 //show an error here
 echo "include('./gui/permissiondenied.php')";
 } else {

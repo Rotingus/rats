@@ -1,4 +1,4 @@
--- $Id: schema.sql,v 1.14 2003/06/12 19:01:09 robbat2 Exp $
+-- $Id: schema.sql,v 1.15 2003/06/22 20:40:36 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
@@ -154,10 +154,12 @@ CREATE TABLE Objects (
 DROP TABLE IF EXISTS Purchases;
 CREATE TABLE Purchases (
   PurchaseID int(10) unsigned zerofill NOT NULL auto_increment,
+  PurchaseTitle varchar(255) NOT NULL default '',
   PurchaseDetails text NOT NULL,
   VendorID int(11) default NULL,
   PRIMARY KEY  (PurchaseID),
-  KEY VendorID (VendorID)
+  KEY VendorID (VendorID),
+  KEY PurchaseTitle (PurchaseTitle)
 ) TYPE=InnoDB COMMENT='Purchases Data';
 
 --

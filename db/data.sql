@@ -1,4 +1,4 @@
--- $Id: data.sql,v 1.10 2003/06/12 19:06:05 robbat2 Exp $
+-- $Id: data.sql,v 1.11 2003/06/22 20:40:36 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
@@ -209,7 +209,7 @@ INSERT IGNORE INTO Objects (ObjectID, ObjectBarcode, ObjectName, ObjectSerialNum
 -- Dumping data for table 'Purchases'
 --
 
-INSERT IGNORE INTO Purchases (PurchaseID, PurchaseDetails, VendorID) VALUES (0000000001,'Stereographics:\r\ninvoice #: 0030465-IN\r\ninvoice date: 03/20/2003\r\norder #: 0020396\r\norder date: 03/19/2003\r\nsalesperson: MLH\r\ncustomer #: SFUSURR\r\n\r\n',3);
+INSERT IGNORE INTO Purchases (PurchaseID, PurchaseTitle, PurchaseDetails, VendorID) VALUES (0000000001,'StereoGraphics IR-Emitter','Stereographics:\r\ninvoice #: 0030465-IN\r\ninvoice date: 03/20/2003\r\norder #: 0020396\r\norder date: 03/19/2003\r\nsalesperson: MLH\r\ncustomer #: SFUSURR\r\n\r\n',3);
 
 --
 -- Dumping data for table 'Transactions'

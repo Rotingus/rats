@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.6 2003/03/13 11:50:37 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.7 2003/04/28 18:11:53 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -85,6 +85,10 @@ class MySQL {
         return mysql_fetch_row($this->getResult());
     }
 
+    function hasRows() {
+        return $this->getNumRows() > 0;
+    }
+
     function &getResult() {
         return $this->mysql_result;
     }
@@ -94,7 +98,6 @@ class MySQL {
     }
 
     function query($query) {
-        //echo 'Running SQL:'.$query."<br />\n";
         $this->mysql_result = mysql_query($query);
     }
 
@@ -130,6 +133,17 @@ function MySQL_singleton($query,$abort = -1) {
         }
     }
     return $item;
+}
+
+function MySQL_singletonarray($query) {
+    global $_MySQL, $MySQL_singleton_abort;
+    $_MySQL->restart();
+    $_MySQL->query($query);
+    $arr = array();
+    while($_MySQL->hasRows()) {
+    $arr[] = $_MySQL->getRow();
+    }
+    return $arr;
 }
 
 function MySQL_quote($str) {

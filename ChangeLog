@@ -1,5 +1,70 @@
-$Id: ChangeLog,v 1.56 2003/06/03 19:50:59 robbat2 Exp $
+$Id: ChangeLog,v 1.57 2003/06/12 18:59:25 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-06-12 11:59  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: cookie liftetime = 30 minutes
+
+2003-06-12 11:26  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/processtable.inc.php: turn off debug
+
+2003-06-12 11:22  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/data.sql: added linnea
+
+2003-06-12 11:20  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, schema.sql: now using complete inserts
+
+2003-06-12 11:20  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/dumpsql.sh: complete inserts
+
+2003-06-12 11:13  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: table name fix
+
+2003-06-12 11:11  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/data.sql: INSERT IGNORE fix
+
+2003-06-12 11:10  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/dumpsql.sh: cleanups and insert ignore
+
+2003-06-12 11:09  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: slight fix on a key name
+
+2003-06-12 10:43  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php, index.php, gui/invalidlogin.inc.php,
+	gui/login.inc.php, lib/admin.lib.php: hopefully fixes for all of
+	the extreme security
+
+2003-06-05 16:22  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* addedit.php, delete.php, include.php, submit.php, view.php:
+	adding/editing updates
+
+2003-06-05 16:12  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* footer.inc.php, header.inc.php, view.php: output buffering
+
+2003-06-05 15:46  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: Fix a naming boo-boo
+
+2003-06-05 15:34  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, schema.sql: DB update
+
+2003-06-05 15:33  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/formbuilder.lib.php, gui/tablehelper.lib.php, lib/MySQL.php,
+	lib/mysql.lib.php, lib/processtable.inc.php: Large update with
+	submission code
 
 2003-06-03 12:50  Robin Johnson  <robbat2@orbis-terrarum.net>
 

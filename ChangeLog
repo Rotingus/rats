@@ -1,96 +1,32 @@
-$Id: ChangeLog,v 1.15 2003/03/05 17:30:24 robbat2 Exp $
+$Id: ChangeLog,v 1.16 2003/03/05 17:45:21 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
-2003-02-19 13-13 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * leftframe.php: Change to use common modes
+2003-03-05 09:30  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2003-01-23 12-06 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * gui/*:
-        - New Directory
-        - Lots of new files
-    * kiosk.php, index.php:
-        - Move existing code to kiosk file
+	* header.inc.php, insert.php, leftframe.php, main.php,
+	rightframe.php: New code
 
-2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * index.php:
-        - Trimming user barcode is needed
-    * lib/MySQL.php:
-        - Debugging SQL output
-    * lib/Obj/CheckOuts.php:
-        - Fixed CheckOutReturnDate stuff in checkout()
-    * lib/Obj/Transactions.php:
-        - Cleaned up bug about some transactions
+2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * lib/Barcode.php:
-        - Barcoding handling class
-    * include.php:
-        - Added barcode class
-    * index.php:
-        - Fixed slight bug
-    * lib/MySQL.php:
-        - Tweaked transactions
-    * lib/Obj/Actions.php:
-        - Wrote ActionCode resolution stuff
-    * lib/Obj/CheckOuts.php:
-        - Wrote Checkin/Checkout
-    * lib/Obj/Objects.php:
-        - :-~
-    * lib/Obj/Transactions.php:
-        - Wrote better add method using ActionCodes
+	* include.php, index.php, leftframe.php, main.php: Lots of work!
 
-2002-12-12 02-58 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * include.php:
-        - Meta include file
-    * index.php:
-        - Sample coe
-    * lib/MySQL.php:
-        - DB handling code
-    * lib/DataStructure/List.php:
-        - Linked List data Structure
-    * lib/Obj/Transactions.php:
-        - Handling code
+2003-01-23 12:30  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2002-12-11 10-21 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * db/schema.sql, db/data.sql:
-        - Automatic update
-    * db/dumpsql.sh:
-        - Script to update db/schema.sql and db/data.sql
+	* index.php, kiosk.php: kiosk
 
-2002-11-19 11-25 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * db/schema.sql:
-        - Added in USE/CREATE database stuff
-    * lib/Obj/*.php:
-        - Updated to add brief comments
-        - Fixed class names in each file
+2002-12-12 14:55  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2002-11-14 00-41 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * lib/DBObjects.ini:
-        - Added DBObjects handler INI
-    * lib/DObj/*:
-        - Added all initial auto-geneated classes for data handling
-    * lib/Obj/*.php, lib/Obj/Template:
-        - Added all base object handling classes from custom template
+	* index.php: See ChangeLog
 
-2002-11-13 13-15 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * db/schema.sql: 
-        - Added missing Object Group data
-    * db/DatabaseLayout.vsx: 
-        - MS Visio2002 XML Database Layout diagram checked in
+2002-12-12 05:39  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2002-11-12 12-30 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * db/schema.sql: 
-        - Changed to use INT(10) for lengths
-        - Added class field to ObjectType
+	* include.php, index.php: See ChangeLog
 
-2002-11-12 01-59 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * db: Created directory
-    * b/schema.sql: Initial Checkin of DB schema
+2002-12-12 03:01  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-2002-11-04 14-50 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * rats/: Created initial directories
+	* include.php, index.php: See changelog
+
 
 # vim: set ft=changelog syntax=changelog:
 # vim: set expandtab ts=4 sw=4 sts=4:
-# vim: set fde=getline(v\:lnum-1)=~'^\\s*$'&&getline(v\:lnum)=~'\\S'?'>1'\:1&&v\:lnum>3&&getline(v\:lnum)!~'^#':
 # vim: set fdn=1 fdm=expr:

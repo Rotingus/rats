@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.7 2003/04/28 18:11:53 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.8 2003/04/28 18:52:33 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -136,7 +136,7 @@ function MySQL_singleton($query,$abort = -1) {
 }
 
 function MySQL_singletonarray($query) {
-    global $_MySQL, $MySQL_singleton_abort;
+    global $_MySQL;
     $_MySQL->restart();
     $_MySQL->query($query);
     $arr = array();
@@ -144,6 +144,16 @@ function MySQL_singletonarray($query) {
     $arr[] = $_MySQL->getRow();
     }
     return $arr;
+}
+
+function MySQL_buildonemanykey($keyname,$values) {
+    $str = '`'.$keyName.'` ';
+    if(isarray($values)) {
+        $str .= ' IN '.MySQL_arrayToSequence($values);
+    } else {
+        $str .= '='.MySQL_quote($values);
+    }
+    return $str;
 }
 
 function MySQL_quote($str) {
@@ -159,7 +169,7 @@ function MySQL_arrayToSequence($arr) {
     if($size > 0) {
         $s = '(';
         for($i = 0; $i < $size; $i++) {
-            $s .= $arr[$i];
+            $s .= MySQL_quote($arr[$i]);
             if($i+1 < $size) {
                 $s .= ',';
             }

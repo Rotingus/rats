@@ -1,5 +1,5 @@
 <?php
-/* $Id: GenericMapping.php,v 1.1 2003/04/28 18:11:34 robbat2 Exp $ */
+/* $Id: GenericMapping.php,v 1.2 2003/04/28 18:52:33 robbat2 Exp $ */
 /**
  * \brief Group-Action Mapping
  *
@@ -22,12 +22,12 @@ class GenericMapping {
    }
 
    function getSecondaries($PrimaryID) {
-       $query = 'SELECT `'.$secondary.'` FROM `'.$table.'` WHERE `'.$primary.'`=\''.MySQL_quote($PrimaryID).'\';';
+       $query = 'SELECT `'.$secondary.'` FROM `'.$table.'` WHERE '.MySQL_buildonemanykey($primary,$PrimaryID).';';
        return MySQL_singletonarray($query);
    }
    
    function getPrimaries($SecondaryID) {
-       $query = 'SELECT `'.$primary.'` FROM `'.$table.'` WHERE `'.$secondary.'`=\''.MySQL_quote($SecondaryID).'\';';
+       $query = 'SELECT `'.$primary.'` FROM `'.$table.'` WHERE '.MySQL_buildonemanykey($secondary,$SecondaryID).';';
        return MySQL_singletonarray($query);
    }
    

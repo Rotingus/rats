@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.6 2003/04/24 00:07:52 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.7 2003/04/28 18:52:33 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionUsername, $sessionPassword, $sessionDebug;
@@ -99,18 +99,21 @@ function admin_validate() {
 
 //returns a list of groups
 function admin_getgroups($userid) {
-    $_Group
-    
+    return $_UserGroupMapping->getGroups($userid);
 }
 
 //returns a map of the permissions
-function admin_getpermissions($userid,$table) {
+function admin_getpermissions($userid) {
+    $groups = admin_getgroups($userid);
+    return $_GroupActionMapping->getActions($groups);
 }
 
-function admin_haspermissions($table,$perm) {
-//hack for it to work
-return true;
-//TODO
+function admin_haspermissions($userid,$table,$action) {
+    //hack for it to work
+    //return true;
+    //TODO
+    $ActionID = $_Actions->getID($table,$action);
+    return in_array($ActionID,admin_getpermissions($userid));
 }
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */

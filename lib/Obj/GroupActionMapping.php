@@ -1,11 +1,15 @@
 <?php
-/* $Id: GroupActionMapping.php,v 1.4 2003/04/28 18:11:34 robbat2 Exp $ */
+/* $Id: GroupActionMapping.php,v 1.5 2003/04/28 18:52:33 robbat2 Exp $ */
 /**
  * \brief Group-Action Mapping
  *
  */
 class GroupActionMapping {
+   //$_Mapping;
+
+   function GroupActionMapping() {
     $_Mapping = new GenericMapping('GroupActionMapping','GroupID','ActionID');
+   }
 
    function getActions($GroupID) {
        return $_Mapping->getSecondaries($GroupID);

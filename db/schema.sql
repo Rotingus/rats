@@ -1,4 +1,4 @@
--- $Id: schema.sql,v 1.10 2003/06/05 22:46:42 robbat2 Exp $
+-- $Id: schema.sql,v 1.11 2003/06/12 18:09:37 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
@@ -27,7 +27,7 @@ CREATE TABLE Actions (
   PRIMARY KEY  (ActionID),
   UNIQUE KEY TableAction (ActionGenericTable,ActionType),
   UNIQUE KEY ActionBarcode (ActionBarcode),
-  KEY ActionGenericTable (ActionGenericTable)
+  KEY Table (ActionGenericTable)
 ) TYPE=InnoDB COMMENT='Action Type Data';
 
 --

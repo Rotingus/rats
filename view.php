@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.10 2003/07/16 09:35:41 robbat2 Exp $ */
+/* $Id: view.php,v 1.11 2004/06/08 13:39:31 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';

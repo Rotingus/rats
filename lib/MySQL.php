@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.5 2003/03/13 11:28:37 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.6 2003/03/13 11:50:37 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -117,7 +117,7 @@ global $MySQL_singleton_abort;
 $MySQL_singleton_abort = -1;
 
 function MySQL_singleton($query,$abort = -1) {
-    global $_MySQL;
+    global $_MySQL, $MySQL_singleton_abort;
     $_MySQL->restart();
     $_MySQL->query($query);
     $arr = $_MySQL->getRow();

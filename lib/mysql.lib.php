@@ -20,8 +20,8 @@ get_mysql_query($query,
 function
 mysqlquery($query)
 {
-    return get_mysql_query($query, 'localhost', 'trafsim', 'trafsim',
-                           'trafsim');
+    return get_mysql_query($query, 'localhost', 'rats', 'ratty',
+                           'RATS');
 }
 
 function

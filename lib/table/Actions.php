@@ -1,5 +1,5 @@
 <?php
-/* $Id: Actions.php,v 1.3 2003/04/30 18:16:48 robbat2 Exp $ */
+/* $Id: Actions.php,v 1.4 2003/05/27 18:57:30 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Actions.php,v $ */
 
 //table name goes here
@@ -28,11 +28,13 @@ $_t['ActionBarcode']['ishidden'] = FALSE;
 
 $_t['ActionGenericTable']['longname'] = 'Table';
 $_t['ActionGenericTable']['datatype'] = 'ENUM';
+$_t['ActionGenericTable']['enumvalues'] = $GenericTableEnum;
 $_t['ActionGenericTable']['inputtype'] = 'select';
 $_t['ActionGenericTable']['ishidden'] = FALSE;
 
 $_t['ActionType']['longname'] = 'Action';
 $_t['ActionType']['datatype'] = 'ENUM';
+$_t['ActionType']['enumvalues'] = $ActionTypeEnum;
 $_t['ActionType']['inputtype'] = 'select';
 $_t['ActionType']['ishidden'] = FALSE;
 

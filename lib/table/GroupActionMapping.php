@@ -1,5 +1,5 @@
 <?php
-/* $Id: GroupActionMapping.php,v 1.1 2003/05/07 10:01:14 robbat2 Exp $ */
+/* $Id: GroupActionMapping.php,v 1.2 2003/05/27 18:57:30 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/GroupActionMapping.php,v $ */
 
 //table name goes here
@@ -8,13 +8,13 @@ $_tn  = 'GroupActionMapping';
 $_t['GroupActionMappingID']['isid'] = TRUE;
 
 $_t['GroupID']['longname'] = 'Group';
-$_t['GroupID']['datatype'] = 'VARCHAR';
+$_t['GroupID']['datatype'] = 'ID';
 $_t['GroupID']['inputtype'] = 'select';
 $_t['GroupID']['ishidden'] = FALSE;
 $_t['GroupID']['keyto'] = 'Groups.GroupName';
 
 $_t['ActionID']['longname'] = 'Action';
-$_t['ActionID']['datatype'] = 'VARCHAR';
+$_t['ActionID']['datatype'] = 'ID';
 $_t['ActionID']['inputtype'] = 'select';
 $_t['ActionID']['ishidden'] = FALSE;
 $_t['ActionID']['keyto'] = 'Actions.ActionCode';

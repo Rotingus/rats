@@ -1,5 +1,5 @@
 <?php
-/* $Id: Objects.php,v 1.1 2003/05/07 11:22:39 robbat2 Exp $ */
+/* $Id: Objects.php,v 1.2 2003/05/27 18:57:30 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Objects.php,v $ */
 
 //table name goes here
@@ -49,6 +49,7 @@ $_t['ObjectGroupID']['ishidden'] = FALSE;
 
 $_t['ObjectInGroup']['longname'] = 'Object Group Status';
 $_t['ObjectInGroup']['datatype'] = 'ENUM';
+$_t['ObjectInGroup']['enumvalues'] = array('NA', 'IN', 'OUT');
 $_t['ObjectInGroup']['inputtype'] = 'select';
 $_t['ObjectInGroup']['ishidden'] = FALSE;
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: Notes.php,v 1.2 2003/05/07 17:58:54 robbat2 Exp $ */
+/* $Id: Notes.php,v 1.3 2003/05/27 18:57:30 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Notes.php,v $ */
 
 //table name goes here
@@ -31,6 +31,7 @@ $_t['NoteData']['islocked'] = TRUE;
 $_t['NoteGenericTable']['longname'] = 'Table';
 $_t['NoteGenericTable']['datatype'] = 'ENUM';
 $_t['NoteGenericTable']['inputtype'] = 'select';
+$_t['NoteGenericTable']['enumvalues'] = $genericTableEnum;
 $_t['NoteGenericTable']['ishidden'] = FALSE;
 $_t['NoteGenericTable']['islocked'] = TRUE;
 

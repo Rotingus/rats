@@ -37,6 +37,12 @@ htmlElm_single($name,
 }
 
 function
+htmlElm_wrap($name,$data,
+    $attributes = array()) {
+  return htmlElm_open($name, $attributes).$data.htmlElm_close($name);
+}
+
+function
 htmlElm($name,
     $attributes = array(),
     $data = '')
@@ -237,7 +243,13 @@ html_input($name,
   if ($maxlength != '') {
     $attrib['maxlength'] = $maxlength;
   }
-  return htmlElm_single('input', $attrib);
+  if($type != 'textarea') {
+    $str = htmlElm_single('input', $attrib);
+  } else {
+    unset($attrib['value']);
+    $str = htmlElm_wrap('textarea',$value,$attrib);
+  }
+  return $str;
 }
 
   function
@@ -261,6 +273,18 @@ textinput($name,
     $size)
 {
   return html_input($name, 'text', $initialvalue, '', '', '', $size);
+}
+function
+textareainput($name,
+    $initialvalue,
+    $rows = '',$cols = '')
+{
+  $extra = array();
+  if($rows != '' && $cols != '') {
+    $extra['rows'] = $rows;
+    $extra['cols'] = $cols;
+  }
+  return html_input($name, 'textarea', $initialvalue, '', '', '', array(), $extra);
 }
 
 function

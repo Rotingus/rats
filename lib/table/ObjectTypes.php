@@ -1,5 +1,5 @@
 <?php
-/* $Id: ObjectTypes.php,v 1.1 2003/05/07 11:22:39 robbat2 Exp $ */
+/* $Id: ObjectTypes.php,v 1.2 2003/05/27 18:57:30 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/ObjectTypes.php,v $ */
 
 //table name goes here
@@ -31,13 +31,15 @@ $_t['ObjectTypeModel']['datatype'] = 'VARCHAR';
 $_t['ObjectTypeModel']['inputtype'] = 'text';
 $_t['ObjectTypeModel']['ishidden'] = FALSE;
 
-$_t['ObjectTypeClass']['longname'] = 'Table';
+$_t['ObjectTypeClass']['longname'] = 'Class';
 $_t['ObjectTypeClass']['datatype'] = 'ENUM';
+$_t['ObjectTypeClass']['enumvalues'] = array('special', 'group', 'room', 'service', 'equipment', 'reference');
 $_t['ObjectTypeClass']['inputtype'] = 'select';
 $_t['ObjectTypeClass']['ishidden'] = FALSE;
 
-$_t['ObjectTypePriority']['longname'] = 'Table';
+$_t['ObjectTypePriority']['longname'] = 'Priority';
 $_t['ObjectTypePriority']['datatype'] = 'ENUM';
+$_t['ObjectTypePriority']['enumvalues'] = array('hardest', 'hard', 'medium', 'soft', 'softest');
 $_t['ObjectTypePriority']['inputtype'] = 'select';
 $_t['ObjectTypePriority']['ishidden'] = FALSE;
 
@@ -50,7 +52,6 @@ $_t['ObjectTypeDescription']['longname'] = 'Description';
 $_t['ObjectTypeDescription']['datatype'] = 'TEXT';
 $_t['ObjectTypeDescription']['inputtype'] = 'text';
 $_t['ObjectTypeDescription']['ishidden'] = FALSE;
-
 
 $_t['_view_sql'] = 'SELECT __KEY__ VendorName, ObjectTypeGenericName, ObjectTypeModel, ObjectTypeClass, ObjectTypePriority, ObjectTypeLoanDuration, ObjectTypeDescription FROM ObjectTypes JOIN Vendors USING (VendorID)';
 $_t['_view_cols'] = array('VendorID','ObjectTypeGenericName','ObjectTypeModel','ObjectTypeClass','ObjectTypePriority','ObjectTypeLoanDuration','ObjectTypeDescription');

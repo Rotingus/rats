@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.11 2003/05/07 19:57:20 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.12 2003/05/27 18:57:30 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -179,8 +179,10 @@ function MySQL_associativearray($query) {
         $tmp = $r->getRow();
         if(count($tmp) < 2) die("Non-associative results in associative query!");
         $key = $tmp[0];
-        array_shift($tmp);
-        $arr[$key] = $tmp;
+        $val = $tmp[1];
+        //array_shift($tmp);
+        //$arr[$key] = $tmp;
+        $arr[$key] = $val;
     }
     return $arr;
 }

@@ -1,5 +1,11 @@
-$Id: ChangeLog,v 1.48 2003/04/22 18:36:01 robbat2 Exp $
+$Id: ChangeLog,v 1.49 2003/04/24 00:08:05 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-04-23 17:07  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/: admin.lib.php, Obj/CheckOuts.php,
+	Obj/GroupActionMapping.php, Obj/Groups.php,
+	Obj/UserGroupMapping.php, Obj/Users.php: update of auth stuff
 
 2003-04-22 11:35  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,12 +1,11 @@
 <?php
-/* $Id: admin.lib.php,v 1.15 2003/06/12 18:59:05 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.16 2003/06/22 23:11:32 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
 $sessionLoaded = false;
 $sessionInfo = array();
-$sessionDebug = FALSE;
-
+$sessionDebug = dodbg(2);
 
 function printall($item) {	
     global $sessionDebug,$sessionInfo;
@@ -60,7 +59,7 @@ function admin_session_start($u,$p) {
     if($periodcount < 2) {
         httpredirect('index.php','?loginerror=evilcookies');
     }
-    session_set_cookie_params(1800,dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
+    session_set_cookie_params(3600,dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
     session_start();
     printall('admin_session_start.session_start');	
     $sessionInfo['username'] = $u;
@@ -123,7 +122,7 @@ function admin_validate() {
     global $sessionInfo, $sessionLoaded;
 
     session_cache_limiter('nocache, private_no_expire, must-revalidate');
-    session_cache_expire(60);
+    session_cache_expire(180);
     
     admin_session_load($sessionInfo);
     printall('admin_validate.load');
@@ -177,7 +176,10 @@ function admin_getpermissionstable($userid,$table) {
 
 function httpredirect($page='',$opts='',$host='') {
     if($host == '') {
-        $host = $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
+        $host = $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
+    }
+    if($host[strlen($host)-1] != '/' && $page[0] != '/') {
+        $host .= '/';
     }
     header('Location: http://'.$host.$page.$opts);
     exit;

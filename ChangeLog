@@ -1,5 +1,14 @@
-$Id: ChangeLog,v 1.58 2003/06/20 18:19:55 robbat2 Exp $
+$Id: ChangeLog,v 1.59 2003/06/22 20:46:55 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-06-22 13:46  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: Objects.php, Purchases.php: Add an additional
+	PurchaseTitle description field per Linnea's request
+
+2003-06-22 13:40  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, schema.sql: Added PurchaseTitle field
 
 2003-06-20 11:19  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.12 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.13 2003/06/05 22:33:29 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -99,8 +99,8 @@ class MySQL {
         return $num;
     }
 
-    function &getRow() {
-        $row = mysql_fetch_row($this->getResult());
+    function &getRow($mode = MYSQL_NUM) {
+        $row = mysql_fetch_array($this->getResult(),$mode);
         $this->row_current++;
         $this->checkerror();
         return $row;
@@ -146,12 +146,12 @@ class MySQL {
 global $MySQL_singleton_abort;
 $MySQL_singleton_abort = -1;
 
-function MySQL_singleton($query,$abort = -1) {
+function MySQL_singletonassoc($query,$abort = -1) {
     $r = _MySQL_queryhelper($query);
     global $MySQL_singleton_abort;
     if($r->getNumRows() == 1) {
-        $arr = $r->getRow();
-        $item = $arr[0];
+        $arr = $r->getRow(MYSQL_ASSOC);
+        $item = $arr;
     } else { // rows != 1
         if($abort == $MySQL_singleton_abort) {
             $item = $MySQL_singleton_abort;
@@ -160,6 +160,30 @@ function MySQL_singleton($query,$abort = -1) {
         }
     }
     return $item;
+}
+function MySQL_singletonrow($query,$abort = -1) {
+    $r = _MySQL_queryhelper($query);
+    global $MySQL_singleton_abort;
+    if($r->getNumRows() == 1) {
+        $arr = $r->getRow();
+        $item = $arr;
+    } else { // rows != 1
+        if($abort == $MySQL_singleton_abort) {
+            $item = $MySQL_singleton_abort;
+        } else {
+            $item = $abort;
+        }
+    }
+    return $item;
+}
+
+function MySQL_singleton($query,$abort = -1) {
+    $res = MySQL_singletonrow($query,$abort);
+    if(is_array($res)) {
+        return $res[0];
+    } else { //error
+        return $res;
+    }
 }
 
 function MySQL_singletonarray($query) {
@@ -221,7 +245,7 @@ function MySQL_escape($str) {
     return mysql_real_escape_string($str);
 }
 
-function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE) {
+function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE,$order = NULL) {
     $size = count($arr);
     $s = '';
     if($size > 0) {
@@ -229,10 +253,16 @@ function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE) {
             $s .= '('; 
         }
         for($i = 0; $i < $size; $i++) {
-            if($escape) {
-                $s .= MySQL_quote($arr[$i]);
+            if($order !== NULL) {
+                $key = $order[$i];
             } else {
-                $s .= $arr[$i];
+                $key = $i;
+            }
+            
+            if($escape) {
+                $s .= MySQL_quote($arr[$key]);
+            } else {
+                $s .= $arr[$key];
             }
             if($i+1 < $size) {
                 $s .= ',';

@@ -1,15 +1,15 @@
 <?php
-/* $Id: tablehelper.lib.php,v 1.3 2003/05/07 20:48:10 robbat2 Exp $ */
+/* $Id: tablehelper.lib.php,v 1.4 2003/06/05 22:33:29 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/tablehelper.lib.php,v $ */
 
-function guiedit($table,$id) {
-    $param = 't='.$table.'&amp;id='.$id;
+function guiEdit($table,$id) {
+    $param = 'perm=edit&amp;table='.$table.'&amp;id='.$id;
     $file = 'addedit.php';
     $title = 'Edit';
     return html_a($file.'?'.$param,$title);
 }
-function guidelete($table,$id) {
-    $param = 't='.$table.'&amp;id='.$id;
+function guiDelete($table,$id) {
+    $param = 'perm=delete&amp;table='.$table.'&amp;id='.$id;
     $file = 'delete.php';
     $title = 'Delete';
     return html_a($file.'?'.$param,$title);

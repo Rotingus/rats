@@ -1,5 +1,5 @@
 <?php
-/* $Id: formbuilder.lib.php,v 1.3 2003/06/03 19:50:40 robbat2 Exp $ */
+/* $Id: formbuilder.lib.php,v 1.4 2003/06/05 22:33:29 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/formbuilder.lib.php,v $ */
 
 function idstr_query($idfield,$idstr,$idfrom) {
@@ -8,7 +8,7 @@ function idstr_query($idfield,$idstr,$idfrom) {
 }
 
 function fieldName($tableName,$element) {
-    return $tableName.'[\''.$element.'\']';
+    return $tableName.'['.$element.']';
 }
 
 function formelement_select($tableName,$tableData,$element,$data) { 
@@ -121,9 +121,6 @@ function dateselect($name,$val=0) {
     return $str;
 }
 
-foreach($tableData[$tableName]['_view_cols'] as $itemkey) {
-    formelement($tableName,$tableData,$itemkey);
-}
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

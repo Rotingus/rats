@@ -1,5 +1,5 @@
 <?php
-/* $Id: processtable.inc.php,v 1.4 2003/05/29 04:02:51 robbat2 Exp $ */
+/* $Id: processtable.inc.php,v 1.5 2003/06/05 22:33:29 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/processtable.inc.php,v $ */
 
 // code goes here
@@ -36,7 +36,38 @@ foreach($_t as $key => $arr) {
 }
 global $tableData;
 $_t['_name'] = $_tn;
+
 $tableData[$_tn] = $_t;
+$tableName = $_tn;
+
+// pre-process
+$query = $tableData[$tableName]['_view_sql'];
+$tableKey = '';
+foreach($tableData[$tableName] as $key => $data) {
+    if(isset($data['isid']) && ($data['isid'] == TRUE) && ($key[0] != '_')) {
+        if($tableKey != '') {
+            die('Multiple table keys on '.$tableName.' ('.$tableKey.','.$key.')');
+        } else {
+            $tableKey = $key;
+        }
+    }
+}
+$_t['_idkey'] = $tableKey;
+if($tableKey != '') {
+    $tableKey .= ',';
+}
+$arr_srch = array('__TABLE__','__COLUMNS__','__KEY__');
+$arr_repl_final = array($tableName,array2commasep($tableData[$tableName]['_view_cols']),$tableKey);
+$arr_repl_all = array($tableName,'*','');
+$finalquery = str_replace($arr_srch,$arr_repl_final,$query);
+$allquery = str_replace($arr_srch,$arr_repl_all,'SELECT __COLUMNS__ FROM __TABLE__');
+$_t['_view_sql_final'] = $finalquery;
+$_t['_view_sql_all'] = $allquery;
+$query = 'INSERT INTO __TABLE__ (__COLUMNS__) VALUES __VALUES__';
+$insertquery = str_replace($arr_srch,$arr_repl_final,$query);
+$_t['_insert_sql'] = $insertquery;
+$tableData[$_tn] = $_t;
+
 // DEBUG
 print_r($tableData);
 echo '<br />';

@@ -113,4 +113,26 @@ buildMySQLpairs($arr,
     return $s;
 }
 
+function array2commasep($arr) {
+    $s = '';
+    for($i = 0; $i < count($arr); $i++) {
+        $s .= ' '.$arr[$i];
+        if($i+1 < count($arr)) {
+            $s .= ',';
+        }
+    }
+    return $s;
+}
+
+function array_subkey($arr,$k2) {
+    $newarr = array();
+    while(list($k1,$v1) = each($arr)) {
+        if(isset($v1[$k2])) {
+            $newarr[$k1] = $v1[$k2];
+        }
+    }
+    return $newarr;
+}
+
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.7 2003/06/05 23:12:24 robbat2 Exp $ */
+/* $Id: view.php,v 1.8 2003/06/05 23:22:18 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -28,7 +28,8 @@ function drawTable_bottom() {
 
 function drawTable_row($row,$hasKey = FALSE, $table = '', $showEdit = FALSE, $showDelete = FALSE) {
     if($hasKey) {
-        $key = array_shift($row);
+        //$key = array_shift($row);
+        $key = $row[0];
     } else {
         $key = '';
     }
@@ -123,24 +124,8 @@ if($tablePerm['view']) {
  } else {
      $where = '';
  }
- 
- $query = $tableData[$tableName]['_view_sql'].$where.$orderby;
- $tableKey = '';
- foreach($tableData[$tableName] as $key => $data) {
-     if(isset($data['isid']) && ($data['isid'] == TRUE) && ($key[0] != '_')) {
-         if($tableKey != '') {
-             die('Multiple table keys on '.$tableName.' ('.$tableKey.','.$key.')');
-         } else {
-             $tableKey = $key;
-         }
-     }
- }
- if($tableKey != '') {
-     $tableKey .= ',';
- }
- $arr_srch = array('__TABLE__','__COLUMNS__','__KEY__');
- $arr_repl = array($tableName,array2commasep($tableData[$tableName]['_view_cols']),$tableKey);
- $query = str_replace($arr_srch,$arr_repl,$query);
+
+ $query = $tableData[$tableName]['_view_sql_final'].$where.$orderby;
  $headtmp = array_subkey($tableData[$tableName],'longname');
  $head = array();
  foreach($headtmp as $key => $value) {

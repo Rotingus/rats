@@ -1,5 +1,5 @@
 <?php
-/* $Id: include.php,v 1.7 2003/05/01 22:20:10 robbat2 Exp $ */
+/* $Id: include.php,v 1.8 2003/06/05 23:22:18 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 /* 
 egrep -v '^include|^\?>' include.php > include.php.new
@@ -16,6 +16,7 @@ mv include.php.new include.php
 include './gui/array.lib.php';
 include './gui/html.lib.php';
 include './gui/tablehelper.lib.php';
+include './gui/formbuilder.lib.php';
 include './lib/Barcode.php';
 include './lib/DataStructure/List.php';
 include './lib/MySQL.php';

@@ -1,5 +1,5 @@
 <?php
-/* $Id: leftframe.php,v 1.8 2003/05/07 20:48:10 robbat2 Exp $ */
+/* $Id: leftframe.php,v 1.9 2003/06/20 18:19:31 robbat2 Exp $ */
 
 include('header.inc.php');
 
@@ -44,10 +44,13 @@ $a = array(
   'Transactions'
 );
 
+//homepage link
+echo html_a('rightframe.php','Home','leftnavitem','target="main"').'<br />'."\n";
+//item links
 foreach($a as $i) {
 item($i,'va');
 };
-
+//logout stuff
 //echo html_a('transactions.php','Transactions','leftnavitem','target="_top"').'<br />'."\n";
 echo html_a('logout.php','Logout','leftnavitem','target="_top"')."\n";
 

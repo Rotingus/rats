@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.19 2003/07/16 09:36:33 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.20 2003/07/31 17:39:50 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -192,7 +192,7 @@ function httpredirectafter($time=0,$page='',$opts='',$host='') {
     if($host == '') {
         $host = $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
     }
-    if($host[strlen($host)-1] != '/' && $page[0] != '/') {
+    if($host[strlen($host)-1] != '/' && (strlen($page) == 0 || $page[0] != '/' )) {
         $host .= '/';
     }
     header('Refresh: '.$time.';http://'.$host.$page.$opts);

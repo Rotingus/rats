@@ -1,21 +1,31 @@
 <?php
-/* $Id: MySQL.php,v 1.3 2002/12/12 22:55:31 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.4 2003/03/13 10:49:08 robbat2 Exp $ */
 
 //var $mysql_conn;
 
 class MySQL {
+    //local handle
     var $mysql_conn;
+
+    //input data
     var $mysql_server = 'localhost:/tmp/mysql.sock';
     var $mysql_username = 'rats';
     var $mysql_passwd = 'ratty';
     var $mysql_db = 'rats';
     var $using_transactions = false;
+
+    //status
     var $in_transaction = false;
 
+    //return data
     var $mysql_result = false;
     var $querybuffer = array();
 
-    function MySQL($using_transactions = false) {
+    function MySQL($mysql_username = '',$mysql_passwd = '',$mysql_db = '',$mysql_server = '',$using_transactions = false) {
+        $this->mysql_username = $mysql_username;
+        $this->mysql_passwd = $mysql_passwd;
+        $this->mysql_server = $mysql_server;
+        $this->mysql_db = $mysql_db;
         $this->using_transactions = $using_transactions;
         $this->connect();
     }
@@ -103,14 +113,21 @@ class MySQL {
 
 }
 
-function MySQL_singleton($query,$abort = 0) {
+global $MySQL_singleton_abort;
+$MySQL_singleton_abort = -1;
+
+function MySQL_singleton($query,$abort = -1) {
     global $_MySQL;
     $_MySQL->restart();
     $_MySQL->query($query);
     $arr = $_MySQL->getRow();
     $item = $arr[0];
     if($_MySQL->getNumRows() != 1) {
-        $item = $abort;
+        if($abort == $MySQL_singleton_abort) {
+            $item = $MySQL_singleton_abort;
+        } else {
+            $item = $abort;
+        }
     }
     return $item;
 }
@@ -138,9 +155,14 @@ function MySQL_arrayToSequence($arr) {
     return $s;
 }
 
+$username = 'rats';
+$passwd = 'ratty';
+$db = 'rats';
+$server = 'localhost:/tmp/mysql.sock';
+
 global $_MySQL,$_MySQL_trans;
-$_MySQL = new MySQL(false);
-$_MySQL_trans = new MySQL(true);
+$_MySQL = new MySQL($username,$passwd,$db,$server,false);
+$_MySQL_trans = new MySQL($username,$passwd,$db,$server,true);
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

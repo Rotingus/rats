@@ -1,5 +1,5 @@
 <?php
-/* $Id: addedit.php,v 1.4 2003/06/05 23:22:18 robbat2 Exp $ */
+/* $Id: addedit.php,v 1.5 2003/07/16 03:46:46 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/addedit.php,v $ */
 
 include './header.inc.php';
@@ -35,10 +35,10 @@ echo hiddeninput('mode',$perm);
 <table class="dataform">
 <?php
 $data = NULL;
+if($editData !== NULL) {
+    $data = $editData;
+}
 foreach($tableData[$tableName]['_view_cols'] as $itemkey) {
-    if($editData !== NULL) {
-        $data = $editData[$itemkey];
-    }
     formelement($tableName,$tableData,$itemkey,$data);
 }
 ?>

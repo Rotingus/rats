@@ -1,5 +1,5 @@
 <?php
-/* $Id: formbuilder.lib.php,v 1.6 2003/07/16 09:35:52 robbat2 Exp $ */
+/* $Id: formbuilder.lib.php,v 1.7 2004/06/08 15:16:00 mdeepwel Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/formbuilder.lib.php,v $ */
 
 function idstr_query($idfield,$idstr,$idfrom) {
@@ -76,7 +76,7 @@ function formelement ($tableName,$tableData,$element,$data = NULL) {
         case 'text': formelement_text($tableName,$tableData,$element,$data); break;
         case '': formelement_null($tableName,$tableData,$element,$data); break;
     }
-    echo '</td></tr>';
+    echo "</td></tr>\n";
 }
 
 function seq($start,$increment='bad',$end='bad') {

@@ -1,5 +1,5 @@
 <?php
-/* $Id: addedit.php,v 1.6 2003/07/16 09:37:24 robbat2 Exp $ */
+/* $Id: addedit.php,v 1.7 2004/06/08 15:17:19 mdeepwel Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/addedit.php,v $ */
 
 include './header.inc.php';
@@ -31,6 +31,7 @@ if($perm == 'edit') {
 }
 echo hiddeninput('table',$tableName);
 echo hiddeninput('perm',$perm);
+echo "\n";
 ?>
 <table class="dataform">
 <?php
@@ -44,7 +45,7 @@ foreach($tableData[$tableName]['_view_cols'] as $itemkey) {
 ?>
 </table>
 <?php
-echo submitinput('submit','Submit');
+echo submitinput('submit','Submit')."\n";
 ?>
 </form>
 <?php
@@ -53,6 +54,8 @@ echo submitinput('submit','Submit');
     
     echo __FILE__.' permission denied';
 }
+
+include './footer.inc.php';
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

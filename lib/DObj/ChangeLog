@@ -1,1 +1,19 @@
+$Id: ChangeLog,v 1.4 2003/03/05 17:59:15 robbat2 Exp $
+$Source: /code/convert/cvsroot/infrastructure/rats/lib/DObj/Attic/ChangeLog,v $
+
+2002-12-11 23:10  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* Actions.php: See changelog
+
+2002-11-14 00:45  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* Actions.php, Bookings.php, CheckOuts.php, GroupActionMapping.php,
+	Groups.php, Manufacters.php, Notes.php, ObjectTypes.php,
+	Objects.php, Purchases.php, Transactions.php, UserGroupMapping.php,
+	Users.php, rats.ini: 2002-11-14 00-41 Robin Johnson 
+	<robbat2@orbis-terrarum.net>	 * lib/DBObjects.ini:	      -
+	Added DBObjects handler INI	* lib/DObj/*:	      - Added all
+	initial auto-geneated classes for data handling     *
+	lib/Obj/*.php, lib/Obj/Template:	 - Added all base object
+	handling classes from custom template
 

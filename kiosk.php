@@ -1,17 +1,17 @@
 <?php
-/* $Id: kiosk.php,v 1.1 2003/01/23 20:30:26 robbat2 Exp $ */
+/* $Id: kiosk.php,v 1.2 2003/03/13 09:38:32 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 //find -xtype f -name '*php' |grep -v index |grep -v DObj |xargs -l1 echo include
 
 include 'include.php';
 
 /* $t = new Transactions();
-$t->add(100,'Actions','1','1');
-$t->add(101,'Users','2','2');
-$s = $t->generateSQL(); 
+   $t->add(100,'Actions','1','1');
+   $t->add(101,'Users','2','2');
+   $s = $t->generateSQL(); 
 
-echo $s;
-*/
+   echo $s;
+ */
 if(isset($_POST['text'])) {
     $m = $_POST['mode'];
     $d = $_POST['text'];

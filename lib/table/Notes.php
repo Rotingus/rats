@@ -1,5 +1,5 @@
 <?php
-/* $Id: Notes.php,v 1.1 2003/05/07 11:22:39 robbat2 Exp $ */
+/* $Id: Notes.php,v 1.2 2003/05/07 17:58:54 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Notes.php,v $ */
 
 //table name goes here
@@ -47,7 +47,13 @@ $_t['UserID']['islocked'] = TRUE;
 $_t['UserID']['ishidden'] = FALSE;
 $_t['UserID']['keyto'] = 'Users.UserName';
 
-$_t['_view_cols'] = array('NoteCode','NoteBarcode','NoteGenericTable','NoteType');
+$_t['NoteDate']['longname'] = 'Timestamp';
+$_t['NoteDate']['datatype'] = 'TIMESTAMP';
+$_t['NoteDate']['inputtype'] = 'dateselect';
+$_t['NoteDate']['islocked'] = TRUE;
+$_t['NoteDate']['ishidden'] = FALSE;
+
+$_t['_view_cols'] = array('NoteDate','UserID','NoteGenericTable','NoteGenericID','NoteMimeType','NoteData');
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

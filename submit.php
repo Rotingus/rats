@@ -1,10 +1,11 @@
 <?php
-/* $Id: submit.php,v 1.2 2003/06/22 23:09:17 robbat2 Exp $ */
+/* $Id: submit.php,v 1.3 2003/07/16 09:37:56 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/submit.php,v $ */
 
 include './header.inc.php';
 
 $perm = v('perm','add');
+echo 'Perm: '.$perm."<br />\n";
 
 include 'lib/commontable.inc.php';
 
@@ -27,19 +28,58 @@ if($tablePerm[$perm]) {
     unset($datekeys,$dk,$arrkeys);
     
     if($perm == 'edit') {
-        $idEdit = v('id');
         $tableEdit = v('table');
+        $dataEdit = v($tableEdit);
+        $idEdit = $dataEdit[$tableData[$tableName]['_idkey']];
+        if(dodbg()) {
+            echo "Trying to sequence:<br />\n";
+            print_r($tableData[$tableName]['_view_cols']);
+            echo "<br />\nEnd of attempt.\n<br />";
+        }
         $cols = MySQL_arrayToSequence($tableData[$tableName]['_view_cols'],FALSE,FALSE);
+        if(dodbg()) { 
+            echo "sequence:";
+            print_r($cols);
+        }
         if(empty($tableData[$tableName]['_idkey'])) {
             die("Trying to edit a table $tableName without any ID key!\n");
         }
         $query = $tableData[$tableName]['_view_sql_all'].' WHERE '.$tableData[$tableName]['_idkey'].'='.MySQL_quote($idEdit);
-        if(dodbg()) echo "Query: $query\n";
+        if(dodbg()) echo "Query: $query<br />\n";
         global $MySQL_singleton_abort;
-        $editData = MySQL_singletonassoc($query);
-        if($editData === $MySQL_singleton_abort) {
+        $oldEditData = MySQL_singletonassoc($query);
+        if($oldEditData === $MySQL_singleton_abort) {
             die("Data abort! Query: $query\n");
         }
+        $changequery = '';
+        $first = TRUE;
+        foreach($dataEdit as $dataKey_key => $dataKey_value ) {
+            // skip old data
+            if(dodbg(4)) {
+                echo 'OLD: '.$oldEditData[$dataKey_key]."<br />\n";
+                echo 'NEW: '.$dataKey_value."<br />\n";
+            }
+            if($oldEditData[$dataKey_key] !== $dataKey_value) {
+                $changequery .= ($first ? '' : ', ').$dataKey_key.'='.MySQL_quote($dataKey_value);
+                if($first) $first = FALSE;
+            }
+        }
+        // build query
+        if(!empty($changequery)) {
+            $query = 'UPDATE '.$tableName.' SET '.$changequery.' WHERE '.$tableData[$tableName]['_idkey'].'='.$idEdit;
+        } else {
+            $_SESSION['msg'] = 'No changes made in data';
+            if(!dodbg()) { 
+                httpredirect('view.php?table='.$tableName);
+            } else {
+                echo 'MSG: '.$_SESSION['msg']."<br />\n";
+                die;
+            }
+        }
+
+        if(dodbg()) echo 'Query: '.$query."<br />\n";
+        die("");
+        
     }
     if(isset($idEdit)) {
         if(dodbg()) echo 'id'.$idEdit."\n";
@@ -76,7 +116,7 @@ if($tablePerm[$perm]) {
     if($data === NULL) {
         die("No data found!");
     }
-    if(dodbg(2)) print_r($data);
+    if(dodbg(2)) { echo "Data is:<br />\n"; print_r($data); echo "<br />\nEnd of Data<br />\n";}
     $query = str_replace('__VALUES__',MySQL_arrayToSequence($data,TRUE,TRUE,$tableData[$tableName]['_view_cols']),$query);
     if(dodbg()) echo $query;
     $res = _MySQL_queryhelper($query);
@@ -88,6 +128,8 @@ if($tablePerm[$perm]) {
     }
     if(!dodbg()) { 
         httpredirect('view.php?table='.$tableName);
+    } else {
+        echo 'MSG: '.$_SESSION['msg']."<br />\n";
     }
     // TODO
 } else {

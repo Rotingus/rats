@@ -19,7 +19,7 @@ htmlElm_open($name,
   if ($singleton) {
     $s .=  ' /';
   }
-  $s .=  '>'."\n";
+  $s .=  '>';
   return $s;
 }
 

@@ -1,11 +1,12 @@
 <?php
-/* $Id: admin.lib.php,v 1.18 2003/07/16 03:25:12 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.19 2003/07/16 09:36:33 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
 $sessionLoaded = false;
 $sessionInfo = array();
 $sessionDebug = dodbg(2);
+if(dodbg()) error_reporting(E_ALL);
 
 function printall($item) {	
     global $sessionDebug,$sessionInfo;

@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.15 2003/06/22 23:45:48 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.16 2003/07/16 09:36:33 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -270,15 +270,19 @@ function MySQL_buildonemanykey($keyName,$values) {
     return $str;
 }
 
-function MySQL_quote($str) {
-    return '\''.MySQL_escape($str).'\'';
-}
 function MySQL_escape($str) {
     if(!is_string($str)) {
+        echo '<br />Type: '.gettype($str);
+        echo '<br />Input: ';
         print_r($str);
+        echo "<br />\nBacktrace:<br />\n";
+        print_r(debug_backtrace());
         die("Input is not a string! ".__FILE__." ".__LINE__);
     }
     return mysql_real_escape_string($str);
+}
+function MySQL_quote($str) {
+    return '\''.MySQL_escape($str).'\'';
 }
 
 function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE,$order = NULL) {

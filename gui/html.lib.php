@@ -285,7 +285,7 @@ textareainput($name,
     $extra['cols'] = $cols;
   }
   //return html_input($name, 'textarea', $initialvalue, '', '', '', array(), $extra);
-  return htmlElm('textarea', $extra, $initialvalue);
+  return htmlElm_wrap('textarea', $initialvalue, $extra);
 }
 
 function

@@ -1,5 +1,21 @@
-$Id: ChangeLog,v 1.60 2003/06/22 23:11:46 robbat2 Exp $
+$Id: ChangeLog,v 1.61 2003/06/23 18:12:34 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-06-23 11:12  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* logout.php: send to a new page after logout
+
+2003-06-23 10:54  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/Purchases.php: forgot new field
+
+2003-06-23 01:00  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/schema.sql: fix schema
+
+2003-06-22 16:45  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: Workaround for PHP4.3.2 bug in mysql_info()
 
 2003-06-22 16:11  Robin Johnson  <robbat2@orbis-terrarum.net>
 

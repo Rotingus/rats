@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.14 2003/06/12 17:43:47 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.15 2003/06/12 18:59:05 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -60,7 +60,7 @@ function admin_session_start($u,$p) {
     if($periodcount < 2) {
         httpredirect('index.php','?loginerror=evilcookies');
     }
-    session_set_cookie_params(0,dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
+    session_set_cookie_params(1800,dirname($_SERVER['REQUEST_URI']),$_SERVER['HTTP_HOST']);
     session_start();
     printall('admin_session_start.session_start');	
     $sessionInfo['username'] = $u;

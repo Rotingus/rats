@@ -1,5 +1,5 @@
 <?php
-/* $Id: processtable.inc.php,v 1.6 2003/06/12 18:26:37 robbat2 Exp $ */
+/* $Id: processtable.inc.php,v 1.7 2003/06/22 23:10:02 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/processtable.inc.php,v $ */
 
 // code goes here
@@ -67,11 +67,27 @@ $query = 'INSERT INTO __TABLE__ (__COLUMNS__) VALUES __VALUES__';
 $insertquery = str_replace($arr_srch,$arr_repl_final,$query);
 $_t['_insert_sql'] = $insertquery;
 $tableData[$_tn] = $_t;
-
-// DEBUG
-//print_r($tableData);
-//echo '<br />';
-
+$u = array(
+'_t',
+'_tn',
+'arr_srch',
+'arr_repl_final',
+'arr_repl_all',
+'finalquery',
+'allquery',
+'query',
+'insertquery',
+'_tn',
+'defaultValues',
+'key',
+'arr',
+'subkey',
+'value',
+'tableKey',
+'itemkey',
+);
+foreach($u as $i) unset($$i);
+unset($u,$i);
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

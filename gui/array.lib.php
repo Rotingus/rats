@@ -18,7 +18,7 @@ v($n,$default=null)
 function
 getData()
 {
-  $datatmp = array_merge($_GET, $_POST);
+  $datatmp = array_merge($_REQUEST);
   if(isset($GLOBALS['_MASTER'])) {
     $data = array_merge($datatmp, $GLOBALS['_MASTER']);
   } else {

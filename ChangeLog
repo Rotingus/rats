@@ -1,9 +1,25 @@
-$Id: ChangeLog,v 1.46 2003/03/15 00:24:07 robbat2 Exp $
+$Id: ChangeLog,v 1.47 2003/04/22 18:30:58 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-24 12:11  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* leftframe.php: Added more items
+
+2003-03-24 12:11  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* main.php: Resized frame
+
+2003-03-14 16:23  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/commontable.inc.php: bugfix
 
 2003-03-14 16:23  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* gui/style.inc.php: table stuff
+
+2003-03-14 16:23  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/html.lib.php: new tags
 
 2003-03-14 16:23  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.12 2003/05/07 19:57:20 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.13 2003/05/29 04:02:38 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -22,10 +22,12 @@ function printall($item) {
 
 function admin_session_load() {	
     global $sessionLoaded;
+    printall('admin_session_load.start');
     if(isset($_COOKIE['PHPSESSID']) || isset($_POST['PHPSESSID'])) {	
         $sessionLoaded=true;
         session_start();
     }
+    printall('admin_session_load.end');
 }
 
 function admin_session_destroy() {	

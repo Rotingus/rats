@@ -7,7 +7,7 @@ include 'include.php';
 include 'gui/header.inc.php';
 ?>
 
-<frameset cols="64px,*" rows="*">
+<frameset cols="96px,*" rows="*">
     <frame src="leftframe.php" name="nav" frameborder="0" />
     <frame src="rightframe.php" name="main" />
 </frameset>

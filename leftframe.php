@@ -1,29 +1,31 @@
 <?php
-/* $Id: leftframe.php,v 1.1 2003/01/23 21:02:55 robbat2 Exp $ */
-include 'include.php';
-include './gui/header.inc.php';
+/* $Id: leftframe.php,v 1.2 2003/03/05 17:30:24 robbat2 Exp $ */
+
+include('header.inc.php');
 
 function item($n) {
-  echo html_a(strtolower($n).'php',$n,'leftnavitem','target="main"');
+  echo html_a('insert.php?table='.str_replace($n,' ',''),$n,'leftnavitem','target="main"')."\n";
 }
 
 $a = array(
 'Objects',
 'Manufacters',
 'Purchases',
-'ObjectTypes',
+'Object Types',
 'CheckOuts',
 'Users',
 'Groups',
 'Bookings',
 'Notes',
-'Transactions',
 'Actions'
 );
 
 foreach($a as $i) {
 item($i);
 };
+
+echo html_a('transactions.php','Transactions','leftnavitem','target="_top"')."\n";
+echo html_a('logout.php','Logout','leftnavitem','target="_top"')."\n";
 
 include './gui/footer.inc.php';
 ?>

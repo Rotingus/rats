@@ -1,5 +1,8 @@
-$Id: ChangeLog,v 1.14 2003/01/23 20:33:03 robbat2 Exp $
+$Id: ChangeLog,v 1.15 2003/03/05 17:30:24 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-02-19 13-13 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * leftframe.php: Change to use common modes
 
 2003-01-23 12-06 Robin Johnson  <robbat2@orbis-terrarum.net>
     * gui/*:

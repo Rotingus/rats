@@ -24,14 +24,15 @@ input {
   margin: 0em;
   padding: 0em;
 }
-html,body,form,.box {
+form,.box {
   margin: 0em;
-  padding: 0em;
   background-color: #F5F5F5;
+  padding: 0em;
 }
 
 html,body {
   border-width: 0px;
+  background-color: #F5F5F5;
 }
 
 table {
@@ -241,4 +242,7 @@ fieldset {
 .userlink:hover {
   text-decoration: underline;
   font-weight: bold;
+}
+.leftnavitem {
+  font-size: 10pt;
 }

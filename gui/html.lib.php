@@ -377,14 +377,18 @@ fieldset($title,
       ($title != '' ? html_legend($title) : '').$data);
 }
 
-  function
-html_img($src,$w,$h)
-{
-  return htmlElm('img',array('src' => $src, 'height' => $h, 'width' => $w));
-}
-
 function js_alert($msg) {
   return 'alert("'.$msg.'");';
+}
+
+function
+html_form_label($elem,
+    $disp,
+    $class = '',
+    $extra = '')
+{
+  return htmlElm('label',
+      array('for'  => $elem, 'class'  => $class, '_' =>$extra), $disp);
 }
 
 ?>

@@ -1,9 +1,9 @@
 <?php
-/* $Id: commontable.inc.php,v 1.6 2003/05/06 20:59:53 robbat2 Exp $ */
+/* $Id: commontable.inc.php,v 1.7 2003/05/07 20:48:10 robbat2 Exp $ */
 
 global $tableName;
 
-$tableName = isset($_GET['table']) ? $_GET['table'] : '';
+$tableName = v('table');
 
 $tablePerm = admin_getpermissionstable($sessionInfo['userid'],$tableName);
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: leftframe.php,v 1.7 2003/05/07 11:23:09 robbat2 Exp $ */
+/* $Id: leftframe.php,v 1.8 2003/05/07 20:48:10 robbat2 Exp $ */
 
 include('header.inc.php');
 
@@ -14,7 +14,7 @@ function item($n,$type = 'v') {
   $tblstr = 'table='.$tbl;
 
   $viewfile = 'view.php';
-  $addfile = 'add.php';
+  $addfile = 'addedit.php';
   $target = 'target="main"';
   $class = 'leftnavitem';
   if($tablePerm['view']) {

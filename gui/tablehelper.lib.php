@@ -1,10 +1,10 @@
 <?php
-/* $Id: tablehelper.lib.php,v 1.2 2003/05/06 21:53:15 robbat2 Exp $ */
+/* $Id: tablehelper.lib.php,v 1.3 2003/05/07 20:48:10 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/tablehelper.lib.php,v $ */
 
 function guiedit($table,$id) {
     $param = 't='.$table.'&amp;id='.$id;
-    $file = 'edit.php';
+    $file = 'addedit.php';
     $title = 'Edit';
     return html_a($file.'?'.$param,$title);
 }

@@ -1,5 +1,5 @@
 <?php
-/* $Id: processtable.inc.php,v 1.1 2003/04/30 18:16:29 robbat2 Exp $ */
+/* $Id: processtable.inc.php,v 1.2 2003/05/07 20:48:10 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/processtable.inc.php,v $ */
 
 // code goes here
@@ -22,6 +22,9 @@ foreach($_t as $key => $arr) {
             if(!isset($_t[$key][$subkey])) {
                 $_t[$key][$subkey] = $value; 
             }
+        }
+        if($_t[$key]['isid'] && $_t[$key]['longname']=='') {
+            $_t[$key]['longname']='ID';
         }
     }
 }

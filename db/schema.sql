@@ -1,8 +1,8 @@
--- $Id: schema.sql,v 1.16 2003/06/23 08:00:06 robbat2 Exp $
--- MySQL dump 9.07
+-- $Id: schema.sql,v 1.17 2003/06/25 19:20:35 robbat2 Exp $
+-- MySQL dump 9.08
 --
 -- Host: localhost    Database: rats
--- Server version	4.0.12-log
+-- Server version	4.0.13-log
 
 --
 -- Current Database: rats
@@ -27,7 +27,7 @@ CREATE TABLE Actions (
   UNIQUE KEY TableAction (ActionGenericTable,ActionType),
   UNIQUE KEY ActionBarcode (ActionBarcode),
   KEY ActionGenericTable (ActionGenericTable)
-) TYPE=InnoDB COMMENT='Action Type Data';
+) TYPE=InnoDB PACK_KEYS=1 COMMENT='Action Type Data';
 
 --
 -- Table structure for table 'Bookings'
@@ -41,7 +41,7 @@ CREATE TABLE Bookings (
   BookingStartDate datetime NOT NULL default '0000-00-00 00:00:00',
   BookingEndDate datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (BookingID)
-) TYPE=InnoDB;
+) TYPE=InnoDB PACK_KEYS=1;
 
 --
 -- Table structure for table 'CheckOuts'
@@ -57,7 +57,7 @@ CREATE TABLE CheckOuts (
   PRIMARY KEY  (CheckOutID),
   UNIQUE KEY ObjectID (ObjectID),
   KEY UserID (UserID)
-) TYPE=InnoDB;
+) TYPE=InnoDB PACK_KEYS=0;
 
 --
 -- Table structure for table 'GroupActionMapping'
@@ -136,6 +136,8 @@ CREATE TABLE Objects (
   ObjectBarcode bigint(14) NOT NULL default '30000000000000',
   ObjectName varchar(255) NOT NULL default '',
   ObjectSerialNumber varchar(255) default NULL,
+  ObjectExtraID varchar(255) default NULL,
+  ObjectDetails text,
   ObjectTypeID int(10) NOT NULL default '0',
   PurchaseID int(10) unsigned zerofill NOT NULL default '0000000000',
   ObjectGroupID int(10) unsigned zerofill default NULL,
@@ -143,6 +145,7 @@ CREATE TABLE Objects (
   PRIMARY KEY  (ObjectID),
   UNIQUE KEY ObjectBarcode (ObjectBarcode),
   KEY ObjectTypeID (ObjectTypeID),
+  KEY ObjectExtraID (ObjectExtraID),
   KEY ObjectName (ObjectName),
   KEY PurchaseID (PurchaseID)
 ) TYPE=InnoDB COMMENT='Object Information';
@@ -156,6 +159,7 @@ CREATE TABLE Purchases (
   PurchaseID int(10) unsigned zerofill NOT NULL auto_increment,
   PurchaseTitle varchar(255) NOT NULL default '',
   PurchaseDetails text NOT NULL,
+  PurchaseDate datetime NOT NULL default '0000-00-00 00:00:00',
   VendorID int(11) default NULL,
   PRIMARY KEY  (PurchaseID),
   KEY VendorID (VendorID),

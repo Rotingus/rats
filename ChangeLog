@@ -1,9 +1,17 @@
-$Id: ChangeLog,v 1.37 2003/03/13 10:51:05 robbat2 Exp $
+$Id: ChangeLog,v 1.38 2003/03/13 11:02:55 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
 2003-03-13 02:49  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* lib/admin.lib.php: user auth code
+
+2003-03-13 02:49  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/Obj/CheckOuts.php: Change for MySQL singleton
+
+2003-03-13 02:49  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: Slight change to singleton handler
 
 2003-03-13 02:49  Robin Johnson  <robbat2@orbis-terrarum.net>
 

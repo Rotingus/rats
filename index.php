@@ -1,10 +1,11 @@
 <?php
-/* $Id: index.php,v 1.5 2003/01/23 21:02:55 robbat2 Exp $ */
+/* $Id: index.php,v 1.6 2003/03/13 09:43:26 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 
-include 'include.php';
-include './gui/header.inc.php';
-include './gui/title.inc.php';
+$skipvalidate = TRUE;
+
+include 'header.inc.php';
+include 'gui/title.inc.php';
 
 ?>
 <form action="main.php" method="POST" class="title">
@@ -39,5 +40,5 @@ echo submitinput('login','Login');
 </form>
 
 <?php
-include './gui/footer.inc.php';
+include 'footer.inc.php';
 ?>

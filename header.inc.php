@@ -1,7 +1,9 @@
 <?php
-/* $Id: header.inc.php,v 1.5 2003/03/13 11:52:17 robbat2 Exp $ */
+/* $Id: header.inc.php,v 1.6 2003/03/14 12:49:30 robbat2 Exp $ */
 include 'include.php';
 include './gui/header.inc.php';
+
+// validate user stuff
 if (isset($skipvalidate) && $skipvalidate && !isset($_COOKIE['skipvalidate'])
         && !isset($_GET['skipvalidate']) && !isset($_POST['skipvalidate'])) {
     $uservalid = TRUE;

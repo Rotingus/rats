@@ -1,7 +1,7 @@
 <?
 /*
  * Table Definition for Actions
- * $Id: Actions.php,v 1.1 2002/11/14 08:45:44 robbat2 Exp $
+ * $Id: Actions.php,v 1.2 2002/12/12 07:10:43 robbat2 Exp $
  */
 
 

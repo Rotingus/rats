@@ -1,24 +1,34 @@
--- $Id: schema.sql,v 1.4 2002/11/19 19:37:41 robbat2 Exp $
+-- $Id: schema.sql,v 1.5 2002/12/12 07:10:43 robbat2 Exp $
+-- MySQL dump 9.07
+--
+-- Host: localhost    Database: rats
+---------------------------------------------------------
+-- Server version	4.0.4-beta
 
-CREATE DATABASE IF NOT EXISTS rats;
+--
+-- Current Database: rats
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ rats;
+
 USE rats;
 
--- 
--- Table structure for table `Actions`
--- 
+--
+-- Table structure for table 'Actions'
+--
 
 DROP TABLE IF EXISTS Actions;
 CREATE TABLE Actions (
   ActionID int(10) unsigned zerofill NOT NULL auto_increment,
   ActionCode varchar(16) NOT NULL default '',
+  ActionBarcode bigint(14) default NULL,
   PRIMARY KEY  (ActionID),
   UNIQUE KEY ActionCode (ActionCode)
 ) TYPE=MyISAM COMMENT='Action Type Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Bookings`
--- 
+--
+-- Table structure for table 'Bookings'
+--
 
 DROP TABLE IF EXISTS Bookings;
 CREATE TABLE Bookings (
@@ -29,11 +39,10 @@ CREATE TABLE Bookings (
   BookingsEndDate datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (BookingsID)
 ) TYPE=MyISAM;
--- --------------------------------------------------------
 
--- 
--- Table structure for table `CheckOuts`
--- 
+--
+-- Table structure for table 'CheckOuts'
+--
 
 DROP TABLE IF EXISTS CheckOuts;
 CREATE TABLE CheckOuts (
@@ -45,11 +54,10 @@ CREATE TABLE CheckOuts (
   KEY UserID (UserID),
   KEY ObjectID (ObjectID)
 ) TYPE=MyISAM;
--- --------------------------------------------------------
 
--- 
--- Table structure for table `GroupActionMapping`
--- 
+--
+-- Table structure for table 'GroupActionMapping'
+--
 
 DROP TABLE IF EXISTS GroupActionMapping;
 CREATE TABLE GroupActionMapping (
@@ -59,11 +67,10 @@ CREATE TABLE GroupActionMapping (
   PRIMARY KEY  (GroupActionMappingID),
   UNIQUE KEY GroupActionMapping (ActionID,GroupID)
 ) TYPE=MyISAM;
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Groups`
--- 
+--
+-- Table structure for table 'Groups'
+--
 
 DROP TABLE IF EXISTS Groups;
 CREATE TABLE Groups (
@@ -72,11 +79,10 @@ CREATE TABLE Groups (
   PRIMARY KEY  (GroupID),
   UNIQUE KEY GroupName (GroupName)
 ) TYPE=MyISAM COMMENT='Group Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Manufacters`
--- 
+--
+-- Table structure for table 'Manufacters'
+--
 
 DROP TABLE IF EXISTS Manufacters;
 CREATE TABLE Manufacters (
@@ -86,11 +92,10 @@ CREATE TABLE Manufacters (
   PRIMARY KEY  (ManufacterID),
   KEY ManufactersName (ManufacterName)
 ) TYPE=MyISAM COMMENT='Manufacters Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Notes`
--- 
+--
+-- Table structure for table 'Notes'
+--
 
 DROP TABLE IF EXISTS Notes;
 CREATE TABLE Notes (
@@ -104,11 +109,10 @@ CREATE TABLE Notes (
   KEY NoteData (NoteData(128)),
   KEY NoteParent (GenericTable,GenericID)
 ) TYPE=MyISAM;
--- --------------------------------------------------------
 
--- 
--- Table structure for table `ObjectTypes`
--- 
+--
+-- Table structure for table 'ObjectTypes'
+--
 
 DROP TABLE IF EXISTS ObjectTypes;
 CREATE TABLE ObjectTypes (
@@ -127,11 +131,10 @@ CREATE TABLE ObjectTypes (
   KEY ManufacterID (ManufacterID),
   KEY ObjectTypePriority (ObjectTypePriority)
 ) TYPE=MyISAM COMMENT='Object Type Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Objects`
--- 
+--
+-- Table structure for table 'Objects'
+--
 
 DROP TABLE IF EXISTS Objects;
 CREATE TABLE Objects (
@@ -149,11 +152,10 @@ CREATE TABLE Objects (
   KEY ObjectName (ObjectName),
   KEY PurchaseID (PurchaseID)
 ) TYPE=MyISAM COMMENT='Object Information';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Purchases`
--- 
+--
+-- Table structure for table 'Purchases'
+--
 
 DROP TABLE IF EXISTS Purchases;
 CREATE TABLE Purchases (
@@ -161,11 +163,10 @@ CREATE TABLE Purchases (
   PurchaseInfo text NOT NULL,
   PRIMARY KEY  (PurchaseID)
 ) TYPE=MyISAM COMMENT='Purchases Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Transactions`
--- 
+--
+-- Table structure for table 'Transactions'
+--
 
 DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (
@@ -179,11 +180,10 @@ CREATE TABLE Transactions (
   KEY UserID (UserID),
   KEY ActionID (ActionID)
 ) TYPE=MyISAM COMMENT='Transaction Data';
--- --------------------------------------------------------
 
--- 
--- Table structure for table `UserGroupMapping`
--- 
+--
+-- Table structure for table 'UserGroupMapping'
+--
 
 DROP TABLE IF EXISTS UserGroupMapping;
 CREATE TABLE UserGroupMapping (
@@ -193,11 +193,10 @@ CREATE TABLE UserGroupMapping (
   PRIMARY KEY  (UserGroupMappingID),
   UNIQUE KEY UserGroupMapping (UserID,GroupID)
 ) TYPE=MyISAM;
--- --------------------------------------------------------
 
--- 
--- Table structure for table `Users`
--- 
+--
+-- Table structure for table 'Users'
+--
 
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
@@ -210,4 +209,3 @@ CREATE TABLE Users (
   UNIQUE KEY UserLogin (UserLogin)
 ) TYPE=MyISAM COMMENT='User Data';
 
-    

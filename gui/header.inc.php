@@ -17,11 +17,12 @@ if ($frames != TRUE) {
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>RATS</title>
-<style type="text/css">
 <?php
-include './gui/style.inc.php';
+//<style type="text/css">
+//include './gui/style.inc.php';
+//</style>
 ?>
-</style>
+<link rel="stylesheet" type="text/css" href="css.php" />
 </head>
 <?php
 if ($frames != TRUE) {

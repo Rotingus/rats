@@ -1,4 +1,4 @@
--- $Id: data.sql,v 1.9 2003/06/12 19:01:09 robbat2 Exp $
+-- $Id: data.sql,v 1.10 2003/06/12 19:06:05 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
@@ -242,6 +242,7 @@ INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000012,4,2);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000010,4,3);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000011,4,8);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000007,4,13);
 
 --
 -- Dumping data for table 'Users'

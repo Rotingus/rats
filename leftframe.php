@@ -1,5 +1,5 @@
 <?php
-/* $Id: leftframe.php,v 1.5 2003/03/24 20:11:17 robbat2 Exp $ */
+/* $Id: leftframe.php,v 1.6 2003/05/06 21:53:51 robbat2 Exp $ */
 
 include('header.inc.php');
 
@@ -28,7 +28,7 @@ $a = array(
   'Check Outs',
   'Group Action Mapping',
   'Groups',
-  'Manufacters',
+  'Manufacturers',
   'Notes',
   'Object Types',
   'Objects',

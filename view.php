@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.3 2003/04/30 18:16:48 robbat2 Exp $ */
+/* $Id: view.php,v 1.4 2003/05/06 21:53:51 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -13,9 +13,8 @@ function drawTable_top($head) {
     echo html_thead_open();
     echo html_tr_open();
     foreach($head as $h) {
-        echo html_th_open();
-        echo($h);
-        echo html_th_close();
+        if($h != '')
+            echo html_th_wrap($h);
     }
     echo html_tr_close();
     echo html_thead_close();
@@ -33,16 +32,16 @@ function drawTable_row($row,$hasKey = FALSE, $table = '', $showEdit = FALSE, $sh
         $key = '';
     }
     foreach($row as $r) {
-        echo html_td_open();
-        echo($r);
-        echo html_td_close();
+        if($r == '')
+            $r = '<i>NULL</i>';
+        echo html_td_wrap($r);
     }
     if($hasKey && $table != '') {
         if($showEdit) {
-            guiEdit($table,$id);
+            echo html_td_wrap(guiEdit($table,$key));
         }
         if($showDelete) {
-            guiDelete($table,$id);
+            echo html_td_wrap(guiDelete($table,$key));
         }
     }
 }
@@ -106,10 +105,19 @@ if($tablePerm['view']) {
          }
      }
  }
+ if($tableKey != '') {
+     $tableKey .= ',';
+ }
  $arr_srch = array('__TABLE__','__COLUMNS__','__KEY__');
  $arr_repl = array($tableName,array2commasep($tableData[$tableName]['_view_cols']),$tableKey);
  $query = str_replace($arr_srch,$arr_repl,$query);
- $head = array_subkey($tableData[$tableName],'longname');
+ $headtmp = array_subkey($tableData[$tableName],'longname');
+ $head = array();
+ foreach($headtmp as $key => $value) {
+     if($key[0] != '_') {
+         $head[$key] = $value;
+     }
+ }
  drawTableSQL($head,$query,TRUE,$tableName,$tablePerm['edit'],$tablePerm['delete']);
 }
 

@@ -134,7 +134,7 @@ html_tfoot_open($class = '',
   return htmlElm_open('tfoot', array('class'  => $class, '_'  => $extra));
 }
 
-  function
+function
 html_tfoot_close()
 {
   return htmlElm_close('tfoot');
@@ -147,10 +147,18 @@ html_td_open($class = '',
   return htmlElm_open('td', array('class'  => $class, '_'  => $extra));
 }
 
-  function
+function
 html_td_close()
 {
   return htmlElm_close('td');
+}
+
+function html_th_wrap($data,$class='',$extra='') {
+    return html_th_open($class,$extra).$data.html_th_close();
+}
+
+function html_td_wrap($data,$class='',$extra='') {
+    return html_td_open($class,$extra).$data.html_td_close();
 }
 
 function

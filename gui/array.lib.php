@@ -81,4 +81,8 @@ mapArrayKeys($mapping,
     return $newdata;
 }
 
+function squashDateArray($datearray) {
+return sprintf('%4d-%2d-%2d %2d:%2d:%2d',$datearray['year'],$datearray['month'],$datearray['day'],$datearray['hour'],$datearray['minute'],$datearray['second']);
+}
+
 ?>

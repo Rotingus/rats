@@ -1,5 +1,5 @@
 <?php
-/* $Id: submit.php,v 1.4 2003/07/16 10:08:51 robbat2 Exp $ */
+/* $Id: submit.php,v 1.5 2003/07/16 18:52:45 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/submit.php,v $ */
 
 include './header.inc.php';
@@ -119,6 +119,13 @@ if($tablePerm[$perm]) {
         die("No data found!");
     }
     if(dodbg(2)) { echo "Data is:<br />\n"; print_r($data); echo "<br />\nEnd of Data<br />\n";}
+    foreach($tableData[$tableName] as $kv => $val) {
+    	if($kv[0] != '_' && $val['datatype'] == 'DATETIME') {
+		if(dodbg(3)) echo 'Squashing date for '.$kv."<br />\n";
+		$tmp = $data[$kv];
+		$data[$kv] = squashDateArray($tmp);
+	}
+    }
     $query = str_replace('__VALUES__',MySQL_arrayToSequence($data,TRUE,TRUE,$tableData[$tableName]['_view_cols']),$query);
     if(dodbg()) echo $query;
     $res = _MySQL_queryhelper($query);

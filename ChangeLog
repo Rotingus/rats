@@ -1,5 +1,17 @@
-$Id: ChangeLog,v 1.30 2003/03/13 09:26:51 robbat2 Exp $
+$Id: ChangeLog,v 1.31 2003/03/13 09:39:45 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-13 01:39  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* indent.sh: Experminetal code formatter
+
+2003-03-13 01:38  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php, kiosk.php: formatting
+
+2003-03-13 01:38  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* skel.php: Skeleton file for work
 
 2003-03-13 01:26  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: ObjectTypes.php,v 1.3 2003/05/29 03:50:22 robbat2 Exp $ */
+/* $Id: ObjectTypes.php,v 1.4 2003/06/22 23:09:44 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/ObjectTypes.php,v $ */
 
 //table name goes here
@@ -46,7 +46,7 @@ $_t['ObjectTypePriority']['ishidden'] = FALSE;
 
 $_t['ObjectTypeLoanDuration']['longname'] = 'Loan Duration';
 $_t['ObjectTypeLoanDuration']['datatype'] = 'DATETIME';
-$_t['ObjectTypeLoanDuration']['inputtype'] = 'dateselect';
+$_t['ObjectTypeLoanDuration']['inputtype'] = 'durationselect';
 $_t['ObjectTypeLoanDuration']['ishidden'] = FALSE;
 
 $_t['ObjectTypeDescription']['longname'] = 'Description';

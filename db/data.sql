@@ -1,4 +1,4 @@
--- $Id: data.sql,v 1.3 2003/05/07 11:23:41 robbat2 Exp $
+-- $Id: data.sql,v 1.4 2003/05/29 04:01:39 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
@@ -26,7 +26,7 @@ INSERT INTO Actions VALUES (0000000001,'aB',NULL,'Bookings','add'),(0000000002,'
 -- Dumping data for table 'CheckOuts'
 --
 
-INSERT INTO CheckOuts VALUES (0000000016,0000000002,0000000003,'2002-12-26 15:11:28');
+INSERT INTO CheckOuts VALUES (0000000026,0000000001,0000000004,20030507144335,'2003-05-21 14:43:35');
 
 --
 -- Dumping data for table 'GroupActionMapping'
@@ -49,23 +49,25 @@ INSERT INTO Groups VALUES (0000000001,'Anonymous users'),(0000000009,'Notes admi
 -- Dumping data for table 'ObjectTypes'
 --
 
-INSERT INTO ObjectTypes VALUES (0000000001,1,'Test Object Type','Foo','Testing','special','softest','0000-00-14 00:00:00');
+INSERT INTO ObjectTypes VALUES (0000000001,1,'Test Object Type','Foo','Testing','special','softest','0000-00-14 00:00:00'),(0000000002,3,'CrystalEyes Shutter Glasses IR Emitter','E-2','IR Emitter','equipment','soft','0000-00-14 00:00:00');
 
 --
 -- Dumping data for table 'Objects'
 --
 
-INSERT INTO Objects VALUES (0000000001,39345000001002,'',NULL,1,0000000000,NULL,'NA'),(0000000002,39345000001010,'Test',NULL,1,0000000000,NULL,'NA'),(0000000003,39345000001028,'Test2',NULL,1,0000000000,NULL,'NA');
+INSERT INTO Objects VALUES (0000000001,39345000001002,'',NULL,1,0000000000,NULL,'NA'),(0000000002,39345000001010,'Test',NULL,1,0000000000,NULL,'NA'),(0000000004,39345000001028,'IR Emitter',NULL,2,0000000001,NULL,'NA');
 
 --
 -- Dumping data for table 'Purchases'
 --
 
+INSERT INTO Purchases VALUES (0000000001,'Stereographics:\r\ninvoice #: 0030465-IN\r\ninvoice date: 03/20/2003\r\norder #: 0020396\r\norder date: 03/19/2003\r\nsalesperson: MLH\r\ncustomer #: SFUSURR\r\n\r\n',3);
 
 --
 -- Dumping data for table 'Transactions'
 --
 
+INSERT INTO Transactions VALUES (0000000031,0000000000,0000000019,20030507120902,0000000000),(0000000032,0000000000,0000000000,20030507121021,0000000000),(0000000033,0000000000,0000000020,20030507121147,0000000000),(0000000034,0000000000,0000000000,20030507121729,0000000000),(0000000035,0000000000,0000000021,20030507121833,0000000000),(0000000036,0000000000,0000000000,20030507121951,0000000000),(0000000037,0000000000,0000000022,20030507122044,0000000000),(0000000038,0000000000,0000000000,20030507122151,0000000000),(0000000039,0000000000,0000000023,20030507125502,0000000000),(0000000040,0000000000,0000000000,20030507141613,0000000000),(0000000041,0000000000,0000000024,20030507143030,0000000000),(0000000042,0000000000,0000000000,20030507143055,0000000000),(0000000043,0000000000,0000000025,20030507143620,0000000000),(0000000044,0000000000,0000000000,20030507144335,0000000000);
 
 --
 -- Dumping data for table 'UserGroupMapping'
@@ -83,5 +85,5 @@ INSERT INTO Users VALUES (0000000001,29345003857006,'rjohnsob@sfu.ca','chinook')
 -- Dumping data for table 'Vendors'
 --
 
-INSERT INTO Vendors VALUES (0000000001,'Silicon Graphics Interactive','1600 Amphitheatre Parkway\r\nMountain View, CA \r\n94043\r\nUSA'),(0000000002,'Microsoft Canada Co.','1950 Meadowvale Blvd\r\nMississauga, Ontario\r\nL5N 8L9\r\n\r\nCanadian Head Office: (905) 568-0434\r\nCustomer Inquiries: (877) 568-2495\r\nMicrosoft TT/TDD: (905) 568-9641\r\nMicrosoft Order Centre: (800) 933-4750\r\n\r\n\r\n');
+INSERT INTO Vendors VALUES (0000000001,'Silicon Graphics Interactive','1600 Amphitheatre Parkway\r\nMountain View, CA \r\n94043\r\nUSA'),(0000000002,'Microsoft Canada Co.','1950 Meadowvale Blvd\r\nMississauga, Ontario\r\nL5N 8L9\r\n\r\nCanadian Head Office: (905) 568-0434\r\nCustomer Inquiries: (877) 568-2495\r\nMicrosoft TT/TDD: (905) 568-9641\r\nMicrosoft Order Centre: (800) 933-4750\r\n\r\n\r\n'),(0000000003,'StereoGraphics Corporation','2171 East Francisco Blvd.\r\nSan Rafael, CA 94901\r\n(415) 459-4500'),(0000000004,'ATOP Computer','10083 136A St.\r\nSurrey, BC V3T 4G1\r\nhttp://www.atoponline.com/\r\nPhone: (604) 930-4838\r\nFax: 604-930-4848');
 

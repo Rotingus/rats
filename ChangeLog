@@ -1,5 +1,13 @@
-$Id: ChangeLog,v 1.47 2003/04/22 18:30:58 robbat2 Exp $
+$Id: ChangeLog,v 1.48 2003/04/22 18:36:01 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-04-22 11:35  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* logout.php, lib/table/Manufacters.php: added new code
+
+2003-04-22 11:34  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: stubs for auth
 
 2003-03-24 12:11  Robin Johnson  <robbat2@orbis-terrarum.net>
 

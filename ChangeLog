@@ -1,5 +1,33 @@
-$Id: ChangeLog,v 1.51 2003/05/06 21:54:23 robbat2 Exp $
+$Id: ChangeLog,v 1.52 2003/05/07 17:59:12 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-05-07 10:58  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: CheckOuts.php, Notes.php: update tables
+
+2003-05-07 04:23  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, schema.sql: fresh data dump
+
+2003-05-07 04:23  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* leftframe.php, lib/admin.lib.php: auth stuff enabled and sidebar
+	fixed
+
+2003-05-07 04:22  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/Obj/GroupActionMapping.php: full auth enabled
+
+2003-05-07 04:22  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: Notes.php, ObjectTypes.php, Objects.php,
+	Transactions.php: add new tables (notes is slightly broke still)
+
+2003-05-07 03:01  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: Bookings.php, GroupActionMapping.php,
+	Manufacturers.php, Purchases.php, UserGroupMapping.php,
+	Vendors.php: new tables
 
 2003-05-06 14:53  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,5 +1,48 @@
-$Id: ChangeLog,v 1.54 2003/05/07 20:48:56 robbat2 Exp $
+$Id: ChangeLog,v 1.55 2003/05/29 04:14:03 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-05-28 21:03  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* addedit.php: wip
+
+2003-05-28 21:03  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* main.php, view.php: cleanup
+
+2003-05-28 21:02  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/processtable.inc.php: another item
+
+2003-05-28 21:02  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: foo
+
+2003-05-28 21:02  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/formbuilder.lib.php: table stuff
+
+2003-05-28 21:01  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/: data.sql, schema.sql: updated db output
+
+2003-05-28 21:01  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* db/dumpsql.sh: improved password code
+
+2003-05-28 20:50  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/: Bookings.php, CheckOuts.php, GroupActionMapping.php,
+	Notes.php, ObjectTypes.php, Objects.php, Purchases.php,
+	Transactions.php, UserGroupMapping.php, Vendors.php: VARCHAR/ID and
+	text/textarea fixed
+
+2003-05-27 11:57  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* addedit.php, gui/formbuilder.lib.php, gui/html.lib.php,
+	lib/MySQL.php, lib/mysql.lib.php, lib/processtable.inc.php,
+	lib/table/Actions.php, lib/table/GroupActionMapping.php,
+	lib/table/Notes.php, lib/table/ObjectTypes.php,
+	lib/table/Objects.php: Adding add/edit form
 
 2003-05-07 13:48  Robin Johnson  <robbat2@orbis-terrarum.net>
 

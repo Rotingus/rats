@@ -1,10 +1,9 @@
 <?php
-/* $Id: formbuilder.lib.php,v 1.1 2003/05/27 18:57:30 robbat2 Exp $ */
+/* $Id: formbuilder.lib.php,v 1.2 2003/05/29 04:02:25 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/formbuilder.lib.php,v $ */
 
-function idstr_query($idfield,$idstr) {
-    list($table,$datafield) = explode('.',$idstr);
-    $query = 'SELECT '.$table.'.'.$idfield.', '.$table.'.'.$datafield.' FROM '.$table;
+function idstr_query($idfield,$idstr,$idfrom) {
+    $query = 'SELECT '.$idfield.', '.$idstr.' FROM '.$idfrom;
     return $query;
 }
 
@@ -17,7 +16,7 @@ function formelement_select($tableName,$tableData,$element,$data) {
     $options = array();
     switch($item['datatype']) {
         case 'ENUM': $options = $item['enumvalues'];  break;
-        case 'ID': $q = idstr_query($element,$item['keyto']); $options = MySQL_associativearray($q); break;
+        case 'ID': $q = idstr_query($element,$item['keyto'],$item['keytable']); $options = MySQL_associativearray($q); break;
         default: die('Unknown select type ('.$item['datatype'].')'); break;
     }
     $v = '';
@@ -31,9 +30,21 @@ function formelement_dateselect($tableName,$tableData,$element,$data) {
 }
 
 function formelement_text($tableName,$tableData,$element,$data) { 
+    $item = $tableData[$tableName][$element];
+    $v = '';
+    if($data !== NULL) {
+        $v = $data[$element];
+    }
+    echo textinput(fieldName($tableName,$element),$v,40);
 }
 
 function formelement_textarea($tableName,$tableData,$element,$data) { 
+    $item = $tableData[$tableName][$element];
+    $v = '';
+    if($data !== NULL) {
+        $v = $data[$element];
+    }
+    echo textareainput(fieldName($tableName,$element),$v,80,50);
 }
 
 function formelement_null($tableName,$tableData,$element,$data) { 
@@ -41,7 +52,7 @@ function formelement_null($tableName,$tableData,$element,$data) {
 
 function formelement ($tableName,$tableData,$element,$data = NULL) {
     $item = $tableData[$tableName][$element];
-    echo '<tr><td><label for="'.fieldName($tableName,$element).'\']">'.$item['longname'].'</label></td>';
+    echo '<tr><td><label for="'.fieldName($tableName,$element).'">'.$item['longname'].'</label></td>';
     echo '<td>';
     switch($item['inputtype']) {
         case 'select': formelement_select($tableName,$tableData,$element,$data); break;
@@ -50,12 +61,10 @@ function formelement ($tableName,$tableData,$element,$data = NULL) {
         case 'text': formelement_text($tableName,$tableData,$element,$data); break;
         case '': formelement_null($tableName,$tableData,$element,$data); break;
     }
-    echo '</td>';
+    echo '</td></tr>';
 }
 
 ?>
-<form action="addedit.php" method="POST" class="dataform">
-<table class="dataform">
 <?php
 foreach($tableData[$tableName]['_view_cols'] as $itemkey) {
     formelement($tableName,$tableData,$itemkey);

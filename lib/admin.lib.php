@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.4 2003/03/14 12:49:50 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.5 2003/04/22 18:34:54 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionUsername, $sessionPassword, $sessionDebug;
@@ -97,9 +97,14 @@ function admin_validate() {
     return true;
 }
 
-//returns a hashset of the permissions
-function admin_getpermissions($table) {
-//TODO
+//returns a list of groups
+function admin_getgroups($userid) {
+    
+}
+
+//returns a map of the permissions
+function admin_getpermissions($userid,$table) {
+    
 }
 
 function admin_haspermissions($table,$perm) {

@@ -1,5 +1,5 @@
 <?php
-/* $Id: processtable.inc.php,v 1.5 2003/06/05 22:33:29 robbat2 Exp $ */
+/* $Id: processtable.inc.php,v 1.6 2003/06/12 18:26:37 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/processtable.inc.php,v $ */
 
 // code goes here
@@ -69,8 +69,8 @@ $_t['_insert_sql'] = $insertquery;
 $tableData[$_tn] = $_t;
 
 // DEBUG
-print_r($tableData);
-echo '<br />';
+//print_r($tableData);
+//echo '<br />';
 
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */

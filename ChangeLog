@@ -1,9 +1,12 @@
-$Id: ChangeLog,v 1.6 2002/11/19 19:37:41 robbat2 Exp $
+$Id: ChangeLog,v 1.7 2002/11/19 19:44:04 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
 2002-11-19 11-25 Robin Johnson  <robbat2@orbis-terrarum.net>
     * db/schema.sql:
         - Added in USE/CREATE database stuff
+    * lib/Obj/*.php:
+        - Updated to add brief comments
+        - Fixed class names in each file
 
 2002-11-14 00-41 Robin Johnson  <robbat2@orbis-terrarum.net>
     * lib/DBObjects.ini:

@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: indent.sh,v 1.3 2003/03/13 10:44:47 robbat2 Exp $
+# $Id: indent.sh,v 1.4 2003/03/13 10:48:15 robbat2 Exp $
 # $Source: /code/convert/cvsroot/infrastructure/rats/Attic/indent.sh,v $
 ###########
 # Experimental PHP code formatter
@@ -10,9 +10,11 @@
 # your HTML + CSS.
 #
 
+#start strings
 ORG_BEGIN="<?php"
 TMP_BEGIN="___PHPBEGIN___"
 
+#end strings
 ORG_END="?>"
 TMP_END="___PHPEND___"
 

@@ -1,4 +1,7 @@
--- $Id: schema.sql,v 1.3 2002/11/13 21:19:54 robbat2 Exp $
+-- $Id: schema.sql,v 1.4 2002/11/19 19:37:41 robbat2 Exp $
+
+CREATE DATABASE IF NOT EXISTS rats;
+USE rats;
 
 -- 
 -- Table structure for table `Actions`

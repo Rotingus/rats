@@ -1,5 +1,13 @@
-$Id: ChangeLog,v 1.52 2003/05/07 17:59:12 robbat2 Exp $
+$Id: ChangeLog,v 1.53 2003/05/07 19:57:46 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-05-07 12:57  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* addedit.php, header.inc.php, index.php, insert.php, kiosk.php,
+	validate.php, gui/array.lib.php, gui/html.lib.php,
+	gui/login.inc.php, lib/MySQL.php, lib/admin.lib.php,
+	lib/Obj/Actions.php, lib/Obj/CheckOuts.php, lib/Obj/Objects.php,
+	lib/Obj/Transactions.php, lib/Obj/Users.php: Updated ver
 
 2003-05-07 10:58  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,8 +1,9 @@
 #!/bin/sh
-# $Id: indent.sh,v 1.2 2003/03/13 10:44:02 robbat2 Exp $
+# $Id: indent.sh,v 1.3 2003/03/13 10:44:47 robbat2 Exp $
 # $Source: /code/convert/cvsroot/infrastructure/rats/Attic/indent.sh,v $
 ###########
 # Experimental PHP code formatter
+# -------------------------------
 #
 # Since there is a bug in the indent command mangling PHP tags, this replaces
 # them with something first then handles it. It will probably totally mess up

@@ -1,5 +1,17 @@
-$Id: ChangeLog,v 1.29 2003/03/13 09:24:22 robbat2 Exp $
+$Id: ChangeLog,v 1.30 2003/03/13 09:26:51 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-13 01:26  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* .htaccess: debugging help
+
+2003-03-13 01:25  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* css.php: Style sheet nicelties
+
+2003-03-13 01:24  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php, gui/header.inc.php: Code cleanup
 
 2003-03-05 09:30  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,8 +1,8 @@
--- $Id: data.sql,v 1.7 2003/06/12 18:20:30 robbat2 Exp $
--- MySQL dump 9.07
+-- $Id: data.sql,v 1.8 2003/06/12 18:22:46 robbat2 Exp $
+-- MySQL dump 9.08
 --
 -- Host: localhost    Database: rats
--- Server version	4.0.12-log
+-- Server version	4.0.13-log
 
 --
 -- Current Database: rats
@@ -216,6 +216,13 @@ INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000005,1,10);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000002,2,1);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000003,3,1);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000006,4,1);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000012,4,2);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000010,4,3);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000008,4,4);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000009,4,5);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000011,4,8);
+INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000007,4,9);
 
 --
 -- Dumping data for table 'Users'
@@ -224,6 +231,7 @@ INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES
 INSERT IGNORE INTO Users (UserID, UserBarcode, UserLogin, UserPassword) VALUES (0000000001,29345003857006,'rjohnsob@sfu.ca','chinook');
 INSERT IGNORE INTO Users (UserID, UserBarcode, UserLogin, UserPassword) VALUES (0000000002,29345003868516,'sluggett@sfu.ca','in_charge!');
 INSERT IGNORE INTO Users (UserID, UserBarcode, UserLogin, UserPassword) VALUES (0000000003,29345003876956,'gordp@sfu.ca','cruiser');
+INSERT IGNORE INTO Users (UserID, UserBarcode, UserLogin, UserPassword) VALUES (0000000004,29345003883531,'cudmore@sfu.ca','linnea');
 
 --
 -- Dumping data for table 'Vendors'

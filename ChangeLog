@@ -1,4 +1,4 @@
-$Id: ChangeLog,v 1.16 2003/03/05 17:45:21 robbat2 Exp $
+$Id: ChangeLog,v 1.17 2003/03/05 17:47:47 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
 2003-03-05 09:30  Robin Johnson  <robbat2@orbis-terrarum.net>
@@ -6,6 +6,10 @@ $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 	* header.inc.php, insert.php, leftframe.php, main.php,
 	rightframe.php: New code
 
+
+# vim: set ft=changelog syntax=changelog:
+# vim: set expandtab ts=4 sw=4 sts=4:
+# vim: set fdn=1 fdm=expr:
 2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* include.php, index.php, leftframe.php, main.php: Lots of work!

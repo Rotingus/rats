@@ -1,19 +1,19 @@
 #!/bin/sh
-#$Id: dumpsql.sh,v 1.1 2002/12/12 07:10:43 robbat2 Exp $
+#$Id: dumpsql.sh,v 1.2 2003/04/30 19:51:00 robbat2 Exp $
 MYSQL=/usr/local/mysql
 MYSQL_BIN=${MYSQL}/bin
 MYSQLDUMP=${MYSQL_BIN}/mysqldump
-OPTS="--all --add-drop-table --extended-insert --compress --databases -p"
+PASSWORD="-p${1}"
+OPTS="--all --add-drop-table --extended-insert --compress --databases ${PASSWORD}"
 DBS="rats"
 USERNAME="rats"
 SCHEMAFILENAME="schema.sql"
 DATAFILENAME="data.sql"
 DATAFILEGEN="--no-create-info --no-create-db"
 SCHEMAFILEGEN="--no-data"
+BADCOMMENTREMOVE="egrep -v '^---[-]*$'"
 
 echo "-- \$""Id""\$" >${SCHEMAFILENAME}
 echo "-- \$""Id""\$" >${DATAFILENAME}
-${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${SCHEMAFILEGEN} >>${SCHEMAFILENAME}
-${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${DATAFILEGEN} >>${DATAFILENAME}
-
-#r/local/mysql/bin/mysqldump --all --add-drop-table --extended-insert --compress --databases -urats -pratty rats
+${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${SCHEMAFILEGEN} | ${BADCOMMENTREMOVE} >>${SCHEMAFILENAME}
+${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${DATAFILEGEN} | ${BADCOMMENTREMOVE} >>${DATAFILENAME}

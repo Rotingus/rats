@@ -1,9 +1,9 @@
--- $Id: schema.sql,v 1.5 2002/12/12 07:10:43 robbat2 Exp $
+-- $Id: schema.sql,v 1.6 2003/04/30 19:51:00 robbat2 Exp $
 -- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
 ---------------------------------------------------------
--- Server version	4.0.4-beta
+-- Server version	4.0.12-log
 
 --
 -- Current Database: rats
@@ -20,11 +20,15 @@ USE rats;
 DROP TABLE IF EXISTS Actions;
 CREATE TABLE Actions (
   ActionID int(10) unsigned zerofill NOT NULL auto_increment,
-  ActionCode varchar(16) NOT NULL default '',
+  ActionCode varchar(16) default NULL,
   ActionBarcode bigint(14) default NULL,
+  ActionGenericTable enum('Actions','Bookings','CheckOuts','GroupActionMapping','Groups','Vendors','Notes','Objects','ObjectTypes','Purchases','Users','UserGroupMapping','Transactions') NOT NULL default 'Objects',
+  ActionType enum('add','edit','delete','view') NOT NULL default 'view',
   PRIMARY KEY  (ActionID),
-  UNIQUE KEY ActionCode (ActionCode)
-) TYPE=MyISAM COMMENT='Action Type Data';
+  UNIQUE KEY TableAction (ActionGenericTable,ActionType),
+  UNIQUE KEY ActionBarcode (ActionBarcode),
+  KEY Table (ActionGenericTable)
+) TYPE=InnoDB COMMENT='Action Type Data';
 
 --
 -- Table structure for table 'Bookings'
@@ -38,7 +42,7 @@ CREATE TABLE Bookings (
   BookingsStartDate datetime NOT NULL default '0000-00-00 00:00:00',
   BookingsEndDate datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (BookingsID)
-) TYPE=MyISAM;
+) TYPE=InnoDB;
 
 --
 -- Table structure for table 'CheckOuts'
@@ -51,9 +55,9 @@ CREATE TABLE CheckOuts (
   ObjectID int(10) unsigned zerofill NOT NULL default '0000000000',
   CheckOutDueDate datetime NOT NULL default '0000-00-00 00:00:00',
   PRIMARY KEY  (CheckOutID),
-  KEY UserID (UserID),
-  KEY ObjectID (ObjectID)
-) TYPE=MyISAM;
+  UNIQUE KEY ObjectID (ObjectID),
+  KEY UserID (UserID)
+) TYPE=InnoDB;
 
 --
 -- Table structure for table 'GroupActionMapping'
@@ -65,8 +69,8 @@ CREATE TABLE GroupActionMapping (
   ActionID int(10) unsigned zerofill NOT NULL default '0000000000',
   GroupID int(10) unsigned zerofill NOT NULL default '0000000000',
   PRIMARY KEY  (GroupActionMappingID),
-  UNIQUE KEY GroupActionMapping (ActionID,GroupID)
-) TYPE=MyISAM;
+  UNIQUE KEY GroupActionMapping (GroupID,ActionID)
+) TYPE=InnoDB;
 
 --
 -- Table structure for table 'Groups'
@@ -78,20 +82,7 @@ CREATE TABLE Groups (
   GroupName varchar(255) NOT NULL default '',
   PRIMARY KEY  (GroupID),
   UNIQUE KEY GroupName (GroupName)
-) TYPE=MyISAM COMMENT='Group Data';
-
---
--- Table structure for table 'Manufacters'
---
-
-DROP TABLE IF EXISTS Manufacters;
-CREATE TABLE Manufacters (
-  ManufacterID int(10) unsigned zerofill NOT NULL auto_increment,
-  ManufacterName varchar(255) NOT NULL default '',
-  ManufacterDetails text NOT NULL,
-  PRIMARY KEY  (ManufacterID),
-  KEY ManufactersName (ManufacterName)
-) TYPE=MyISAM COMMENT='Manufacters Data';
+) TYPE=InnoDB COMMENT='Group Data';
 
 --
 -- Table structure for table 'Notes'
@@ -102,13 +93,14 @@ CREATE TABLE Notes (
   NoteID int(10) unsigned zerofill NOT NULL auto_increment,
   NoteMimeType varchar(255) NOT NULL default 'text/plain',
   NoteData mediumtext NOT NULL,
-  GenericTable enum('Actions','Bookings','Groups','Manufacters','Objects','ObjectTypes','Purchases','Transactions','Users') NOT NULL default 'Objects',
-  GenericID int(10) unsigned zerofill NOT NULL default '0000000000',
+  NoteGenericTable enum('Actions','Bookings','CheckOuts','GroupActionMapping','Groups','Vendors','Notes','Objects','ObjectTypes','Purchases','Users','UserGroupMapping') NOT NULL default 'Objects',
+  NoteGenericID int(10) unsigned zerofill NOT NULL default '0000000000',
+  NoteUserID int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (NoteID),
   KEY NoteMimeType (NoteMimeType),
-  KEY NoteData (NoteData(128)),
-  KEY NoteParent (GenericTable,GenericID)
-) TYPE=MyISAM;
+  KEY NoteParent (NoteGenericTable,NoteGenericID),
+  KEY NoteUserID (NoteUserID)
+) TYPE=InnoDB;
 
 --
 -- Table structure for table 'ObjectTypes'
@@ -117,7 +109,7 @@ CREATE TABLE Notes (
 DROP TABLE IF EXISTS ObjectTypes;
 CREATE TABLE ObjectTypes (
   ObjectTypeID int(10) unsigned zerofill NOT NULL auto_increment,
-  ManufacterID int(10) NOT NULL default '0',
+  VendorID int(10) NOT NULL default '0',
   ObjectTypeDescription text NOT NULL,
   ObjectTypeModel varchar(255) NOT NULL default '',
   ObjectTypeGenericName varchar(255) NOT NULL default '',
@@ -128,9 +120,9 @@ CREATE TABLE ObjectTypes (
   KEY ObjectTypeModel (ObjectTypeModel),
   KEY ObjectTypeGenericName (ObjectTypeGenericName),
   KEY ObjectTypeClass (ObjectTypeClass),
-  KEY ManufacterID (ManufacterID),
+  KEY ManufacterID (VendorID),
   KEY ObjectTypePriority (ObjectTypePriority)
-) TYPE=MyISAM COMMENT='Object Type Data';
+) TYPE=InnoDB COMMENT='Object Type Data';
 
 --
 -- Table structure for table 'Objects'
@@ -151,7 +143,7 @@ CREATE TABLE Objects (
   KEY ObjectTypeID (ObjectTypeID),
   KEY ObjectName (ObjectName),
   KEY PurchaseID (PurchaseID)
-) TYPE=MyISAM COMMENT='Object Information';
+) TYPE=InnoDB COMMENT='Object Information';
 
 --
 -- Table structure for table 'Purchases'
@@ -161,8 +153,10 @@ DROP TABLE IF EXISTS Purchases;
 CREATE TABLE Purchases (
   PurchaseID int(10) unsigned zerofill NOT NULL auto_increment,
   PurchaseInfo text NOT NULL,
-  PRIMARY KEY  (PurchaseID)
-) TYPE=MyISAM COMMENT='Purchases Data';
+  VendorID int(11) default NULL,
+  PRIMARY KEY  (PurchaseID),
+  KEY VendorID (VendorID)
+) TYPE=InnoDB COMMENT='Purchases Data';
 
 --
 -- Table structure for table 'Transactions'
@@ -172,14 +166,14 @@ DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (
   TransactionID int(10) unsigned zerofill NOT NULL auto_increment,
   UserID int(10) unsigned zerofill NOT NULL default '0000000000',
-  GenericTable enum('Actions','Bookings','GroupActionMapping','Groups','Manufacters','Notes','Objects','ObjectTypes','Purchases','Users','UserGroupMapping') NOT NULL default 'Actions',
+  GenericTable enum('Actions','Bookings','CheckOuts','GroupActionMapping','Groups','Vendors','Notes','Objects','ObjectTypes','Purchases','Users','UserGroupMapping') NOT NULL default 'Objects',
   GenericID int(10) unsigned zerofill NOT NULL default '0000000000',
   TransactionDate timestamp(14) NOT NULL,
   ActionID int(10) unsigned zerofill NOT NULL default '0000000000',
   PRIMARY KEY  (TransactionID),
   KEY UserID (UserID),
   KEY ActionID (ActionID)
-) TYPE=MyISAM COMMENT='Transaction Data';
+) TYPE=InnoDB COMMENT='Transaction Data';
 
 --
 -- Table structure for table 'UserGroupMapping'
@@ -192,7 +186,7 @@ CREATE TABLE UserGroupMapping (
   GroupID int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (UserGroupMappingID),
   UNIQUE KEY UserGroupMapping (UserID,GroupID)
-) TYPE=MyISAM;
+) TYPE=InnoDB;
 
 --
 -- Table structure for table 'Users'
@@ -205,7 +199,20 @@ CREATE TABLE Users (
   UserLogin varchar(255) NOT NULL default '',
   UserPassword varchar(255) NOT NULL default '',
   PRIMARY KEY  (UserID),
-  UNIQUE KEY UserBarcode (UserBarcode),
-  UNIQUE KEY UserLogin (UserLogin)
-) TYPE=MyISAM COMMENT='User Data';
+  UNIQUE KEY UserLogin (UserLogin),
+  UNIQUE KEY UserBarcode (UserBarcode)
+) TYPE=InnoDB COMMENT='User Data';
+
+--
+-- Table structure for table 'Vendors'
+--
+
+DROP TABLE IF EXISTS Vendors;
+CREATE TABLE Vendors (
+  VendorID int(10) unsigned zerofill NOT NULL auto_increment,
+  VendorName varchar(255) NOT NULL default '',
+  VendorDetails text NOT NULL,
+  PRIMARY KEY  (VendorID),
+  KEY VendorName (VendorName)
+) TYPE=InnoDB COMMENT='Manufacters Data';
 

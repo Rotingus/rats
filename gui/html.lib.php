@@ -102,6 +102,45 @@ html_tr_close()
 }
 
 function
+html_th_open($class = '',
+    $extra = '')
+{
+  return htmlElm_open('th', array('class'  => $class, '_'  => $extra));
+}
+
+  function
+html_th_close()
+{
+  return htmlElm_close('th');
+}
+
+function
+html_thead_open($class = '',
+    $extra = '')
+{
+  return htmlElm_open('thead', array('class'  => $class, '_'  => $extra));
+}
+
+  function
+html_thead_close()
+{
+  return htmlElm_close('thead');
+}
+
+function
+html_tfoot_open($class = '',
+    $extra = '')
+{
+  return htmlElm_open('tfoot', array('class'  => $class, '_'  => $extra));
+}
+
+  function
+html_tfoot_close()
+{
+  return htmlElm_close('tfoot');
+}
+
+function
 html_td_open($class = '',
     $extra = '')
 {

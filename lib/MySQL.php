@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.4 2003/03/13 10:49:08 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.5 2003/03/13 11:28:37 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -94,7 +94,7 @@ class MySQL {
     }
 
     function query($query) {
-        echo 'Running SQL:'.$query."<br />\n";
+        //echo 'Running SQL:'.$query."<br />\n";
         $this->mysql_result = mysql_query($query);
     }
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: Purchases.php,v 1.4 2003/06/23 17:54:25 robbat2 Exp $ */
+/* $Id: Purchases.php,v 1.5 2003/06/25 19:21:09 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Purchases.php,v $ */
 
 //table name goes here
@@ -24,8 +24,14 @@ $_t['PurchaseDetails']['datatype'] = 'TEXT';
 $_t['PurchaseDetails']['inputtype'] = 'textarea';
 $_t['PurchaseDetails']['ishidden'] = FALSE;
 
-$_t['_view_sql'] = 'SELECT __KEY__ VendorName, PurchaseTitle, PurchaseDetails FROM Purchases JOIN Vendors USING (VendorID)';
-$_t['_view_cols'] = array('VendorID','PurchaseTitle','PurchaseDetails');
+$_t['PurchaseDate']['longname'] = 'Date';
+$_t['PurchaseDate']['datatype'] = 'DATETIME';
+$_t['PurchaseDate']['inputtype'] = 'dateselect';
+$_t['PurchaseDate']['islocked'] = TRUE;
+$_t['PurchaseDate']['ishidden'] = FALSE;
+
+$_t['_view_sql'] = 'SELECT __KEY__ VendorName, PurchaseTitle, PurchaseDetails, PurchaseDate FROM Purchases JOIN Vendors USING (VendorID)';
+$_t['_view_cols'] = array('VendorID','PurchaseTitle','PurchaseDetails','PurchaseDate');
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

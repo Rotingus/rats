@@ -1,5 +1,5 @@
 <?php
-/* $Id: Objects.php,v 1.4 2003/06/22 20:46:39 robbat2 Exp $ */
+/* $Id: Objects.php,v 1.5 2003/06/25 19:21:09 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Objects.php,v $ */
 
 //table name goes here
@@ -32,6 +32,11 @@ $_t['ObjectTypeID']['ishidden'] = FALSE;
 $_t['ObjectTypeID']['keyto'] = 'ObjectTypeGenericName';
 $_t['ObjectTypeID']['keytable'] = 'ObjectTypes';
 
+$_t['ObjectExtraID']['longname'] = 'Extra ID';
+$_t['ObjectExtraID']['datatype'] = 'VARCHAR';
+$_t['ObjectExtraID']['inputtype'] = 'text';
+$_t['ObjectExtraID']['ishidden'] = FALSE;
+
 $_t['ObjectSerialNumber']['longname'] = 'SerialNumber';
 $_t['ObjectSerialNumber']['datatype'] = 'VARCHAR';
 $_t['ObjectSerialNumber']['inputtype'] = 'text';
@@ -55,9 +60,18 @@ $_t['ObjectInGroup']['enumvalues'] = array('NA', 'IN', 'OUT');
 $_t['ObjectInGroup']['inputtype'] = 'select';
 $_t['ObjectInGroup']['ishidden'] = FALSE;
 
-$_t['_view_sql'] = 'SELECT __KEY__ ObjectBarcode, ObjectName, ObjectTypeID, ObjectSerialNumber, PurchaseID, ObjectGroupID, ObjectInGroup 
-FROM Objects';
-$_t['_view_cols'] = array('ObjectBarcode','ObjectName','ObjectTypeID','ObjectSerialNumber','PurchaseID','ObjectGroupID','ObjectInGroup');
+$_t['ObjectDetails']['longname'] = 'Details';
+$_t['ObjectDetails']['datatype'] = 'TEXT';
+$_t['ObjectDetails']['inputtype'] = 'textarea';
+$_t['ObjectDetails']['ishidden'] = FALSE;
+$_t['ObjectDetails']['islocked'] = TRUE;
+
+$_t['_view_sql'] = 'SELECT __KEY__ ObjectBarcode, ObjectName, ObjectTypeGenericName, ObjectSerialNumber, ObjectExtraID, 
+CONCAT(PurchaseTitle,\' (\',__TABLE__.PurchaseID,\')\'),
+ObjectGroupID, ObjectInGroup, ObjectDetails 
+FROM ObjectTypes JOIN Objects USING (ObjectTypeID) JOIN Purchases USING (PurchaseID)';
+
+$_t['_view_cols'] = array('ObjectBarcode','ObjectName','ObjectTypeID','ObjectSerialNumber','ObjectExtraID','PurchaseID','ObjectGroupID','ObjectInGroup','ObjectDetails');
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.10 2003/05/06 20:59:53 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.11 2003/05/07 11:23:09 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -141,7 +141,7 @@ function admin_getpermissions($userid) {
 function admin_haspermissions($userid,$table,$action) {
     global $_Actions;
     //hack for it to work
-    return true;
+    //return true;
     //TODO
     $ActionID = $_Actions->getID_table_action($table,$action);
     $perms = admin_getpermissions($userid);

@@ -1,9 +1,27 @@
-$Id: ChangeLog,v 1.1 2003/03/05 17:47:47 robbat2 Exp $
+$Id: ChangeLog,v 1.2 2003/03/05 17:55:58 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/db/Attic/ChangeLog,v $
 
 2002-12-11 23:10  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* data.sql, dumpsql.sh, schema.sql: See changelog
+
+2002-11-19 11:37  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* schema.sql: CREATE/USE database
+
+2002-11-13 13:19  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* DatabaseLayout.vdx, schema.sql: Added Object Group stuff Put db
+	layout diagram into place
+
+2002-11-12 12:34  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* schema.sql: Updated schema to use proper column sizes and put in
+	classes for objects
+
+2002-11-12 02:03  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* schema.sql: Initial Checkin of DB schema
 
 2002-11-19 11:37  Robin Johnson  <robbat2@orbis-terrarum.net>
 

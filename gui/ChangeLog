@@ -1,14 +1,23 @@
-$Id: ChangeLog,v 1.2 2003/03/05 17:51:17 robbat2 Exp $
+$Id: ChangeLog,v 1.3 2003/03/05 17:55:58 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/gui/Attic/ChangeLog,v $
 
 2003-03-05 09:30  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* style.inc.php, title.inc.php: New code
 
+2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
 
-# vim: set ft=changelog syntax=changelog:
-# vim: set expandtab ts=4 sw=4 sts=4:
-# vim: set fdn=1 fdm=expr:
+	* array.lib.php, header.inc.php: Lots of work!
+
+2003-01-23 12:39  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* html.inc.php, html.lib.php: move html helper funcs
+
+2003-01-23 12:32  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* footer.inc.php, header.inc.php, html.inc.php, style.inc.php,
+	title.inc.php: Lots of new files
+
 2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* array.lib.php, header.inc.php: Lots of work!

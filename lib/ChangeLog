@@ -1,9 +1,30 @@
-$Id: ChangeLog,v 1.1 2003/03/05 17:47:47 robbat2 Exp $
+$Id: ChangeLog,v 1.2 2003/03/05 17:55:58 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/lib/Attic/ChangeLog,v $
 
 2003-01-23 13:02  Robin Johnson  <robbat2@orbis-terrarum.net>
 
 	* mysql.lib.php: Lots of work!
+
+2002-12-12 14:55  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* MySQL.php: See ChangeLog
+
+2002-12-12 05:39  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* Barcode.php, MySQL.php: See ChangeLog
+
+2002-12-12 03:01  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* MySQL.php: See changelog
+
+2002-11-14 00:45  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* DBObjects.ini: 2002-11-14 00-41 Robin Johnson 
+	<robbat2@orbis-terrarum.net>	 * lib/DBObjects.ini:	      -
+	Added DBObjects handler INI	* lib/DObj/*:	      - Added all
+	initial auto-geneated classes for data handling     *
+	lib/Obj/*.php, lib/Obj/Template:	 - Added all base object
+	handling classes from custom template
 
 2002-12-12 14:55  Robin Johnson  <robbat2@orbis-terrarum.net>
 

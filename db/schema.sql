@@ -1,12 +1,12 @@
--- $Id: schema.sql,v 1.2 2002/11/12 20:34:39 robbat2 Exp $
+-- $Id: schema.sql,v 1.3 2002/11/13 21:19:54 robbat2 Exp $
 
 -- 
 -- Table structure for table `Actions`
 -- 
 
+DROP TABLE IF EXISTS Actions;
 CREATE TABLE Actions (
   ActionID int(10) unsigned zerofill NOT NULL auto_increment,
-  ActionName varchar(255) NOT NULL default '',
   ActionCode varchar(16) NOT NULL default '',
   PRIMARY KEY  (ActionID),
   UNIQUE KEY ActionCode (ActionCode)
@@ -17,6 +17,7 @@ CREATE TABLE Actions (
 -- Table structure for table `Bookings`
 -- 
 
+DROP TABLE IF EXISTS Bookings;
 CREATE TABLE Bookings (
   BookingsID int(10) unsigned zerofill NOT NULL auto_increment,
   UserID int(10) NOT NULL default '0',
@@ -31,6 +32,7 @@ CREATE TABLE Bookings (
 -- Table structure for table `CheckOuts`
 -- 
 
+DROP TABLE IF EXISTS CheckOuts;
 CREATE TABLE CheckOuts (
   CheckOutID int(10) unsigned zerofill NOT NULL auto_increment,
   UserID int(10) unsigned zerofill NOT NULL default '0000000000',
@@ -46,6 +48,7 @@ CREATE TABLE CheckOuts (
 -- Table structure for table `GroupActionMapping`
 -- 
 
+DROP TABLE IF EXISTS GroupActionMapping;
 CREATE TABLE GroupActionMapping (
   GroupActionMappingID int(10) unsigned zerofill NOT NULL auto_increment,
   ActionID int(10) unsigned zerofill NOT NULL default '0000000000',
@@ -59,18 +62,20 @@ CREATE TABLE GroupActionMapping (
 -- Table structure for table `Groups`
 -- 
 
+DROP TABLE IF EXISTS Groups;
 CREATE TABLE Groups (
   GroupID int(10) unsigned zerofill NOT NULL auto_increment,
   GroupName varchar(255) NOT NULL default '',
   PRIMARY KEY  (GroupID),
-  UNIQUE KEY UserGroupName (GroupName)
-) TYPE=MyISAM COMMENT='User GROUP Data';
+  UNIQUE KEY GroupName (GroupName)
+) TYPE=MyISAM COMMENT='Group Data';
 -- --------------------------------------------------------
 
 -- 
 -- Table structure for table `Manufacters`
 -- 
 
+DROP TABLE IF EXISTS Manufacters;
 CREATE TABLE Manufacters (
   ManufacterID int(10) unsigned zerofill NOT NULL auto_increment,
   ManufacterName varchar(255) NOT NULL default '',
@@ -84,6 +89,7 @@ CREATE TABLE Manufacters (
 -- Table structure for table `Notes`
 -- 
 
+DROP TABLE IF EXISTS Notes;
 CREATE TABLE Notes (
   NoteID int(10) unsigned zerofill NOT NULL auto_increment,
   NoteMimeType varchar(255) NOT NULL default 'text/plain',
@@ -101,6 +107,7 @@ CREATE TABLE Notes (
 -- Table structure for table `ObjectTypes`
 -- 
 
+DROP TABLE IF EXISTS ObjectTypes;
 CREATE TABLE ObjectTypes (
   ObjectTypeID int(10) unsigned zerofill NOT NULL auto_increment,
   ManufacterID int(10) NOT NULL default '0',
@@ -113,6 +120,7 @@ CREATE TABLE ObjectTypes (
   PRIMARY KEY  (ObjectTypeID),
   KEY ObjectTypeModel (ObjectTypeModel),
   KEY ObjectTypeGenericName (ObjectTypeGenericName),
+  KEY ObjectTypeClass (ObjectTypeClass),
   KEY ManufacterID (ManufacterID),
   KEY ObjectTypePriority (ObjectTypePriority)
 ) TYPE=MyISAM COMMENT='Object Type Data';
@@ -122,18 +130,21 @@ CREATE TABLE ObjectTypes (
 -- Table structure for table `Objects`
 -- 
 
+DROP TABLE IF EXISTS Objects;
 CREATE TABLE Objects (
   ObjectID int(10) unsigned zerofill NOT NULL auto_increment,
   ObjectBarcode bigint(14) NOT NULL default '30000000000000',
   ObjectName varchar(255) NOT NULL default '',
   ObjectSerialNumber varchar(255) default NULL,
   ObjectTypeID int(10) NOT NULL default '0',
-  PurchaseID  int(10) unsigned zerofill NOT NULL default '0000000000',
+  PurchaseID int(10) unsigned zerofill NOT NULL default '0000000000',
+  ObjectGroupID int(10) unsigned zerofill default NULL,
+  ObjectInGroup enum('NA','IN','OUT') NOT NULL default 'NA',
   PRIMARY KEY  (ObjectID),
   UNIQUE KEY ObjectBarcode (ObjectBarcode),
   KEY ObjectTypeID (ObjectTypeID),
   KEY ObjectName (ObjectName),
-  KEY PurchaseID  (PurchaseID )
+  KEY PurchaseID (PurchaseID)
 ) TYPE=MyISAM COMMENT='Object Information';
 -- --------------------------------------------------------
 
@@ -141,6 +152,7 @@ CREATE TABLE Objects (
 -- Table structure for table `Purchases`
 -- 
 
+DROP TABLE IF EXISTS Purchases;
 CREATE TABLE Purchases (
   PurchaseID int(10) unsigned zerofill NOT NULL auto_increment,
   PurchaseInfo text NOT NULL,
@@ -152,6 +164,7 @@ CREATE TABLE Purchases (
 -- Table structure for table `Transactions`
 -- 
 
+DROP TABLE IF EXISTS Transactions;
 CREATE TABLE Transactions (
   TransactionID int(10) unsigned zerofill NOT NULL auto_increment,
   UserID int(10) unsigned zerofill NOT NULL default '0000000000',
@@ -169,6 +182,7 @@ CREATE TABLE Transactions (
 -- Table structure for table `UserGroupMapping`
 -- 
 
+DROP TABLE IF EXISTS UserGroupMapping;
 CREATE TABLE UserGroupMapping (
   UserGroupMappingID int(10) unsigned zerofill NOT NULL auto_increment,
   UserID int(10) unsigned NOT NULL default '0',
@@ -182,14 +196,15 @@ CREATE TABLE UserGroupMapping (
 -- Table structure for table `Users`
 -- 
 
+DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
   UserID int(10) unsigned zerofill NOT NULL auto_increment,
   UserBarcode bigint(14) NOT NULL default '20000000000000',
   UserLogin varchar(255) NOT NULL default '',
   UserPassword varchar(255) NOT NULL default '',
   PRIMARY KEY  (UserID),
-  UNIQUE KEY UserLogin (UserLogin),
-  UNIQUE KEY UserBarcode (UserBarcode)
+  UNIQUE KEY UserBarcode (UserBarcode),
+  UNIQUE KEY UserLogin (UserLogin)
 ) TYPE=MyISAM COMMENT='User Data';
 
     

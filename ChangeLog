@@ -1,5 +1,11 @@
-$Id: ChangeLog,v 1.3 2002/11/12 20:34:39 robbat2 Exp $
+$Id: ChangeLog,v 1.4 2002/11/13 21:19:54 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2002-11-13 13-15 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * db/schema.sql: 
+        - Added missing Object Group data
+    * db/DatabaseLayout.vsx: 
+        - MS Visio2002 XML Database Layout diagram checked in
 
 2002-11-12 12-30 Robin Johnson  <robbat2@orbis-terrarum.net>
     * db/schema.sql: 

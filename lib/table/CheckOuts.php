@@ -1,5 +1,5 @@
 <?php
-/* $Id: CheckOuts.php,v 1.6 2004/06/08 13:35:42 robbat2 Exp $ */
+/* $Id: CheckOuts.php,v 1.7 2004/06/08 15:11:19 mdeepwel Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/CheckOuts.php,v $ */
 
 //table name goes here
@@ -35,13 +35,19 @@ $_t['ObjectBarcode']['inputtype'] = 'text';
 $_t['ObjectBarcode']['islocked'] = TRUE;
 $_t['ObjectBarcode']['ishidden'] = FALSE;
 
+$_t['ObjectSerialNumber']['longname'] = 'Serial Number';
+$_t['ObjectSerialNumber']['datatype'] = 'VARCHAR';
+$_t['ObjectSerialNumber']['inputtype'] = 'text';
+$_t['ObjectSerialNumber']['islocked'] = TRUE;
+$_t['ObjectSerialNumber']['ishidden'] = FALSE;
+
 $_t['CheckOutDueDate']['longname'] = 'Due Date';
 $_t['CheckOutDueDate']['datatype'] = 'DATETIME';
 $_t['CheckOutDueDate']['inputtype'] = 'dateselect';
 $_t['CheckOutDueDate']['islocked'] = TRUE;
 $_t['CheckOutDueDate']['ishidden'] = FALSE;
 
-$_t['_view_sql'] = 'SELECT CheckOutID, CheckOutDate, UserLogin, ObjectName, ObjectBarcode,CheckOutDueDate
+$_t['_view_sql'] = 'SELECT CheckOutID, CheckOutDate, UserLogin, ObjectName, ObjectBarcode, ObjectSerialNumber, CheckOutDueDate
 FROM Users JOIN CheckOuts USING (UserID) JOIN Objects USING (ObjectID) JOIN
 ObjectTypes USING (ObjectTypeID)';
 $_t['_view_cols'] = array('CheckOutDate','UserID','ObjectID','CheckOutDueDate');

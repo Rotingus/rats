@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.13 2003/06/05 22:33:29 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.14 2003/06/22 23:09:36 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -242,6 +242,10 @@ function MySQL_quote($str) {
     return '\''.MySQL_escape($str).'\'';
 }
 function MySQL_escape($str) {
+    if(!is_string($str)) {
+        print_r($str);
+        die("Input is not a string! ".__FILE__." ".__LINE__);
+    }
     return mysql_real_escape_string($str);
 }
 

@@ -1,6 +1,7 @@
 <?php
-/* $Id: header.inc.php,v 1.8 2003/05/07 19:57:20 robbat2 Exp $ */
+/* $Id: header.inc.php,v 1.9 2003/06/05 23:12:24 robbat2 Exp $ */
 error_reporting(E_ALL);
+ob_start();
 include 'include.php';
 include './gui/header.inc.php';
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.6 2003/05/29 04:03:27 robbat2 Exp $ */
+/* $Id: view.php,v 1.7 2003/06/05 23:12:24 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -70,27 +70,6 @@ function drawTableSQL($head,$query, $hasKey = FALSE, $table = '', $showEdit = FA
         echo html_tr_close();
     }
     drawTable_bottom();
-}
-
-function array2commasep($arr) {
-    $s = '';
-    for($i = 0; $i < count($arr); $i++) {
-        $s .= ' '.$arr[$i];
-        if($i+1 < count($arr)) {
-            $s .= ',';
-        }
-    }
-    return $s;
-}
-
-function array_subkey($arr,$k2) {
-    $newarr = array();
-    while(list($k1,$v1) = each($arr)) {
-        if(isset($v1[$k2])) {
-            $newarr[$k1] = $v1[$k2];
-        }
-    }
-    return $newarr;
 }
 
 function drawTableTopSQL($table,$oldwhere='',$tablename='') {

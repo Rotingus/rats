@@ -1,5 +1,5 @@
 <?php
-/* $Id: Objects.php,v 1.3 2003/05/29 03:50:22 robbat2 Exp $ */
+/* $Id: Objects.php,v 1.4 2003/06/22 20:46:39 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Objects.php,v $ */
 
 //table name goes here
@@ -37,11 +37,11 @@ $_t['ObjectSerialNumber']['datatype'] = 'VARCHAR';
 $_t['ObjectSerialNumber']['inputtype'] = 'text';
 $_t['ObjectSerialNumber']['ishidden'] = FALSE;
 
-$_t['PurchaseID']['longname'] = 'PurchaseID';
+$_t['PurchaseID']['longname'] = 'Purchase Order';
 $_t['PurchaseID']['datatype'] = 'ID';
 $_t['PurchaseID']['inputtype'] = 'select';
 $_t['PurchaseID']['ishidden'] = FALSE;
-$_t['PurchaseID']['keyto'] = 'PurchaseID';
+$_t['PurchaseID']['keyto'] = 'CONCAT(PurchaseTitle,\' (\',PurchaseID,\')\')';
 $_t['PurchaseID']['keytable'] = 'Purchases';
 
 $_t['ObjectGroupID']['longname'] = 'Object Group';

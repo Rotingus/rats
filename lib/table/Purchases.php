@@ -1,5 +1,5 @@
 <?php
-/* $Id: Purchases.php,v 1.2 2003/05/29 03:50:22 robbat2 Exp $ */
+/* $Id: Purchases.php,v 1.3 2003/06/22 20:46:39 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Purchases.php,v $ */
 
 //table name goes here
@@ -13,6 +13,11 @@ $_t['VendorID']['inputtype'] = 'select';
 $_t['VendorID']['ishidden'] = FALSE;
 $_t['VendorID']['keyto'] = 'VendorName';
 $_t['VendorID']['keytable'] = 'Vendors';
+
+$_t['PurchaseTitle']['longname'] = 'Purchase Title';
+$_t['PurchaseTitle']['datatype'] = 'VARCHAR';
+$_t['PurchaseTitle']['inputtype'] = 'text';
+$_t['PurchaseTitle']['ishidden'] = 'FALSE';
 
 $_t['PurchaseDetails']['longname'] = 'Details';
 $_t['PurchaseDetails']['datatype'] = 'TEXT';

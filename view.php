@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.9 2003/06/25 19:20:54 robbat2 Exp $ */
+/* $Id: view.php,v 1.10 2003/07/16 09:35:41 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -34,8 +34,9 @@ function drawTable_row($row,$hasKey = FALSE, $table = '', $showEdit = FALSE, $sh
         $key = '';
     }
     foreach($row as $r) {
-        if($r == '')
+        if(empty($r))
             $r = '<i>NULL</i>';
+        $r = nl2br($r);
         echo html_td_wrap($r);
     }
     if($hasKey && $table != '') {

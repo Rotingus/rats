@@ -1,5 +1,54 @@
-$Id: ChangeLog,v 1.59 2003/06/22 20:46:55 robbat2 Exp $
+$Id: ChangeLog,v 1.60 2003/06/22 23:11:46 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-06-22 16:11  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: use the new debug system, extend cookie
+	validity, fix redirect extra / bug
+
+2003-06-22 16:10  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* rightframe.php: debug interface
+
+2003-06-22 16:10  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/processtable.inc.php: cleanup variables when done
+
+2003-06-22 16:09  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/table/ObjectTypes.php: durationselect
+
+2003-06-22 16:09  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: a bit of debug help
+
+2003-06-22 16:09  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* submit.php: date handling, status messages, redirection, cleanup
+
+2003-06-22 16:08  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/array.lib.php: prefer _REQUEST over _GET and _POST
+
+2003-06-22 16:08  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/formbuilder.lib.php: duration support
+
+2003-06-22 16:07  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/debug.lib.php: new debug system
+
+2003-06-22 16:07  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* include.php: include new debug code
+
+2003-06-22 16:07  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php: display status msg at top of page
+
+2003-06-22 16:07  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* delete.php: rewrote delete script
 
 2003-06-22 13:46  Robin Johnson  <robbat2@orbis-terrarum.net>
 

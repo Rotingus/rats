@@ -1,5 +1,5 @@
 <?php
-/* $Id: formbuilder.lib.php,v 1.4 2003/06/05 22:33:29 robbat2 Exp $ */
+/* $Id: formbuilder.lib.php,v 1.5 2003/06/22 23:08:09 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/gui/formbuilder.lib.php,v $ */
 
 function idstr_query($idfield,$idstr,$idfrom) {
@@ -34,6 +34,14 @@ function formelement_dateselect($tableName,$tableData,$element,$data) {
     }
     echo dateselect(fieldName($tableName,$element),$v);
 }
+function formelement_durationselect($tableName,$tableData,$element,$data) {
+    $item = $tableData[$tableName][$element];
+    $v = '';
+    if($data !== NULL) {
+        $v = $data[$element];
+    }
+    echo dateselect(fieldName($tableName,$element),$v,TRUE);
+}
 
 function formelement_text($tableName,$tableData,$element,$data) { 
     $item = $tableData[$tableName][$element];
@@ -63,6 +71,7 @@ function formelement ($tableName,$tableData,$element,$data = NULL) {
     switch($item['inputtype']) {
         case 'select': formelement_select($tableName,$tableData,$element,$data); break;
         case 'dateselect': formelement_dateselect($tableName,$tableData,$element,$data); break;
+        case 'durationselect': formelement_durationselect($tableName,$tableData,$element,$data); break;
         case 'textarea': formelement_textarea($tableName,$tableData,$element,$data); break;
         case 'text': formelement_text($tableName,$tableData,$element,$data); break;
         case '': formelement_null($tableName,$tableData,$element,$data); break;
@@ -88,22 +97,34 @@ function seq($start,$increment='bad',$end='bad') {
     return $a;
 }
 
-function dateselect($name,$val=0) {
+function dateselect($name,$val=0,$duration = FALSE) {
     if($val == 0 || $val == '' || $val === NULL) {
         $val = time();
     }
     $months = array( 01=>'Jan', 02=>'Feb', 03=>'Mar', 04=>'Apr', 05=>'May', 06=>'Jun', 07=>'Jul', 08=>'Aug', 09=>'Sep', 10=>'Oct', 11=>'Nov', 12=>'Dec');
-
     $arr = array(
-    'year' => array('dstr'=>'Y','str'=>'%.4d','low'=>1997,'high'=>2005,'prefix'=>'','suffix'=>'-'),
-    'month' => array('dstr'=>'m','str'=>'%.3s','low'=>0,'high'=>12,'index'=>$months,'prefix'=>'','suffix'=>'-'),
-    'day' => array('dstr'=>'d','str'=>'%.2d','low'=>0,'high'=>31,'prefix'=>'','suffix'=>' at '),
-    'hour' => array('dstr'=>'H','str'=>'%.2d','low'=>0,'high'=>23,'prefix'=>'','suffix'=>':'),
-    'minute' => array('dstr'=>'i','str'=>'%.2d','low'=>0,'high'=>59,'prefix'=>'','suffix'=>':'),
-    'second' => array('dstr'=>'s','str'=>'%.2d','low'=>0,'high'=>59,'prefix'=>'','suffix'=>'')
+    'year' => array('dstr'=>'Y','str'=>'%.4d','low'=>1997,'high'=>2005,'suffix'=>'-'),
+    'month' => array('dstr'=>'m','str'=>'%.3s','high'=>12,'index'=>$months,'suffix'=>'-'),
+    'day' => array('dstr'=>'d','high'=>31,'suffix'=>' at ','def'=>14),
+    'hour' => array('dstr'=>'H','high'=>23,'suffix'=>':'),
+    'minute' => array('dstr'=>'i','high'=>59,'suffix'=>':'),
+    'second' => array('dstr'=>'s','high'=>59)
     );
+    if($duration) {
+        $arr['year']['low'] = 0;
+        $arr['year']['high'] = 1;
+    }
+    $defaultelem = array('dstr'=>'','str'=>'%.2d','low'=>0,'high'=>5,'prefix'=>'','suffix'=>'','def'=>0);
     foreach($arr as $key=>$data) {
-        $arr[$key]['current'] = date($data['dstr'],$val);
+        $arr[$key] = array_merge($defaultelem,$arr[$key]);
+    }
+    foreach($arr as $key=>$data) {
+        if(!$duration) {
+            $arr[$key]['current'] = date($data['dstr'],$val);
+        } else {
+            $arr[$key]['current'] = $arr[$key]['def'];
+            unset($arr[$key]['index']);
+        }
         $arr[$key]['values'] = seq($arr[$key]['low'],$arr[$key]['high']);
     }
     $str = '';
@@ -118,9 +139,13 @@ function dateselect($name,$val=0) {
         }
         $str .= $data['prefix'].selectinput(fieldName($name,$key),$v,$data['current']).$data['suffix'];
     }
+    if(!$duration) {
+        $str .= '(YYYY-MMM-DD HH-MM-SS)';
+    } else {
+        $str .= '(YYYY-MM-DD HH-MM-SS) [duration]';
+    }
     return $str;
 }
-
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

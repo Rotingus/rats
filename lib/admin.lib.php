@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.17 2003/06/23 18:12:50 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.18 2003/07/16 03:25:12 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -128,6 +128,9 @@ function admin_validate() {
     printall('admin_validate.load');
 
     $sessionInfo['username'] = admin_varimport('username');
+    if(strpos($sessionInfo['username'],'@') === FALSE) {
+        $sessionInfo['username'] .= '@sfu.ca';
+    }
     $sessionInfo['password'] = admin_varimport('password');
     printall('admin_validate.import');
 

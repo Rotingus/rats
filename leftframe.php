@@ -1,5 +1,5 @@
 <?php
-/* $Id: leftframe.php,v 1.2 2003/03/05 17:30:24 robbat2 Exp $ */
+/* $Id: leftframe.php,v 1.3 2003/03/13 11:51:42 robbat2 Exp $ */
 
 include('header.inc.php');
 
@@ -27,5 +27,5 @@ item($i);
 echo html_a('transactions.php','Transactions','leftnavitem','target="_top"')."\n";
 echo html_a('logout.php','Logout','leftnavitem','target="_top"')."\n";
 
-include './gui/footer.inc.php';
+include 'footer.inc.php';
 ?>

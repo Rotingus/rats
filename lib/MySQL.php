@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.9 2003/04/29 20:47:53 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.10 2003/05/01 22:20:32 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -141,19 +141,18 @@ class MySQL {
         $this->mysql_result = false;
         $this->bufferReset();
     }
-
-}
+} //end of MySQL class
 
 global $MySQL_singleton_abort;
 $MySQL_singleton_abort = -1;
 
 function MySQL_singleton($query,$abort = -1) {
-    global $_MySQL, $MySQL_singleton_abort;
-    $_MySQL->restart();
-    $_MySQL->query($query);
-    $arr = $_MySQL->getRow();
-    $item = $arr[0];
-    if($_MySQL->getNumRows() != 1) {
+    $r = _MySQL_queryhelper($query);
+    global $MySQL_singleton_abort;
+    if($r->getNumRows() == 1) {
+        $arr = $r->getRow();
+        $item = $arr[0];
+    } else { // rows != 1
         if($abort == $MySQL_singleton_abort) {
             $item = $MySQL_singleton_abort;
         } else {
@@ -164,15 +163,43 @@ function MySQL_singleton($query,$abort = -1) {
 }
 
 function MySQL_singletonarray($query) {
-    global $_MySQL;
-    $_MySQL->restart();
-    $_MySQL->query($query);
+    $r = _MySQL_queryhelper($query);
     $arr = array();
-    while($_MySQL->hasRows()) {
-        $tmp = $_MySQL->getRow();
+    while($r->hasRows()) {
+        $tmp = $r->getRow();
+        if(count($tmp) > 1) die("Non-singleton results in singleton query!");
         $arr[] = $tmp[0];
     }
     return $arr;
+}
+function MySQL_associativearray($query) {
+    $r = _MySQL_queryhelper($query);
+    $arr = array();
+    while($r->hasRows()) {
+        $tmp = $r->getRow();
+        if(count($tmp) < 2) die("Non-associative results in associative query!");
+        $key = $tmp[0];
+        array_shift($tmp);
+        $arr[$key] = $tmp;
+    }
+    return $arr;
+}
+function MySQL_associativesingleton($query) {
+    $r = _MySQL_queryhelper($query);
+    $arr = array();
+    while($r->hasRows()) {
+        $tmp = $r->getRow();
+        if(count($tmp) != 2) die("Incorrect result quantity in associative singleton query!");
+        $arr[$tmp[0]] = $tmp[1];
+    }
+    return $arr;
+}
+
+function _MySQL_queryhelper($query) {
+    global $_MySQL;
+    $_MySQL->restart();
+    $_MySQL->query($query);
+    return $_MySQL;
 }
 
 function MySQL_buildonemanykey($keyName,$values) {
@@ -192,18 +219,22 @@ function MySQL_escape($str) {
     return mysql_real_escape_string($str);
 }
 
-function MySQL_arrayToSequence($arr) {
+function MySQL_arrayToSequence($arr,$brackets = TRUE) {
     $size = count($arr);
     $s = '';
     if($size > 0) {
-        $s = '(';
+        if($brackets) { 
+            $s .= '('; 
+        }
         for($i = 0; $i < $size; $i++) {
             $s .= MySQL_quote($arr[$i]);
             if($i+1 < $size) {
                 $s .= ',';
             }
         }
-        $s .= ')';
+        if($brackets) { 
+            $s .= ')'; 
+        }
     }
     return $s;
 }

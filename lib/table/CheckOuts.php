@@ -1,5 +1,5 @@
 <?php
-/* $Id: CheckOuts.php,v 1.1 2003/03/15 00:20:46 robbat2 Exp $ */
+/* $Id: CheckOuts.php,v 1.2 2003/04/30 18:16:48 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/CheckOuts.php,v $ */
 
 //table name goes here
@@ -23,10 +23,8 @@ $_t['CheckOutDueDate']['inputtype'] = 'dateselect';
 $_t['CheckOutDueDate']['locked'] = TRUE;
 $_t['CheckOutDueDate']['hidden'] = FALSE;
 
-//$_t['_view_sql'] = 'SELECT __COLUMNS__ FROM __TABLE__';
-//$_t['_view_cols'] = array('ActionCode','ActionBarcode','ActionGenericTable','ActionType');
-
-$_t['_view_sql'] = 'SELECT u.UserLogin AS UserID, o.ObjectName AS ObjectID, c.CheckOutDueDate FROM CheckOuts c, Users u, Objects o WHERE u.UserID = c.UserID AND o.ObjectID = c.ObjectID';
+$_t['_view_sql'] = 'SELECT UserLogin, ObjectName, CheckOutDueDate 
+FROM Users JOIN CheckOuts USING (UserID) JOIN Objects USING (ObjectID) JOIN ObjectTypes USING (ObjectTypeID)';
 $_t['_view_cols'] = array('UserID','ObjectID','CheckOutDueDate');
 
 global $tableData;

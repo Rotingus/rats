@@ -1,5 +1,5 @@
 <?php
-/* $Id: Groups.php,v 1.1 2003/03/15 00:22:28 robbat2 Exp $ */
+/* $Id: Groups.php,v 1.2 2003/04/30 18:16:48 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/table/Groups.php,v $ */
 
 //table name goes here
@@ -14,17 +14,15 @@ $_t['field']['locked'] = '';
 $_t['field']['hidden'] = '';
 */
 
-$_t['GroupID']['longname'] = '';
-$_t['GroupID']['datatype'] = '';
-$_t['GroupID']['inputtype'] = '';
-$_t['GroupID']['locked'] = '';
+$_t['GroupID']['longname'] = 'Group ID';
+$_t['GroupID']['datatype'] = 'ID';
+$_t['GroupID']['inputtype'] = 'ID';
 $_t['GroupID']['hidden'] = TRUE;
+$_t['GroupID']['key'] = TRUE;
 
 $_t['GroupName']['longname'] = 'Name';
 $_t['GroupName']['datatype'] = 'VARCHAR';
 $_t['GroupName']['inputtype'] = 'text';
-$_t['GroupName']['locked'] = FALSE;
-$_t['GroupName']['hidden'] = FALSE;
 
 $_t['_view_sql'] = 'SELECT __COLUMNS__ FROM __TABLE__';
 $_t['_view_cols'] = array('GroupName');

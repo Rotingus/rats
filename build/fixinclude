@@ -4,7 +4,7 @@ PRINTF="-printf \"include '%p';\n\""
 COMMON='-xtype f -name "*php" ! -name "*inc*" ! -name DObj '$PRINTF
 ( eval find . -mindepth 2 $COMMON ) >>include.php.in
 ( eval find ./lib $COMMON) >>include.php.in
-cat include.php.in | sort | uniq >>include.php.new
+cat include.php.in| grep -v '/lib/table/' |grep -v '\.inc\.' | sort | uniq >>include.php.new
 rm -rf include.php.in
 echo '?>' >>include.php.new
 mv include.php.new include.php

@@ -1,5 +1,5 @@
 <?php
-/* $Id: view.php,v 1.2 2003/03/15 00:22:50 robbat2 Exp $ */
+/* $Id: view.php,v 1.3 2003/04/30 18:16:48 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/view.php,v $ */
 
 include './header.inc.php';
@@ -26,26 +26,39 @@ function drawTable_bottom() {
     echo html_table_close();
 }
 
-function drawTable_row($row) {
+function drawTable_row($row,$hasKey = FALSE, $table = '', $showEdit = FALSE, $showDelete = FALSE) {
+    if($hasKey) {
+        $key = array_shift($row);
+    } else {
+        $key = '';
+    }
     foreach($row as $r) {
         echo html_td_open();
         echo($r);
         echo html_td_close();
     }
+    if($hasKey && $table != '') {
+        if($showEdit) {
+            guiEdit($table,$id);
+        }
+        if($showDelete) {
+            guiDelete($table,$id);
+        }
+    }
 }
 
-function drawTable($head,$data) {
+function drawTable($head, $data, $hasKey = FALSE, $table = '', $showEdit = FALSE, $showDelete = FALSE) {
     drawTable_top($head);
     foreach($data as $row) {
         echo html_tr_open();
-        drawTable_row($row);
+        drawTable_row($row, $hasKey, $table, $showEdit, $showDelete);
         echo html_tr_close();
         echo '<br />'."\n";
     }
     drawTable_bottom();
 }
 
-function drawTableSQL($head,$query) {
+function drawTableSQL($head,$query, $hasKey = FALSE, $table = '', $showEdit = FALSE, $showDelete = FALSE) {
     global $_MySQL;
     echo $query;
     drawTable_top($head);
@@ -53,7 +66,7 @@ function drawTableSQL($head,$query) {
     $_MySQL->query($query);
     while($row = $_MySQL->getRow()) {
         echo html_tr_open();
-        drawTable_row($row);
+        drawTable_row($row, $hasKey, $table, $showEdit, $showDelete);
         echo html_tr_close();
     }
     drawTable_bottom();
@@ -80,14 +93,24 @@ function array_subkey($arr,$k2) {
     return $newarr;
 }
 
-if($validPermissions) {
+if($tablePerm['view']) {
  global $tableData;
  $query = $tableData[$tableName]['_view_sql'];
- $arr_srch = array('__TABLE__','__COLUMNS__');
- $arr_repl = array($tableName,array2commasep($tableData[$tableName]['_view_cols']));
+ $tableKey = '';
+ foreach($tableData[$tableName] as $key => $data) {
+     if(isset($data['isid']) && ($data['isid'] == TRUE) && ($key[0] != '_')) {
+         if($tableKey != '') {
+             die('Multiple table keys on '.$tableName.' ('.$tableKey.','.$key.')');
+         } else {
+             $tableKey = $key;
+         }
+     }
+ }
+ $arr_srch = array('__TABLE__','__COLUMNS__','__KEY__');
+ $arr_repl = array($tableName,array2commasep($tableData[$tableName]['_view_cols']),$tableKey);
  $query = str_replace($arr_srch,$arr_repl,$query);
  $head = array_subkey($tableData[$tableName],'longname');
- drawTableSQL($head,$query);
+ drawTableSQL($head,$query,TRUE,$tableName,$tablePerm['edit'],$tablePerm['delete']);
 }
 
 include './footer.inc.php';

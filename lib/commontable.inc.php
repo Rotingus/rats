@@ -1,5 +1,5 @@
 <?php
-/* $Id: commontable.inc.php,v 1.4 2003/04/29 20:47:53 robbat2 Exp $ */
+/* $Id: commontable.inc.php,v 1.5 2003/04/30 18:16:48 robbat2 Exp $ */
 
 global $tableName;
 
@@ -13,7 +13,7 @@ if(!$validPermissions) {
 echo "include('./gui/permissiondenied.php')";
 } else {
 //ok, we are ok
-include './lib/table/'.$tableName.'.php';
+include './lib/processtable.inc.php';
 }
 
 ?>

@@ -1,0 +1,6 @@
+#!/bin/sh
+CLEANUP="find -name '*~' -o -name '*.bak' | xargs -r rm"
+eval $CLEANUP
+cvs up
+clup
+eval $CLEANUP

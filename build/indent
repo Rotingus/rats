@@ -1,6 +1,6 @@
 #!/bin/sh
-# $Id: indent.sh,v 1.4 2003/03/13 10:48:15 robbat2 Exp $
-# $Source: /code/convert/cvsroot/infrastructure/rats/Attic/indent.sh,v $
+# $Id: indent,v 1.1 2003/04/28 18:52:12 robbat2 Exp $
+# $Source: /code/convert/cvsroot/infrastructure/rats/build/indent,v $
 ###########
 # Experimental PHP code formatter
 # -------------------------------

@@ -1,6 +1,7 @@
 #!/bin/sh
-#$Id: dumpsql.sh,v 1.3 2003/05/29 04:01:26 robbat2 Exp $
-MYSQL=/usr/local/mysql
+#$Id: dumpsql.sh,v 1.4 2003/06/12 18:10:18 robbat2 Exp $
+MYSQL=/usr
+[ -d /usr/local/mysql ] && MYSQL=/usr/local/mysql
 MYSQL_BIN=${MYSQL}/bin
 MYSQLDUMP=${MYSQL_BIN}/mysqldump
 OPTS="--all --add-drop-table --extended-insert --compress --databases"
@@ -11,6 +12,7 @@ DATAFILENAME="data.sql"
 DATAFILEGEN="--no-create-info --no-create-db"
 SCHEMAFILEGEN="--no-data"
 BADCOMMENTREMOVE="egrep -v '^---[-]*$'"
+CLEANUPINSERT="sed -e 's/INSERT INTO/INSERT IGNORE INTO/g'"
 
 echo -n "Enter password: "
 read -s PASSWORD
@@ -20,5 +22,5 @@ echo
 
 echo "-- \$""Id""\$" >${SCHEMAFILENAME}
 echo "-- \$""Id""\$" >${DATAFILENAME}
-${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${SCHEMAFILEGEN} | ${BADCOMMENTREMOVE} >>${SCHEMAFILENAME}
-${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${DATAFILEGEN} | ${BADCOMMENTREMOVE} >>${DATAFILENAME}
+${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${SCHEMAFILEGEN} | eval ${BADCOMMENTREMOVE} | eval ${CLEANUPINSERT} >>${SCHEMAFILENAME}
+${MYSQLDUMP} ${OPTS} -u${USERNAME} ${DBS} ${DATAFILEGEN} | eval ${BADCOMMENTREMOVE} | eval ${CLEANUPINSERT} >>${DATAFILENAME}

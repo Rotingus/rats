@@ -1,5 +1,33 @@
-$Id: ChangeLog,v 1.39 2003/03/13 11:13:12 robbat2 Exp $
+$Id: ChangeLog,v 1.41 2003/03/13 11:31:32 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-13 03:29  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/admin.lib.php: Bugfix for mysql_load and global var
+
+2003-03-13 03:28  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* lib/MySQL.php: Comment out debugging code
+
+2003-03-13 03:28  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* index.php: Functional cleanup
+
+2003-03-13 03:28  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* header.inc.php: Actually validate the login now
+
+2003-03-13 03:27  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/invalidlogin.inc.php: Login error page
+
+2003-03-13 03:27  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/title.inc.php: CVS tags
+
+2003-03-13 03:26  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* gui/login.inc.php: login gui page
 
 2003-03-13 03:12  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,11 +1,10 @@
 <?php
-/* $Id: include.php,v 1.1 2002/12/12 11:01:24 robbat2 Exp $ */
+/* $Id: include.php,v 1.2 2002/12/12 13:39:42 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 //find -xtype f -name '*php' -mindepth 2 |egrep -v DObj |xargs -l1 echo include |sort|>>include.php
 
+include './lib/Barcode.php';
 include './lib/DataStructure/List.php';
-$l = new DataStructure_List();
-
 include './lib/MySQL.php';
 include './lib/Obj/Actions.php';
 include './lib/Obj/Bookings.php';

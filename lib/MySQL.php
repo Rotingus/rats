@@ -1,92 +1,129 @@
 <?php
-/* $Id: MySQL.php,v 1.1 2002/12/12 11:01:24 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.2 2002/12/12 13:39:42 robbat2 Exp $ */
 
 //var $mysql_conn;
 
 class MySQL {
     var $mysql_conn;
-    var $mysql_server = 'localhost';
+    var $mysql_server = 'localhost:/tmp/mysql.sock';
     var $mysql_username = 'rats';
     var $mysql_passwd = 'ratty';
     var $mysql_db = 'rats';
-    var $using_transactions = true;
+    var $using_transactions = false;
     var $in_transaction = false;
 
     var $mysql_result = false;
     var $querybuffer = array();
 
-    function MySQL() {
+    function MySQL($using_transactions = false) {
+        $this->using_transactions = $using_transactions;
+        $this->connect();
     }
     
     function connect() {
-        if(!$mysql_conn) {
-            $mysql_conn = mysql_connect($mysql_server,$mysql_username,$mysql_passwd);
-            mysql_select_db($mysql_conn,$mysql_db);
+        if(!$this->mysql_conn) {
+            $conn =& mysql_connect($this->mysql_server,$this->mysql_username,$this->mysql_passwd);
+            $this->mysql_conn =& $conn;
+            //mysql_select_db($this->mysql_conn,$this->mysql_db);
+            mysql_select_db($this->mysql_db);
         }
     }
-    
+
     function close() {
-        if($mysql_conn) {
-            mysql_close($mysql_conn);
+        if($this->getConnection()) {
+            mysql_close($this->getConnection());
         }
     }
-    
+
     function start() {
-        bufferReset();
-        if($using_transactions) {
-            bufferAdd('SET AUTOCOMMIT=0');
-            bufferAdd('BEGIN');
+        $this->bufferReset();
+        if($this->using_transactions) {
+            //$this->bufferAdd('SET AUTOCOMMIT=0');
+            $this->bufferAdd('BEGIN');
         }
     }
-    
+
     function commit() {
-        if($using_transactions) {
-            bufferAdd('COMMIT');
+        if($this->using_transactions) {
+            $this->bufferAdd('COMMIT');
         }
     }
 
     function rollback() {
-        if($using_transactions) {
-            bufferAdd('ROLLBACK');
+        if($this->using_transactions) {
+            $this->bufferAdd('ROLLBACK');
         }
     }
 
     function run($query) {
-        bufferAdd($query);
+        $this->bufferAdd($query);
     }
 
     function execute() {
-        commit();
+        $this->commit();
         $s = '';
-        foreach($querybuffer as $line) {
-            $s .= $line . ';';
+        foreach($this->querybuffer as $line) {
+            //$s .= $line . '; '."\n";
+            echo $line."\n";
+            $this->query($line);
+            //echo 'E:'.mysql_error();
         }
-        start();
-        query($s);
+        //echo $s;
+        //$this->query($s);
+        //echo 'E:'.mysql_error();
+        $this->start();
     }
 
-    function getResult() {
-        return $mysql_result;
+    function getNumRows() {
+        return mysql_num_rows($this->getResult());
     }
 
-    function getConnection() {
-        return $mysql_conn;
+    function &getRow() {
+        return mysql_fetch_row($this->getResult());
+    }
+
+    function &getResult() {
+        return $this->mysql_result;
+    }
+
+    function &getConnection() {
+        return $this->mysql_conn;
     }
 
     function query($query) {
-        $mysql_result = mysql_query($query);
+        $this->mysql_result = mysql_query($query);
     }
 
     function bufferAdd($newquery) {
-        $querybuffer[] = $newquery;
+        $this->querybuffer[] = $newquery;
     }
 
     function bufferReset() {
-        $querybuffer = array();
+        $this->querybuffer = array();
+    }
+
+    function restart() {
+        $this->mysql_result = false;
+        $this->bufferReset();
     }
 
 }
 
+function MySQL_singleton($query,$abort = 0) {
+    global $_MySQL;
+    $_MySQL->restart();
+    $_MySQL->query($query);
+    $arr = $_MySQL->getRow();
+    $item = $arr[0];
+    if($_MySQL->getNumRows() != 1) {
+        $item = $abort;
+    }
+    return $item;
+}
+
+function MySQL_quote($str) {
+    return '\''.MySQL_escape($str).'\'';
+}
 function MySQL_escape($str) {
     return mysql_real_escape_string($str);
 }
@@ -97,7 +134,7 @@ function MySQL_arrayToSequence($arr) {
     if($size > 0) {
         $s = '(';
         for($i = 0; $i < $size; $i++) {
-            $s .= '\''.MySQL_escape($arr[$i]).'\'';
+            $s .= $arr[$i];
             if($i+1 < $size) {
                 $s .= ',';
             }
@@ -107,7 +144,9 @@ function MySQL_arrayToSequence($arr) {
     return $s;
 }
 
-
+global $_MySQL,$_MySQL_trans;
+$_MySQL = new MySQL(false);
+$_MySQL_trans = new MySQL(true);
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 ?>

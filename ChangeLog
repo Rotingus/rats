@@ -1,5 +1,23 @@
-$Id: ChangeLog,v 1.9 2002/12/12 11:01:24 robbat2 Exp $
+$Id: ChangeLog,v 1.10 2002/12/12 13:39:42 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * lib/Barcode.php:
+        - Barcoding handling class
+    * include.php:
+        - Added barcode class
+    * index.php:
+        - Fixed slight bug
+    * lib/MySQL.php:
+        - Tweaked transactions
+    * lib/Obj/Actions.php:
+        - Wrote ActionCode resolution stuff
+    * lib/Obj/CheckOuts.php:
+        - Wrote Checkin/Checkout
+    * lib/Obj/Objects.php:
+        - :-~
+    * lib/Obj/Transactions.php:
+        - Wrote better add method using ActionCodes
 
 2002-12-12 02-58 Robin Johnson  <robbat2@orbis-terrarum.net>
     * include.php:

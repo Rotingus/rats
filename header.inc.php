@@ -1,5 +1,5 @@
 <?php
-/* $Id: header.inc.php,v 1.10 2003/06/12 17:43:47 robbat2 Exp $ */
+/* $Id: header.inc.php,v 1.11 2003/06/22 23:07:30 robbat2 Exp $ */
 error_reporting(E_ALL);
 ob_start();
 include 'include.php';
@@ -20,7 +20,10 @@ if (isset($skipvalidate) && $skipvalidate && !isset($_COOKIE['skipvalidate'])
         exit;
     }
     $validationskipped = FALSE;
-    
+}
+if(isset($_SESSION) && isset($_SESSION['msg'])) {
+echo $_SESSION['msg'].'<br />'."\n";
+unset($_SESSION['msg']);
 }
 
 ?>

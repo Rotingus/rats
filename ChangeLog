@@ -1,9 +1,10 @@
-$Id: ChangeLog,v 1.13 2003/01/23 20:30:26 robbat2 Exp $
+$Id: ChangeLog,v 1.14 2003/01/23 20:33:03 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
 
 2003-01-23 12-06 Robin Johnson  <robbat2@orbis-terrarum.net>
-    * gui/:
+    * gui/*:
         - New Directory
+        - Lots of new files
     * kiosk.php, index.php:
         - Move existing code to kiosk file
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.8 2003/04/28 18:52:33 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.9 2003/04/29 20:47:53 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -20,6 +20,8 @@ class MySQL {
     //return data
     var $mysql_result = false;
     var $querybuffer = array();
+    var $row_count = -1;
+    var $row_current = 0;
 
     function MySQL($mysql_username = '',$mysql_passwd = '',$mysql_db = '',$mysql_server = '',$using_transactions = false) {
         $this->mysql_username = $mysql_username;
@@ -33,9 +35,11 @@ class MySQL {
     function connect() {
         if(!$this->mysql_conn) {
             $conn =& mysql_connect($this->mysql_server,$this->mysql_username,$this->mysql_passwd);
+            $this->checkerror();
             $this->mysql_conn =& $conn;
             //mysql_select_db($this->mysql_conn,$this->mysql_db);
             mysql_select_db($this->mysql_db);
+            $this->checkerror();
         }
     }
 
@@ -77,16 +81,34 @@ class MySQL {
         $this->start();
     }
 
+    function checkerror() {
+        //if(mysql_errno() != 0) {
+        //    die(mysql_error());
+        //}
+    }
+
     function getNumRows() {
-        return mysql_num_rows($this->getResult());
+        //$num = mysql_num_rows($this->getResult());
+        //$this->checkerror();
+        $num = $this->row_count;
+        return $num;
+    }
+    function _getNumRows() {
+        $num = mysql_num_rows($this->getResult());
+        $this->checkerror();
+        return $num;
     }
 
     function &getRow() {
-        return mysql_fetch_row($this->getResult());
+        $row = mysql_fetch_row($this->getResult());
+        $this->row_current++;
+        $this->checkerror();
+        return $row;
     }
 
     function hasRows() {
-        return $this->getNumRows() > 0;
+        $num = $this->getNumRows();
+        return $this->row_current < $this->row_count;
     }
 
     function &getResult() {
@@ -98,7 +120,13 @@ class MySQL {
     }
 
     function query($query) {
+        //echo $query;
+        //flush();
+        //ob_flush();
         $this->mysql_result = mysql_query($query);
+        $this->row_count = $this->_getNumRows();
+        $this->row_current = 0;
+        $this->checkerror();
     }
 
     function bufferAdd($newquery) {
@@ -141,14 +169,15 @@ function MySQL_singletonarray($query) {
     $_MySQL->query($query);
     $arr = array();
     while($_MySQL->hasRows()) {
-    $arr[] = $_MySQL->getRow();
+        $tmp = $_MySQL->getRow();
+        $arr[] = $tmp[0];
     }
     return $arr;
 }
 
-function MySQL_buildonemanykey($keyname,$values) {
+function MySQL_buildonemanykey($keyName,$values) {
     $str = '`'.$keyName.'` ';
-    if(isarray($values)) {
+    if(is_array($values)) {
         $str .= ' IN '.MySQL_arrayToSequence($values);
     } else {
         $str .= '='.MySQL_quote($values);

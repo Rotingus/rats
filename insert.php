@@ -1,10 +1,14 @@
 <?php
-/* $Id: insert.php,v 1.2 2003/03/14 12:56:12 robbat2 Exp $ */
+/* $Id: insert.php,v 1.3 2003/04/29 20:47:53 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/Attic/insert.php,v $ */
+
+include './header.inc.php';
+
+$perm = 'add';
 
 include 'lib/commontable.inc.php';
 
-if($allowedPerm) {
+if($validPermissions) {
     echo 'forms here';
     //TODO
 }

@@ -1,5 +1,5 @@
 <?php
-/* $Id: include.php,v 1.4 2003/03/13 11:12:35 robbat2 Exp $ */
+/* $Id: include.php,v 1.5 2003/04/29 20:47:53 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 /* 
 egrep -v '^include|^\?>' include.php > include.php.new
@@ -15,12 +15,14 @@ mv include.php.new include.php
 
 include './gui/array.lib.php';
 include './gui/html.lib.php';
+include './gui/permissiondenied.php';
 include './lib/Barcode.php';
 include './lib/DataStructure/List.php';
 include './lib/MySQL.php';
 include './lib/Obj/Actions.php';
 include './lib/Obj/Bookings.php';
 include './lib/Obj/CheckOuts.php';
+include './lib/Obj/GenericMapping.php';
 include './lib/Obj/GroupActionMapping.php';
 include './lib/Obj/Groups.php';
 include './lib/Obj/Manufacters.php';
@@ -33,4 +35,10 @@ include './lib/Obj/UserGroupMapping.php';
 include './lib/Obj/Users.php';
 include './lib/admin.lib.php';
 include './lib/mysql.lib.php';
+include './lib/table/Actions.php';
+include './lib/table/CheckOuts.php';
+include './lib/table/Groups.php';
+include './lib/table/Manufacters.php';
+include './lib/table/Users.php';
+include './lib/table/_skel.php';
 ?>

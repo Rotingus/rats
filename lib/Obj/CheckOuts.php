@@ -1,5 +1,5 @@
 <?php
-/* $Id: CheckOuts.php,v 1.4 2002/12/12 22:55:31 robbat2 Exp $ */
+/* $Id: CheckOuts.php,v 1.5 2003/03/13 10:49:41 robbat2 Exp $ */
 /**
  * \brief Object CheckOuts
  *
@@ -13,7 +13,7 @@ class CheckOuts {
         $query = 'SELECT CheckOutID FROM CheckOuts LEFT JOIN Objects USING (ObjectID) WHERE ObjectBarcode = '.MySQL_quote($barcode);
         global $_MySQL_trans, $_Transactions;
         $coid = MySQL_singleton($query);
-        if($coid == 0) {
+        if($coid == -1) {
             echo('Item is not checked out');
         } else {
             $_MySQL_trans->start();
@@ -28,13 +28,13 @@ class CheckOuts {
         global $_MySQL_trans, $_Transactions;
         $bad = false;
         $oid = MySQL_singleton( 'SELECT ObjectID FROM Objects WHERE ObjectBarcode = '.MySQL_quote($barcode));
-        if($oid == 0) {
+        if($oid == -1) {
             echo('Item unknown');
             $bad = true;
         }
         $oid = MySQL_quote($oid);
         $uid = MySQL_singleton( 'SELECT UserID FROM Users WHERE UserBarcode = '.MySQL_quote($usercode));
-        if($uid == 0) {
+        if($uid == -1) {
             echo('User unknown');
             $bad = true;
         }

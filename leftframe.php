@@ -1,5 +1,5 @@
 <?php
-/* $Id: leftframe.php,v 1.4 2003/03/14 12:56:23 robbat2 Exp $ */
+/* $Id: leftframe.php,v 1.5 2003/03/24 20:11:17 robbat2 Exp $ */
 
 include('header.inc.php');
 
@@ -23,20 +23,22 @@ function item($n,$type = 'v') {
 }
 
 $a = array(
-'Objects',
-'Manufacters',
-'Purchases',
-'Object Types',
-'CheckOuts',
-'Users',
-'Groups',
-'Bookings',
-'Notes',
-'Actions'
+  'Actions',
+  'Bookings',
+  'Check Outs',
+  'Group Action Mapping',
+  'Groups',
+  'Manufacters',
+  'Notes',
+  'Object Types',
+  'Objects',
+  'Purchases',
+  'User Group Mapping',
+  'Users'
 );
 
 foreach($a as $i) {
-item($i);
+item($i,'va');
 };
 
 echo html_a('transactions.php','Transactions','leftnavitem','target="_top"').'<br />'."\n";

@@ -1,5 +1,5 @@
 <?php
-/* $Id: CheckOuts.php,v 1.3 2002/12/12 13:39:42 robbat2 Exp $ */
+/* $Id: CheckOuts.php,v 1.4 2002/12/12 22:55:31 robbat2 Exp $ */
 /**
  * \brief Object CheckOuts
  *
@@ -38,16 +38,22 @@ class CheckOuts {
             echo('User unknown');
             $bad = true;
         }
+        $coid = MySQL_singleton('SELECT CheckOutID FROM CheckOuts WHERE ObjectID='.$oid);
+        if($coid != 0) {
+            echo('Item is already out, checkin first');
+            $bad = true;
+        }
         $uid = MySQL_quote($uid);
-        $retdate = MySQL_singleton('SELECT DATE_ADD(ObjectTypeLoanDuration,TODAY()) FROM Objects LEFT JOIN ObjectTypes USING (ObjectTypeID) WHERE ObjectID='.$oid);
-        $retdate = MySQL_quote($retdate);
-        
         if(!$bad) {
             $_MySQL_trans->start();
-            $_MySQL_trans->run("INSERT CheckOuts (UserID,ObjectID,CheckOutDueDate) VALUES ".MySQL_arrayToSequence(array($uid,$oid,$retdate)));
+            $_MySQL_trans->run("SELECT @duration := ObjectTypeLoanDuration FROM Objects LEFT JOIN ObjectTypes USING (ObjectTypeID) WHERE ObjectID=".$oid);
+            $_MySQL_trans->run("SELECT @year:=EXTRACT(YEAR FROM @duration), @month:=EXTRACT(MONTH FROM @duration), @day:=EXTRACT(DAY FROM @duration)");
+            $_MySQL_trans->run("SELECT @duration:=CONCAT(@year*365+@month*30+@day,SUBSTRING(@duration,LOCATE(' ',@duration)))");
+            $_MySQL_trans->run("SELECT @duedate:=DATE_ADD(NOW(),INTERVAL @duration DAY_SECOND);");
+            $_MySQL_trans->run("INSERT CheckOuts (UserID,ObjectID,CheckOutDueDate) VALUES ".MySQL_arrayToSequence(array($uid,$oid,'@duedate')));
             $_MySQL_trans->run($_Transactions->singleton(0,'aC','LAST_INSERT_ID()'));
             $_MySQL_trans->execute();
-            echo('Item now checked in');
+            echo('Item now checked out');
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: Transactions.php,v 1.4 2002/12/12 13:39:42 robbat2 Exp $ */
+/* $Id: Transactions.php,v 1.5 2002/12/12 22:55:31 robbat2 Exp $ */
 /**
  * \brief Transactions logging system
  *
@@ -27,7 +27,7 @@ class Transactions {
         $arr = $_Actions->lookup($ActionCode);
         $ActionID = $arr[0];
         $GenericTable = $arr[1];
-        $this->addcomplex($UserID,$GenericTable,$GenericID,$ActionID);
+        $this->addcomplex($UserID,MySQL_quote($GenericTable),$GenericID,$ActionID);
     }
     function addcomplex($UserID,$GenericTable,$GenericID,$ActionID) {
         $tmp = array($UserID,$GenericTable,$GenericID,$ActionID);

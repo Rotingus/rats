@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.2 2002/12/12 13:39:42 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.3 2002/12/12 22:55:31 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -61,16 +61,9 @@ class MySQL {
 
     function execute() {
         $this->commit();
-        $s = '';
         foreach($this->querybuffer as $line) {
-            //$s .= $line . '; '."\n";
-            echo $line."\n";
             $this->query($line);
-            //echo 'E:'.mysql_error();
         }
-        //echo $s;
-        //$this->query($s);
-        //echo 'E:'.mysql_error();
         $this->start();
     }
 
@@ -91,6 +84,7 @@ class MySQL {
     }
 
     function query($query) {
+        echo 'Running SQL:'.$query."<br />\n";
         $this->mysql_result = mysql_query($query);
     }
 

@@ -1,5 +1,15 @@
-$Id: ChangeLog,v 1.10 2002/12/12 13:39:42 robbat2 Exp $
+$Id: ChangeLog,v 1.11 2002/12/12 22:55:31 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * index.php:
+        - Trimming user barcode is needed
+    * lib/MySQL.php:
+        - Debugging SQL output
+    * lib/Obj/CheckOuts.php:
+        - Fixed CheckOutReturnDate stuff in checkout()
+    * lib/Obj/Transactions.php:
+        - Cleaned up bug about some transactions
 
 2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
     * lib/Barcode.php:

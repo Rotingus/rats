@@ -302,13 +302,17 @@ submitinput($name,
 }
 
 function
-html_simpleselect($name,
-    $data)
+selectinput($name,
+    $data,$default='')
 {
   //format is 'value' => 'text'
-  $activevalue = v($name);
-  $innerdata = "";
-  foreach($data as $value  => $text) {
+  if($default == '') {
+      $activevalue = v($name);
+  } else {
+      $activevalue = $default;
+  }
+  $innerdata = '';
+  foreach($data as $value => $text) {
     $innerdata .= 
       htmlElm('option',
           array('value'  => $value, 'selected' =>($activevalue == $value ? 'selected' : '')),

@@ -1,15 +1,14 @@
 <?php
-/* $Id: kiosk.php,v 1.2 2003/03/13 09:38:32 robbat2 Exp $ */
+/* $Id: kiosk.php,v 1.3 2003/05/07 19:57:20 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 //find -xtype f -name '*php' |grep -v index |grep -v DObj |xargs -l1 echo include
 
-include 'include.php';
+include('header.inc.php');
 
 /* $t = new Transactions();
    $t->add(100,'Actions','1','1');
    $t->add(101,'Users','2','2');
    $s = $t->generateSQL(); 
-
    echo $s;
  */
 if(isset($_POST['text'])) {
@@ -19,10 +18,12 @@ if(isset($_POST['text'])) {
     if($m == 'checkin') {
         foreach($arr as $line) {
             $line = trim($line);
-            if(isObject($line)) {
-                $_CheckOuts->checkin($line);
-            } else {
-                echo 'Invalid barcode: '.$line.'<br />';
+            if($line != '') {
+                if(isObject($line)) {
+                    $_CheckOuts->checkin($line);
+                } else {
+                    echo 'Invalid barcode: "'.$line.'"<br />';
+                }
             }
         }
     } else if($m == 'checkout') {
@@ -30,10 +31,12 @@ if(isset($_POST['text'])) {
         if(isUser($user)) {
             foreach($arr as $line) {
                 $line = trim($line);
-                if(isObject($line)) {
-                    $_CheckOuts->checkout($user,$line);
-                } else {
-                    echo 'Invalid barcode: '.$line.'<br />';
+                if($line != '') {
+                    if(isObject($line)) {
+                        $_CheckOuts->checkout($user,$line);
+                    } else {
+                        echo 'Invalid barcode: "'.$line.'"<br />';
+                    }
                 }
             }
         } else {
@@ -43,9 +46,9 @@ if(isset($_POST['text'])) {
 
 }
 
+echo html_a('logout.php','Logout','leftnavitem','target="_top"')."\n";
 ?>
-<html>
-<form action="index.php" method="post">
+<form action="kiosk.php" method="POST">
 <select name="mode">
 <option value="checkout">CheckOut</option>
 <option value="checkin">CheckIn</option>
@@ -54,4 +57,6 @@ if(isset($_POST['text'])) {
 </textarea><br />
 <input type="submit" name="submit_run" value="Run!" />
 </form>
-</html>
+<?php
+include 'footer.inc.php';
+?>

@@ -1,16 +1,16 @@
 <?php 
   //foo
 function 
-v($n)
+v($n,$default=null)
 {
     $data = getData();
     if (isset($data[$n])) {
         $v = $data[$n];
-    } else {
-        $v = null;
-    }
-    if ($v == 'on') {
+        if ($v == 'on') {
         $v = true;
+        }
+    } else {
+        $v = $default;
     }
     return $v;
 }

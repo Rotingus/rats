@@ -1,5 +1,5 @@
 <?php
-/* $Id: Transactions.php,v 1.5 2002/12/12 22:55:31 robbat2 Exp $ */
+/* $Id: Transactions.php,v 1.6 2003/05/07 19:57:20 robbat2 Exp $ */
 /**
  * \brief Transactions logging system
  *
@@ -24,20 +24,20 @@ class Transactions {
 
     function add($UserID,$ActionCode,$GenericID) {
         global $_Actions;
-        $arr = $_Actions->lookup($ActionCode);
+        $arr = $_Actions->getID_code($ActionCode);
         $ActionID = $arr[0];
         $GenericTable = $arr[1];
-        $this->addcomplex($UserID,MySQL_quote($GenericTable),$GenericID,$ActionID);
+        $this->addcomplex($UserID,$GenericID,$ActionID);
     }
-    function addcomplex($UserID,$GenericTable,$GenericID,$ActionID) {
-        $tmp = array($UserID,$GenericTable,$GenericID,$ActionID);
+    function addcomplex($UserID,$GenericID,$ActionID) {
+        $tmp = array($UserID,$GenericID,$ActionID);
         $this->actionbuffer->addLast($tmp);
     }
     function generateSQL() {
         $size = $this->actionbuffer->getSize();
         $query = '';
         if($size > 0) {
-            $query = 'INSERT INTO Transactions (UserID,GenericTable,GenericID,ActionID) VALUES ';
+            $query = 'INSERT INTO Transactions (UserID,GenericID,ActionID) VALUES ';
             for($i = 0; $i < $size; $i++) {
                 $data = $this->actionbuffer->removeFirst();
                 $query .= MySQL_arrayToSequence($data);

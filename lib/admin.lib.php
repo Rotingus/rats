@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.11 2003/05/07 11:23:09 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.12 2003/05/07 19:57:20 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionInfo, $sessionDebug;
@@ -153,6 +153,14 @@ function admin_getpermissionstable($userid,$table) {
     global $_GroupActionMapping;
     $groups = admin_getgroups($userid);
     return $_GroupActionMapping->getGroupActionTable($groups,$table);
+}
+
+function httpredirect($page='',$opts='',$host='') {
+    if($host == '') {
+        $host = $_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'/';
+    }
+    header('Location: http://'.$host.$page.$opts);
+    exit;
 }
 
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */

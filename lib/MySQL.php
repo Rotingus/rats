@@ -1,5 +1,5 @@
 <?php
-/* $Id: MySQL.php,v 1.10 2003/05/01 22:20:32 robbat2 Exp $ */
+/* $Id: MySQL.php,v 1.11 2003/05/07 19:57:20 robbat2 Exp $ */
 
 //var $mysql_conn;
 
@@ -82,9 +82,9 @@ class MySQL {
     }
 
     function checkerror() {
-        //if(mysql_errno() != 0) {
-        //    die(mysql_error());
-        //}
+        if(mysql_errno() != 0) {
+            die(mysql_error());
+        }
     }
 
     function getNumRows() {
@@ -94,7 +94,7 @@ class MySQL {
         return $num;
     }
     function _getNumRows() {
-        $num = mysql_num_rows($this->getResult());
+        $num = @mysql_num_rows($this->getResult());
         $this->checkerror();
         return $num;
     }
@@ -219,7 +219,7 @@ function MySQL_escape($str) {
     return mysql_real_escape_string($str);
 }
 
-function MySQL_arrayToSequence($arr,$brackets = TRUE) {
+function MySQL_arrayToSequence($arr,$brackets = TRUE, $escape = TRUE) {
     $size = count($arr);
     $s = '';
     if($size > 0) {
@@ -227,7 +227,11 @@ function MySQL_arrayToSequence($arr,$brackets = TRUE) {
             $s .= '('; 
         }
         for($i = 0; $i < $size; $i++) {
-            $s .= MySQL_quote($arr[$i]);
+            if($escape) {
+                $s .= MySQL_quote($arr[$i]);
+            } else {
+                $s .= $arr[$i];
+            }
             if($i+1 < $size) {
                 $s .= ',';
             }

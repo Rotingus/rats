@@ -1,5 +1,5 @@
 <?php
-/* $Id: Actions.php,v 1.6 2003/04/29 20:47:53 robbat2 Exp $ */
+/* $Id: Actions.php,v 1.7 2003/05/07 19:57:20 robbat2 Exp $ */
 /**
  * \brief Action handling system
  *
@@ -11,9 +11,9 @@ class Actions {
     function getID_code($str) {
         global $MySQL_singleton_abort;
         MySQL_buildonemanykey('ActionCode',$str);
-        $query = 'SELECT ActionID,GenericTable FROM Actions WHERE ActionCode = '.MySQL_quote($str);
+        $query = 'SELECT ActionID FROM Actions WHERE ActionCode = '.MySQL_quote($str);
         $val = MySQL_singleton($query);
-        if($val == $MySQL_singleton_abort) {
+        if($val != $MySQL_singleton_abort) {
             return $val;
         } else {
             die ('Unknown Action Code');

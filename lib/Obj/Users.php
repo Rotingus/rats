@@ -1,5 +1,5 @@
 <?php
-/* $Id: Users.php,v 1.4 2003/04/29 20:47:53 robbat2 Exp $ */
+/* $Id: Users.php,v 1.5 2003/05/07 19:57:20 robbat2 Exp $ */
 /**
  * \brief User handling system
  *
@@ -18,6 +18,11 @@ class Users {
     function getID_barcode($barcode) {
         $query = 'SELECT UserID FROM Users WHERE '.MySQL_buildonemanykey('UserBarcode',$barcode);
         return MySQL_singleton($query);
+    }
+    function exists($barcode) {
+        global $MySQL_singleton_abort;
+        $val = getID_barcode($barcode);
+        return $val != $MySQL_singleton_abort;
     }
     function getID_login_password($login,$password) {
         $query = 'SELECT UserID FROM Users WHERE '.MySQL_buildonemanykey('UserLogin',$login).' AND '.MySQL_buildonemanykey('UserPassword',$password);

@@ -1,8 +1,8 @@
--- $Id: data.sql,v 1.8 2003/06/12 18:22:46 robbat2 Exp $
--- MySQL dump 9.08
+-- $Id: data.sql,v 1.9 2003/06/12 19:01:09 robbat2 Exp $
+-- MySQL dump 9.07
 --
 -- Host: localhost    Database: rats
--- Server version	4.0.13-log
+-- Server version	4.0.12-log
 
 --
 -- Current Database: rats
@@ -147,11 +147,33 @@ INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) 
 INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000063,0000000052,0000000010);
 INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000064,0000000053,0000000010);
 INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000065,0000000054,0000000010);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000072,0000000017,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000084,0000000018,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000078,0000000019,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000066,0000000021,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000067,0000000022,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000068,0000000023,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000073,0000000025,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000085,0000000026,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000079,0000000027,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000074,0000000029,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000086,0000000030,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000080,0000000031,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000071,0000000033,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000083,0000000034,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000077,0000000035,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000070,0000000037,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000082,0000000038,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000076,0000000039,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000069,0000000041,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000081,0000000042,0000000013);
+INSERT IGNORE INTO GroupActionMapping (GroupActionMappingID, ActionID, GroupID) VALUES (0000000075,0000000043,0000000013);
 
 --
 -- Dumping data for table 'Groups'
 --
 
+INSERT IGNORE INTO Groups (GroupID, GroupName) VALUES (0000000013,'Administrators');
 INSERT IGNORE INTO Groups (GroupID, GroupName) VALUES (0000000001,'Anonymous users');
 INSERT IGNORE INTO Groups (GroupID, GroupName) VALUES (0000000009,'Notes administrators');
 INSERT IGNORE INTO Groups (GroupID, GroupName) VALUES (0000000004,'Object administrators');
@@ -219,10 +241,7 @@ INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000006,4,1);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000012,4,2);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000010,4,3);
-INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000008,4,4);
-INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000009,4,5);
 INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000011,4,8);
-INSERT IGNORE INTO UserGroupMapping (UserGroupMappingID, UserID, GroupID) VALUES (0000000007,4,9);
 
 --
 -- Dumping data for table 'Users'

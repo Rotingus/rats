@@ -1,5 +1,5 @@
 <?php
-/* $Id: admin.lib.php,v 1.1 2003/03/13 10:49:57 robbat2 Exp $ */
+/* $Id: admin.lib.php,v 1.2 2003/03/13 11:29:08 robbat2 Exp $ */
 /* $Source: /code/convert/cvsroot/infrastructure/rats/lib/admin.lib.php,v $ */
 
 global $sessionLoaded, $sessionUsername, $sessionPassword, $sessionDebug;
@@ -9,6 +9,7 @@ $sessionPassword= '';
 $sessionDebug = FALSE;
 
 function printall($item) {	
+    global $sessionDebug;
     if($sessionDebug) {
         echo 'Variable status at $item point. <br />'."\n";
         echo 'GET: '; print_r($_GET); echo '<br />'."\n";
@@ -55,7 +56,7 @@ function admin_session_start($u,$p) {
 }
 
 function admin_user_lookup_mysql($sessionUsername,$sessionPassword) {	
-    mysql_load();
+    global $MySQL_singleton_abort;
     //$query = 'SELECT MD5(CONCAT(UserLogin,UserBarcode)) AS hash FROM Users WHERE UserLogin=\''.$sessionUsername.'\' AND UserPassword=\''$md5password'\'';
     $query = 'SELECT UserID FROM Users WHERE UserLogin=\''.$sessionUsername.'\' AND UserPassword=\''.$sessionPassword.'\'';
     $userhash = MySQL_singleton($query);

@@ -1,44 +1,19 @@
 <?php
-/* $Id: index.php,v 1.6 2003/03/13 09:43:26 robbat2 Exp $ */
+/* $Id: index.php,v 1.7 2003/03/13 11:28:13 robbat2 Exp $ */
 /* vim: set ft=php expandtab shiftwidth=4 softtabstop=4 tabstop=4: */
 
 $skipvalidate = TRUE;
 
 include 'header.inc.php';
 include 'gui/title.inc.php';
+if(isset($_GET['loginerror']) && $_GET['loginerror']) {
+    $loginerror = TRUE;
+    include 'gui/invalidlogin.inc.php';
+} else {
+    $loginerror = FALSE;
+}
 
-?>
-<form action="main.php" method="POST" class="title">
-<table class="title">
-<tr><td>
-<label for="username">Username</label>
-</td>
-<td>
-<?php
-echo textinput('username','',32);
-?>
-</td>
-</tr>
-<tr>
-<td>
-<label for="password">Password</label>
-</td>
-<td>
-<?php
-echo passwordinput('password','',32);
-?>
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<?php
-echo submitinput('login','Login');
-?>
-</td>
-</tr>
-</table>
-</form>
+include 'gui/login.inc.php';
 
-<?php
 include 'footer.inc.php';
 ?>

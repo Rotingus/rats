@@ -1,5 +1,13 @@
-$Id: ChangeLog,v 1.31 2003/03/13 09:39:45 robbat2 Exp $
+$Id: ChangeLog,v 1.32 2003/03/13 09:44:39 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-03-13 01:43  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* index.php: Cleanup of header system
+
+2003-03-13 01:43  Robin Johnson  <robbat2@orbis-terrarum.net>
+
+	* footer.inc.php, gui/footer.inc.php: Cleanup of footer code
 
 2003-03-13 01:39  Robin Johnson  <robbat2@orbis-terrarum.net>
 

@@ -1,5 +1,5 @@
 <?php
-/* $Id: CheckOuts.php,v 1.5 2003/03/13 10:49:41 robbat2 Exp $ */
+/* $Id: CheckOuts.php,v 1.6 2003/04/24 00:07:52 robbat2 Exp $ */
 /**
  * \brief Object CheckOuts
  *
@@ -17,7 +17,7 @@ class CheckOuts {
             echo('Item is not checked out');
         } else {
             $_MySQL_trans->start();
-            $_MySQL_trans->run("DELETE FROM CheckOuts WHERE CheckOutID=".MySQL_quote($coid));
+            $_MySQL_trans->run('DELETE FROM CheckOuts WHERE CheckOutID='.MySQL_quote($coid));
             $_MySQL_trans->run($_Transactions->singleton(0,'dC',$coid));
             $_MySQL_trans->execute();
             echo('Item now checked in');
@@ -46,11 +46,22 @@ class CheckOuts {
         $uid = MySQL_quote($uid);
         if(!$bad) {
             $_MySQL_trans->start();
-            $_MySQL_trans->run("SELECT @duration := ObjectTypeLoanDuration FROM Objects LEFT JOIN ObjectTypes USING (ObjectTypeID) WHERE ObjectID=".$oid);
-            $_MySQL_trans->run("SELECT @year:=EXTRACT(YEAR FROM @duration), @month:=EXTRACT(MONTH FROM @duration), @day:=EXTRACT(DAY FROM @duration)");
-            $_MySQL_trans->run("SELECT @duration:=CONCAT(@year*365+@month*30+@day,SUBSTRING(@duration,LOCATE(' ',@duration)))");
-            $_MySQL_trans->run("SELECT @duedate:=DATE_ADD(NOW(),INTERVAL @duration DAY_SECOND);");
-            $_MySQL_trans->run("INSERT CheckOuts (UserID,ObjectID,CheckOutDueDate) VALUES ".MySQL_arrayToSequence(array($uid,$oid,'@duedate')));
+            //$_MySQL_trans->run("SELECT @duration := ObjectTypeLoanDuration FROM Objects LEFT JOIN ObjectTypes USING (ObjectTypeID) WHERE ObjectID=".$oid);
+            //$_MySQL_trans->run("SELECT @year:=EXTRACT(YEAR FROM @duration), @month:=EXTRACT(MONTH FROM @duration), @day:=EXTRACT(DAY FROM @duration), @hour:=EXTRACT(HOUR FROM @duration), @minute:=EXTRACT(MINUTE FROM @duration), @second:=EXTRACT(SECOND FROM @duration)");
+            //$_MySQL_trans->run("SELECT @duration:=CONCAT(@year*365+@month*30+@day,SUBSTRING(@duration,LOCATE(' ',@duration)))");
+           // $_MySQL_trans->run("SELECT @duedate:=DATE_ADD(NOW(),INTERVAL @duration DAY_SECOND);");
+            
+            $_MySQL_trans->run('SELECT @duedate:=(((((((NOW() + INTERVAL
+                                                EXTRACT(YEAR FROM ObjectTypeLoanDuration) YEAR) + INTERVAL
+                                            EXTRACT(MONTH FROM ObjectTypeLoanDuration) MONTH) + INTERVAL
+                                        EXTRACT(DAY FROM ObjectTypeLoanDuration) DAY) + INTERVAL
+                                    EXTRACT(HOUR FROM ObjectTypeLoanDuration) HOUR) + INTERVAL
+                                EXTRACT(MINUTE FROM ObjectTypeLoanDuration) MINUTE) + INTERVAL
+                            EXTRACT(SECOND FROM ObjectTypeLoanDuration) SECOND)) FROM Objects
+                    LEFT JOIN ObjectTypes USING (ObjectTypeID) WHERE
+                    ObjectID='.MySQL_quote($oid).';');
+            
+            $_MySQL_trans->run('INSERT CheckOuts (UserID,ObjectID,CheckOutDueDate) VALUES '.MySQL_arrayToSequence(array($uid,$oid,'@duedate')));
             $_MySQL_trans->run($_Transactions->singleton(0,'aC','LAST_INSERT_ID()'));
             $_MySQL_trans->execute();
             echo('Item now checked out');

@@ -1,5 +1,9 @@
-$Id: ChangeLog,v 1.11 2002/12/12 22:55:31 robbat2 Exp $
+$Id: ChangeLog,v 1.12 2003/01/23 20:09:20 robbat2 Exp $
 $Source: /code/convert/cvsroot/infrastructure/rats/ChangeLog,v $
+
+2003-01-23 12-06 Robin Johnson  <robbat2@orbis-terrarum.net>
+    * gui/:
+        - New Directory
 
 2002-12-12 05-34 Robin Johnson  <robbat2@orbis-terrarum.net>
     * index.php:
